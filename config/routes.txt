@@ -1,3 +1,2 @@
 / HomeController:index
-/a-propos AboutController:index
-/galerie GalleryController:index
+/contact ContactController:index

@@ -18,6 +18,7 @@ require "./managers/UserManager.php";
 require "./controllers/FileUploader.php";
 
 require "./controllers/HomeController.php";
+require "./controllers/ContactController.php";
 
 $routes = [];
 
