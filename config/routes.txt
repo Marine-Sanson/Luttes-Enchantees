@@ -1,2 +1,12 @@
 / HomeController:index
 /contact ContactController:index
+/connect ConnectController:index
+/accueil-membres MembersHomeController:index
+/liste MembersListController:index
+/chants MembersSongsController:index
+/repes MembersRehearsalController:index
+/messages MembersChatController:index
+/echanges MembersSharingZoneController:index
+/videos MembersVideosController:index
+/admin-chants AdminSongsController:index
+/admin-dates AdminRehearsalController:index

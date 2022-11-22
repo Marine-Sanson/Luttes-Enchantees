@@ -12,3 +12,14 @@ Controllers
     AbstractController
     FileUploader
     HomeController
+    ContactController
+    ConnectController
+    MembersHomeController
+    MembersListController
+    MembersSongsController
+    MembersRehearsalController
+    MembersChatController
+    MembersSharingZoneController
+    MembersVideosController
+    AdminSongsController
+    AdminRehearsalController

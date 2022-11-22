@@ -4,12 +4,13 @@ Template-List :
     contact
     connect
 
+    membersHome
     membersList
-    songs
-    rehearsal
-    chat
-    sharingZone
-    Videos
+    membersSongs
+    membersRehearsal
+    membersChat
+    membersSharingZone
+    membersVideos
 
     adminSongs
     adminRehearsal

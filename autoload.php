@@ -19,6 +19,16 @@ require "./controllers/FileUploader.php";
 
 require "./controllers/HomeController.php";
 require "./controllers/ContactController.php";
+require "./controllers/ConnectController.php";
+require "./controllers/MembersHomeController.php";
+require "./controllers/MembersListController.php";
+require "./controllers/MembersSongsController.php";
+require "./controllers/MembersRehearsalController.php";
+require "./controllers/MembersChatController.php";
+require "./controllers/MembersSharingZoneController.php";
+require "./controllers/MembersVideosController.php";
+require "./controllers/AdminSongsController.php";
+require "./controllers/AdminRehearsalController.php";
 
 $routes = [];
 
