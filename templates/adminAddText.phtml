@@ -1,0 +1,33 @@
+<main id="adminAddText">
+
+	<?php
+	require "./templates/_adminNav.phtml"
+	?>
+
+	<h1>Gestion des fichiers paroles</h3>
+
+	<?php
+	require "./templates/_messages.phtml";
+	var_dump($_POST);
+	?>
+
+	<h2>Télécharger un fichier paroles pour <?= $data["title"]; ?></h2>
+
+	<form  id="uploader"
+		action="/Luttes-Enchantees/admin-texte"
+		method="post"
+		enctype="multipart/form-data">
+
+	<input type="hidden" id="uploadVoice" name="action" value="uploadText">
+	<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
+		
+	<input type="file"
+		 name="fileToUpload"
+		 id="fileToUpload">
+			
+		<input class="button"
+			 type="submit">
+
+	</form>
+
+</main>

@@ -59,9 +59,6 @@ Class AdminSongsController extends AbstractController
 			}
 			else if($errors === [])
 			{
-				var_dump($_POST);
-				var_dump($_FILES);
-
 				$file = $_FILES;
 
 				$voiceType = $_POST["voice"];
@@ -98,42 +95,107 @@ Class AdminSongsController extends AbstractController
 	}
 
 	public function addText() : void
-	{
-		$template = "adminAddText";
+	{	var_dump($_POST);
 
-		var_dump($_POST);
-		var_dump($_FILES);
+		if(isset($_POST["action"]) && $_POST["action"] === "uploadText")
+		{
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
 
-		$allSongs = $this->sm->getAllSongsTitles();
+			$template = "adminAddText";
+			$validation = "";
+			if(isset($_POST["errors"]))
+			{
+				$errors = $_POST["errors"];
+			}
+			else
+			{
+				$errors = [];
+			}
 
-		$this->render($template, ["allSongs" => $allSongs]);
+			if($errors !== [])
+			{
+				$this->render($template, ["title" => $title, "errors" => $_POST["errors"]]);
+			}
+			else if($errors === [])
+			{
+				$file = $_FILES;
 
+				$titleForUpload = str_replace([" ", "'"], "-", $title);
+
+				$upload = $this->fu->uploadText($file, $songId, $titleForUpload);
+				$text = $upload["fileToUpload"];
+
+				$this->tm->createText($text);
+				
+				$validation = "votre texte a été chargé correctement";
+
+				$this->render($template, ["title" => $title, "validation" => $validation]);
+			}
+		}
+		else if(isset($_POST["action"]) && $_POST["action"] === "addText")
+		{
+			$title = $this->sm->getSongTitle($_POST["songId"]);
+			$template = "adminAddText";
+
+			$this->render($template, ["title" => $title]);
+		}
+		else
+		{
+			$template = "adminSongs";
+			$allSongs = $this->sm->getAllSongsTitles();
+
+			$this->render($template, ["allSongs" => $allSongs]);
+		}
 	}
 
 	public function addVideo() : void
 	{
 		$template = "adminAddVideo";
+		$songId = intval($_POST["songId"]);
+		$title = $this->sm->getSongTitle($songId);
+
+		if(isset($_POST["action"]) && $_POST["action"] === "addVideoLink")
+		{
+			$urlVideo = $_POST["urlVideo"];
+
+			$this->sm->updateUrlVideo($songId, $urlVideo);
+
+		}
 
 		var_dump($_POST);
 		var_dump($_FILES);
 
 		$allSongs = $this->sm->getAllSongsTitles();
 
-		$this->render($template, ["allSongs" => $allSongs]);
-
+		$this->render($template, ["title" => $title]);
 	}
 
 	public function addCurrent() : void
 	{
 		$template = "adminCurrent";
+		$songId = intval($_POST["songId"]);
+		$title = $this->sm->getSongTitle($songId);
 
-		var_dump($_POST);
-		var_dump($_FILES);
+		if(isset($_POST["action"]) && $_POST["action"] === "addCurrent")
+		{
+			$this->render($template, ["title" => $title]);
 
-		$allSongs = $this->sm->getAllSongsTitles();
+		}
+		else if(isset($_POST["action"]) && $_POST["action"] === "updateStatus")
+		{
+			$status = $_POST["status"];
+			$this->sm->updateCurrent($songId, $status);
+			$validation = "Le statut a bien été changé";
 
-		$this->render($template, ["allSongs" => $allSongs]);
+			$this->render($template, ["title" => $title, "validation" => $validation]);
+		}
+		else
+		{
+			$allSongs = $this->sm->getAllSongsTitles();
 
+			$this->render($template, ["allSongs" => $allSongs]);
+		}
 	}
 
 }

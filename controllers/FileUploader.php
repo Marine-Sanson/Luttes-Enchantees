@@ -8,7 +8,7 @@
 
 class FileUploader
 {
-	private string $uploadFile = "/uploads/voix/";
+	private string $uploadDir = "/uploads/";
 	private array $allowedImageTypes = ["png", "PNG", "jpg", "JPG", "jpeg", "JPEG"];
 	private array $allowedVoiceTypes = ["mp3", "MP3", "mp4", "MP4", "mpeg"];
 	private array $allowedTextTypes = ["jpg", "JPEG", "pdf", "doc", "docx"];
@@ -123,10 +123,8 @@ class FileUploader
 			$voiceForFileName = "voix-" . $voiceType;
 			$fileName = $this->generateFileName($title, $voiceForFileName);
 			$fileType = pathinfo($originalName)["extension"];
-			$path = getcwd() . $this->uploadFile . $fileName . ".". $fileType;
+			$path = getcwd() . $this->uploadDir . "voix/" . $fileName . ".". $fileType;
 			$url = "http://localhost/Luttes-Enchantees/uploads/voix/" . $fileName . ".". $fileType;
-			// $tempAlt = $voiceForFileName . " de " . $title;
-			// $alt = str_replace("-", " ", $tempAlt);
 
 			var_dump($fileType);
 			var_dump($path);
@@ -137,93 +135,79 @@ class FileUploader
 			$voice = new Voice(null, $songId, $voiceType, $originalName, $fileName, $fileType, $url);
 			
 			$fileToUpload = $voice;
-			$validation = "votre image a été chargée correctement";
 		}
 
 		$return = ["fileToUpload" => $fileToUpload, "errors" => $errors, "validation" => $validation];
 		return $return; 
 	}
 
-	// public function uploadText(Text $file) : array
-	// {
-	// 	$errors = [];
+	public function uploadText(array $file, int $songId, string $title) : array
+	{
+		$errors = [];
+		$fileToUpload = $file['fileToUpload'];
 		
-	// 	if(!isset($fileToUpload) || $fileToUpload === [])
-	// 	{
-	// 		$fileToUpload = [];
-	// 	}
+		$fileTypeCheked = false;
+		$fileSizeCheked = false;
 
-	// 	$fileTypeCheked = false;
-	// 	$fileSizeCheked = false;
+		if($fileToUpload !== [] && $fileToUpload['type'] !== "")
+		{
+			$explode = explode(".", $fileToUpload['name']);
+			$fileType = $explode[1];
+			$allowedTypes = $this->allowedTextTypes;
+			
+			// appeler $this->checkFileType(string $fileType) pour vérifier le type du fichier
+			$fileTypeCheked = $this->checkFileType($fileType, $allowedTypes);
+		}
+		else
+		{
+			$errors[] = "problème de type de fichier, merci de vérifier et de recommencer";
+		}
+		
+		if($fileToUpload !== [] && $fileToUpload['size'] !== "")
+		{
+			$maxFileSize = $this->maxTextSize;
+			$fileSizeCheked = $this->checkFileSize($fileToUpload['size'], $maxFileSize);
+		}
+			
+		if(!$fileTypeCheked)
+		{
+			$errors[] = "ce type de fichier n'est pas autorisé ou fichier inexistant";
+			$return = $errors;
+		}
+		
+		if(!$fileSizeCheked)
+		{
+			$errors[] = "fichier trop gros ou inexistant";
+			$return = $errors;
+		}
+		
+		$validation = "";
+		
+		if(isset($errors) && count($errors) > 0)
+		{
+			$validation = "";
+		}
+		else
+		{
+			$originalName = $fileToUpload["name"];
+			$mediaType = "paroles";
+			$fileName = $this->generateFileName($title, $mediaType);
+			$fileType = pathinfo($originalName)["extension"];
+			$path = getcwd() . $this->uploadDir . "textes/" . $fileName . ".". $fileType;
+			$url = "http://localhost/Luttes-Enchantees/uploads/textes/" . $fileName . ".". $fileType;
+			$tempAlt = $mediaType . " de " . $title;
+			$alt = str_replace("-", " ", $tempAlt);
+			
+			move_uploaded_file($fileToUpload["tmp_name"], $path);
 
-	// 	if(isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['type'] !== "")
-	// 	{
-	// 		$explode = explode("/", $_FILES['fileToUpload']['type']);
-	// 		$fileType = $explode[1];
-	// 		$mimeTypes = $this->mimeTypes;
-			
-	// 		// appeler $this->checkFileType(string $fileType) pour vérifier le type du fichier
-	// 		$fileTypeCheked = $this->checkFileType($fileType);
-			
-	// 	}
-	// 	else
-	// 	{
-	// 		$errors[] = "problème de type de fichier, merci de vérifier et de recommencer";
-	// 	}
-		
-	// 	if(isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['size'] !== "")
-	// 	{
-	// 		$fileSizeCheked = $this->checkFileSize($_FILES['fileToUpload']['size']);
-	// 	}
-			
-	// 	// appeler $this->checkFileSize(int $fileSize) pour vérifier le type du fichier
-	// 	if(isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['alt'] === "")
-	// 	{
-	// 		$errors[] = "veuillez remplir la description";
-	// 	}
-		
-	// 	if(!$fileTypeCheked)
-	// 	{
-	// 		$errors[] = "ce type de fichier n'est pas autorisé";
-	// 		$return["errors"][] = $errors;
-	// 	}
-		
-	// 	if(!$fileSizeCheked)
-	// 	{
-	// 		$errors[] = "fichier trop gros";
-	// 		$return["errors"][] = $errors;
-	// 	}
-		
-	// 	$validation = "";
-		
-	// 	if(isset($errors) && count($errors) > 0)
-	// 	{
-	// 		$validation = "";
-	// 	}
-	// 	else
-	// 	{
-	// 		$originalName = $file->getOriginalName();
-	// 		$fileName = $this->generateFileName();
-	// 		$fileType = pathinfo($originalName)["extension"];
-	// 		$path = getcwd() . $this->uploadFile . $fileName . ".". $fileType;
-	// 		$url = "http://localhost/SiteLuttesEnchantees/Luttes-Enchantees/uploads/" . $fileName . ".". $fileType;
-	// 		$alt = $_FILES['fileToUpload']['alt'];
-			
-	// 		move_uploaded_file($file->getFileName(), $path);
+			$text = new Text(null, $songId, $originalName, $fileName, $fileType, $url, $alt);
 
-	// 		// vérifier le mime du fichier
-	// 		if(!in_array(mime_content_type($path), $mimeTypes, true)){
-	// 				$errors[] = "Le fichier n'a pas été enregistré correctement !";    
-	// 		}
-			
-	// 		$media = new Media(null, $originalName, $fileName, $fileType, $url, $alt);
-			
-	// 		$fileToUpload[] = $media;
-	// 		$validation = "votre image a été chargée correctement";
-	// 	}
-	// 	$return = ["fileToUpload" => $fileToUpload, "errors" => $errors, "validation" => $validation];
-	// 	return $return; 
-	// }
+			$fileToUpload = $text;
+		}
+
+		$return = ["fileToUpload" => $fileToUpload, "errors" => $errors, "validation" => $validation];
+		return $return; 
+	}
 
 	// public function uploadImage(Image $file) : array
 	// {

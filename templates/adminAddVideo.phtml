@@ -1,0 +1,54 @@
+<main id="adminAddVideo">
+
+	<?php
+	require "./templates/_adminNav.phtml"
+	?>
+
+	<h1>Gestion des liens vidéos</h3>
+
+	<?php
+	require "./templates/_messages.phtml";
+	var_dump($_POST);
+	?>
+
+	<h2>insérer un lien vidéo pour <?= $data["title"]; ?></h2>
+
+	<form  id="addVideo"
+		action="/Luttes-Enchantees/admin-video"
+		method="post">
+
+	<input type="hidden" id="uploadVideo" name="action" value="addVideoLink">
+	<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
+		
+	<label for="urlVideo">Copier le lien içi :</label>
+      <input type="text" id="urlVideo" name ="urlVideo">
+			
+	<input class="button"
+		 type="submit">
+
+	</form>
+
+      <section>
+
+            <h2>Marche à suivre</h2>
+            <p>Pour intégrer facilement un lien youtube sur une page web, aller sur la page youtube de la vidéo.</p>
+            
+		<p>Sous la vidéo à droite cliquer sur "Partager"</p>
+		<figure>
+      	      <img src="./assets/img/addVideoLink1.jpg">
+		</figure>
+
+            <p>Dans la Dans la fenetre qui s'est ouverte, cliquer sur "Intégrer"</p>
+		<figure>
+	            <img src="./assets/img/addVideoLink2.jpg">
+		</figure>
+
+		<p>Dans la nouvelle fenêtre, cliquer sur "Copier" en bas à droite</p>
+		<figure>
+      	      <img src="./assets/img/addVideoLink3.jpg">
+		</figure>
+
+		<p>Il n'y a plus qu'a revenir sur ce site et faire coller dans le champ "Copier le lien içi"</p>
+      </section>
+
+</main>

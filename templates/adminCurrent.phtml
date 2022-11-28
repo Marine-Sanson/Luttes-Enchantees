@@ -1,0 +1,36 @@
+<main id="adminCurrent">
+
+	<?php
+	require "./templates/_adminNav.phtml"
+	?>
+
+	<h1>Gestion du statut "chant du moment"</h3>
+
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
+	<h2>Changer le statut pour <?= $data["title"]; ?></h2>
+
+	<fieldset>
+		<legend>Mettre <?= $data["title"]; ?> en "chant du moment" ?</legend>
+
+		<form  id="changeStatus"
+			action="/Luttes-Enchantees/admin-moment"
+			method="post">
+
+			<input type="hidden" id="updateStatus" name="action" value="updateStatus">
+			<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
+				
+			<input type="radio" id="urlVideo1" name ="status" value=1>
+			<label for="urlVideo1">Oui</label>
+			<input type="radio" id="urlVideo0" name ="status" value=0>
+			<label for="urlVideo0">Non</label>
+
+			<input class="button"
+				type="submit">
+
+		</form>
+	</fieldset>
+
+	<section>
