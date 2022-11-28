@@ -12,7 +12,7 @@ if(!isset($_SESSION["connectUser"]))
     $_SESSION["connectUser"] = [];
 }
 
-// require "managers/AbstractManager.php";
+require "./managers/AbstractManager.php";
 require "autoload.php";
 
 try {

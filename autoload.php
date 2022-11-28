@@ -14,6 +14,7 @@ require "./models/ChatItem.php";
 require "./models/SharingCategory.php";
 
 require "./managers/UserManager.php";
+require "./managers/SongsManager.php";
 
 require "./controllers/FileUploader.php";
 

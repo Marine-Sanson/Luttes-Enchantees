@@ -47,9 +47,11 @@ class Router {
                     $routeFound = true;
 
                     $um = new UserManager();
+                    $sm = new SongsManager();
+                    $fu = new FileUploader();
 
                     $ctrl = new $controller();
-                    $ctrl->init($um);
+                    $ctrl->init($um, $sm, $fu);
                     $ctrl->$method($_POST, $requestData["parameter"]);
                 }
                 else if(!$route["parameter"] && $requestData["parameter"] === null)
@@ -57,9 +59,11 @@ class Router {
                     $routeFound = true;
                     
                     $um = new UserManager();
+                    $sm = new SongsManager();
+                    $fu = new FileUploader();
 
                     $ctrl = new $controller();
-                    $ctrl->init($um);
+                    $ctrl->init($um, $sm, $fu);
                     $ctrl-> $method($_POST);
                 }
             }

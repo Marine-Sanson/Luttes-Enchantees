@@ -8,8 +8,8 @@ abstract class AbstractManager
     function __construct()
     {
         $this->db = new PDO(
-        'mysql:host=localhost;bdname=luttes_enchantees;charset=utf8',
-        'root@localhost',
+        'mysql:host=localhost;dbname=luttes_enchantees;charset=utf8',
+        'root',
         'root'
         );
     }

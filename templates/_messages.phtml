@@ -1,0 +1,23 @@
+<?php
+    if(isset($data["errors"]) && $data["errors"] !== "")
+    {
+    ?>
+        <ul class="errors">
+        <?php
+        foreach($data["errors"] as $key => $error)
+        {
+        ?>
+            <li> <?= $error ?></li>
+        <?php
+        }
+        ?>
+        </ul>
+    <?php
+    }
+    if(isset($data["validation"]) && $data["validation"] !== "")
+    {
+        ?>
+        <p class="validation"> <?= $data["validation"] ?> </p>
+        <?php
+    }
+    ?>

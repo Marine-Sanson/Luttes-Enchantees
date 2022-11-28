@@ -3,11 +3,14 @@
 abstract class AbstractController
 {
     protected UserManager $um;
+    protected SongsManager $sm;
+
 
     // fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-    public function init(UserManager $um)
+    public function init(UserManager $um, SongsManager $sm)
     {
         $this->um = $um;
+        $this->sm = $sm;
     }
 
     protected function renderPartial(string $template, array $values)

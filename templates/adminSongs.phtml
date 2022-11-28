@@ -1,7 +1,95 @@
 <main id="adminSongs">
 
-    <h1>Gestion des chants</h1>
+       <?php
+       require "./templates/_adminNav.phtml"
+       ?>
 
-    
+       <h1>Gestion des chants</h1>
+
+       <p>sqegh</p>
+
+       <section>
+              <h2>Choisir un chant existant</h2>
+
+              <select id="selectASong">
+                     <option value = "0">Selectionne un chant</option>
+                     <?php
+        
+                     foreach($data["allSongs"] as $key => $song)
+                     {
+                     ?>
+                     <option value = " <?= $song["id"]; ?> ">
+                     <?=$song["title"]; ?>
+                     </option>
+                     <?php $idSong = $song['id'];
+                     }
+                     ?>
+              </select>
+       </section>
+
+       <h3>Fichiers sons</h3>
+
+       <form  id="uploader"
+              action="/Luttes-Enchantees/admin-chants"
+              method="post"
+              enctype="multipart/form-data">
+
+              <input type="hidden" id="idSong" name="idSong" value= "<?= $idSong; ?> ">
+        
+              <fieldset>
+                     <legend>Choisir un fichier à télécharger:</legend>
+
+                     <div>
+                     <input type="radio" id="aigue" name="voice" value="aigue">
+                     <label for="aigue">Aigüe</label>
+                     </div>
+
+                     <div>
+                     <input type="radio" id="medium" name="voice" value="medium">
+                     <label for="medium">Medium</label>
+                     </div>
+
+                     <div>
+                     <input type="radio" id="grave" name="voice" value="grave">
+                     <label for="grave">Grave</label>
+                     </div>
+
+                     <div>
+                     <input type="radio" id="mix" name="voice" value="mix">
+                     <label for="mix">Mix</label>
+                     </div>
+
+                     <div>
+                     <input type="radio" id="demo" name="voice" value="demo">
+                     <label for="demo">Démo</label>
+                     </div>
+
+                     <div>
+                     <input type="radio" id="other" name="voice" value="other">
+                     <label for="other">Autre</label>
+                     <label for="otherVoice">Préciser</label>
+                     <input type="text" id="otherVoice" name="other" />
+                     </div>
+
+              </fieldset>
+
+
+              <input type="file"
+                     name="fileToUpload"
+                     id="fileToUpload">
+                     
+              <input 
+                     class="button"
+                     type="submit"
+                     >
+                     <!-- id="uploaderButton"
+                     value="Upload"
+                     name="submit" -->
+
+       </form>
+
+       <h2>Fichiers textes</h2>
+
+
 
 </main>
