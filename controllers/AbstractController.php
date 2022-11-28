@@ -4,13 +4,17 @@ abstract class AbstractController
 {
     protected UserManager $um;
     protected SongsManager $sm;
+    protected VoiceManager $vm;
 
+    protected FileUploader $fu;
 
     // fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-    public function init(UserManager $um, SongsManager $sm)
+    public function init(UserManager $um, SongsManager $sm, VoiceManager $vm, FileUploader $fu)
     {
         $this->um = $um;
         $this->sm = $sm;
+        $this->vm = $vm;
+        $this->fu = $fu;
     }
 
     protected function renderPartial(string $template, array $values)

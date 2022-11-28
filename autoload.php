@@ -9,12 +9,16 @@ require "./services/Router.php";
 
 require "./models/User.php";
 require "./models/Song.php";
+require "./models/Voice.php";
+require "./models/Text.php";
+require "./models/Image.php";
 require "./models/SahringItem.php";
 require "./models/ChatItem.php";
 require "./models/SharingCategory.php";
 
 require "./managers/UserManager.php";
 require "./managers/SongsManager.php";
+require "./managers/VoiceManager.php";
 
 require "./controllers/FileUploader.php";
 

@@ -9,4 +9,8 @@
 /echanges MembersSharingZoneController:index
 /videos MembersVideosController:index
 /admin-chants AdminSongsController:index
+/admin-voix AdminSongsController:addVoice
+/admin-texte AdminSongsController:addText
+/admin-video AdminSongsController:addVideo
+/admin-moment AdminSongsController:addCurrent
 /admin-dates AdminRehearsalController:index

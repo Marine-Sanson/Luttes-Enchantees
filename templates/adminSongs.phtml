@@ -1,95 +1,99 @@
 <main id="adminSongs">
 
-       <?php
-       require "./templates/_adminNav.phtml"
-       ?>
+	<?php
+	require "./templates/_adminNav.phtml"
+	?>
 
-       <h1>Gestion des chants</h1>
+	<h1>Gestion des chants</h1>
 
-       <p>sqegh</p>
+	<?php
+	require "./templates/_messages.phtml"
+	?>
 
-       <section>
-              <h2>Choisir un chant existant</h2>
+	<p>Permet d'ajouter un nouveau chant ou de télécharger des fichiers en lien avec un chant existant</p>
 
-              <select id="selectASong">
-                     <option value = "0">Selectionne un chant</option>
-                     <?php
-        
-                     foreach($data["allSongs"] as $key => $song)
-                     {
-                     ?>
-                     <option value = " <?= $song["id"]; ?> ">
-                     <?=$song["title"]; ?>
-                     </option>
-                     <?php $idSong = $song['id'];
-                     }
-                     ?>
-              </select>
-       </section>
+	<section>
 
-       <h3>Fichiers sons</h3>
+		<h2>Ajouter un nouveau chant</h2>
 
-       <form  id="uploader"
-              action="/Luttes-Enchantees/admin-chants"
-              method="post"
-              enctype="multipart/form-data">
+		<form id="newSong"
+		      action="/Luttes-Enchantees/admin-chants"
+		      method="post">
 
-              <input type="hidden" id="idSong" name="idSong" value= "<?= $idSong; ?> ">
-        
-              <fieldset>
-                     <legend>Choisir un fichier à télécharger:</legend>
+			<input type="hidden" id="newSongAction" name="action" value="addSong">
 
-                     <div>
-                     <input type="radio" id="aigue" name="voice" value="aigue">
-                     <label for="aigue">Aigüe</label>
-                     </div>
+			<label for="newSongTitle">Titre :</label>
+			<input type="text" id="newSongTitle" name="title">
 
-                     <div>
-                     <input type="radio" id="medium" name="voice" value="medium">
-                     <label for="medium">Medium</label>
-                     </div>
+			<label for="newSongDescription">Description :</label>
+			<input type="text" id="newSongDescription" name="description">
 
-                     <div>
-                     <input type="radio" id="grave" name="voice" value="grave">
-                     <label for="grave">Grave</label>
-                     </div>
+			<input class="button" type="submit" value="Créer">
+		</form>
 
-                     <div>
-                     <input type="radio" id="mix" name="voice" value="mix">
-                     <label for="mix">Mix</label>
-                     </div>
+	</section>
 
-                     <div>
-                     <input type="radio" id="demo" name="voice" value="demo">
-                     <label for="demo">Démo</label>
-                     </div>
+	<section>
+		<h2>Choisir un chant existant</h2>
 
-                     <div>
-                     <input type="radio" id="other" name="voice" value="other">
-                     <label for="other">Autre</label>
-                     <label for="otherVoice">Préciser</label>
-                     <input type="text" id="otherVoice" name="other" />
-                     </div>
+		<ul>
+			<?php
+			foreach($data["allSongs"] as $key => $song)
+			{
+			?>
+				<li>
+					<article>
 
-              </fieldset>
+						<h3><?=$song["title"]; ?></h3>
 
+						<form id="addVoice"
+							action="/Luttes-Enchantees/admin-voix"
+							method="post">
 
-              <input type="file"
-                     name="fileToUpload"
-                     id="fileToUpload">
-                     
-              <input 
-                     class="button"
-                     type="submit"
-                     >
-                     <!-- id="uploaderButton"
-                     value="Upload"
-                     name="submit" -->
+							<input type="hidden" id="newVoiceAction" name="action" value="addVoice">
+							<input type="hidden" id="newVoiceId" name="songId" value="<?= $song["id"]; ?>">
 
-       </form>
+							<input class="button" type="submit" value="Ajouter une voix">
+						</form>
 
-       <h2>Fichiers textes</h2>
+						<form id="addText"
+							action="/Luttes-Enchantees/admin-texte"
+							method="post">
 
+							<input type="hidden" id="newTextAction" name="action" value="addText">
+							<input type="hidden" id="newTextId" name="songId" value="<?= $song["id"]; ?>">
 
+							<input class="button" type="submit" value="Ajouter un texte">
+						</form>
+
+						<form id="addVideo"
+							action="/Luttes-Enchantees/admin-video"
+							method="post">
+
+							<input type="hidden" id="newVideoAction" name="action" value="addVideo">
+							<input type="hidden" id="newVideoId" name="songId" value="<?= $song["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter une video">
+						</form>
+
+						<form id="addCurrent"
+							action="/Luttes-Enchantees/admin-moment"
+							method="post">
+
+							<input type="hidden" id="newCurrentAction" name="action" value="addCurrent">
+							<input type="hidden" id="newCurrentId" name="songId" value="<?= $song["id"]; ?>">
+
+							<input class="button" type="submit" value="Changer le statut">
+						</form>
+
+					</article>
+
+				</li>
+			<?php
+			}
+			?>
+		</ul>
+
+	</section>
 
 </main>

@@ -6,21 +6,19 @@ class Voice
     private int $songId;
     private string $voiceType;
     private string $originalName;
-    private string $filelName;
-    private string $filelType;
+    private string $fileName;
+    private string $fileType;
     private string $url;
-    private string $alt;
 
-    function __construct(?int $id, int $songId, string $voiceType, string $originalName, string $filelName, string $filelType, string $url, string $alt)
+    function __construct(?int $id, int $songId, string $voiceType, string $originalName, string $fileName, string $fileType, string $url)
     {
         $this->id = $id;
         $this->songId = $songId;
         $this->voiceType = $voiceType;
         $this->originalName = $originalName;
-        $this->filelName = $filelName;
-        $this->filelType = $filelType;
+        $this->fileName = $fileName;
+        $this->fileType = $fileType;
         $this->url = $url;
-        $this->alt = $alt;
     }
 
     public function getId() : ?int
@@ -63,24 +61,24 @@ class Voice
         $this->originalName = $originalName;
     }
 
-    public function getFilelName() : string
+    public function getFileName() : string
     {
-        return $this->filelName;
+        return $this->fileName;
     }
     
-    public function setFilelName(string $filelName) : void
+    public function setFileName(string $fileName) : void
     {
-        $this->filelName = $filelName;
+        $this->fileName = $fileName;
     }
 
-    public function getFilelType() : string
+    public function getFileType() : string
     {
-        return $this->filelType;
+        return $this->fileType;
     }
     
-    public function setFilelType(string $filelType) : void
+    public function setFileType(string $fileType) : void
     {
-        $this->filelType = $filelType;
+        $this->fileType = $fileType;
     }
 
     public function getUrl() : string
@@ -91,16 +89,6 @@ class Voice
     public function setUrl(string $url) : void
     {
         $this->url = $url;
-    }
-
-    public function getAlt() : string
-    {
-        return $this->alt;
-    }
-    
-    public function setAlt(string $alt) : void
-    {
-        $this->alt = $alt;
     }
 
 }

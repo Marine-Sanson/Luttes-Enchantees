@@ -2,11 +2,11 @@
 
 Class MembersHomeController extends AbstractController
 {
-    public function index() :void
-    {
-        $template = "membersHome";
+	public function index() :void
+	{
+		$template = "membersHome";
 
-        $this->render($template);
+		$this->render($template);
 
-    }
+	}
 }
