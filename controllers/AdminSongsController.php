@@ -6,20 +6,33 @@ Class AdminSongsController extends AbstractController
 	{
 		$template = "adminSongs";
 		$validation = "";
+		$errors = [];
+		$allSongs = $this->sm->getAllSongsTitles();
 
 		if(isset($_POST["action"]) && $_POST["action"] === "addSong")
 		{
-			
+			var_dump($_POST);
+			if(!isset($_POST["title"]) || $_POST["title"] === "")
+			{
+				$errors[] = "Veuillez mettre un titre";
+			}
+
+			if($errors !== [])
+			{
+				$this->render($template, ["allSongs" => $allSongs, "errors" => $errors]);
+			}
+			else if($errors === [])
+			{
+
 			$this->sm->createSong($_POST["title"], $_POST["description"]);
 
 			$validation = "Le nouveau chant à bien été créé";
 
+			$this->render($template, ["allSongs" => $allSongs, "validation" => $validation]);
+			}
 		}
 
-		$allSongs = $this->sm->getAllSongsTitles();
-
-		$this->render($template, ["allSongs" => $allSongs, "validation" => $validation]);
-
+		$this->render($template, ["allSongs" => $allSongs]);
 	}
 
 	public function addVoice() : void
@@ -40,6 +53,21 @@ Class AdminSongsController extends AbstractController
 				$errors = [];
 			}
 
+			if(!isset($_POST["voice"]) || $_POST["voice"] === "")
+			{
+				$errors[] = "Veuillez choisr le type de voix";
+			}
+
+			if(isset($_POST["voice"]) && $_POST["voice"] === "other" && $_POST["other"] === "")
+			{
+				$errors[] = 'Veuillez précisez le type de voix pour le choix "autre"';
+			}
+
+			if(isset($_POST["voice"]) && $_FILES["fileToUpload"]["name"] === "")
+			{
+				$errors[] = "Veuillez sélectionner un fichier";
+			}
+
 			if(isset($_POST["voice"]) && $_POST["voice"] !== "other")
 				{
 					$voice = $_POST["voice"];
@@ -55,7 +83,7 @@ Class AdminSongsController extends AbstractController
 
 			if($errors !== [])
 			{
-				$this->render($template, ["title" => $title, "errors" => $_POST["errors"]]);
+				$this->render($template, ["title" => $title, "errors" => $errors]);
 			}
 			else if($errors === [])
 			{
@@ -95,7 +123,7 @@ Class AdminSongsController extends AbstractController
 	}
 
 	public function addText() : void
-	{	var_dump($_POST);
+	{
 
 		if(isset($_POST["action"]) && $_POST["action"] === "uploadText")
 		{
@@ -113,9 +141,15 @@ Class AdminSongsController extends AbstractController
 				$errors = [];
 			}
 
+			if(!isset($_FILES["fileToUpload"]["name"]) || $_FILES["fileToUpload"]["name"] === "")
+			{
+				$errors[] = "Veuillez sélectionner un fichier";
+			}
+
+
 			if($errors !== [])
 			{
-				$this->render($template, ["title" => $title, "errors" => $_POST["errors"]]);
+				$this->render($template, ["title" => $title, "errors" => $errors]);
 			}
 			else if($errors === [])
 			{
@@ -128,7 +162,7 @@ Class AdminSongsController extends AbstractController
 
 				$this->tm->createText($text);
 				
-				$validation = "votre texte a été chargé correctement";
+				$validation = "Votre texte a été chargé correctement";
 
 				$this->render($template, ["title" => $title, "validation" => $validation]);
 			}
@@ -152,46 +186,94 @@ Class AdminSongsController extends AbstractController
 	public function addVideo() : void
 	{
 		$template = "adminAddVideo";
-		$songId = intval($_POST["songId"]);
-		$title = $this->sm->getSongTitle($songId);
 
-		if(isset($_POST["action"]) && $_POST["action"] === "addVideoLink")
+		if(isset($_POST["action"]) && $_POST["action"] === "addVideo")
 		{
-			$urlVideo = $_POST["urlVideo"];
-
-			$this->sm->updateUrlVideo($songId, $urlVideo);
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
+	
+			$this->render($template, ["title" => $title]);
 
 		}
+		else if(isset($_POST["action"]) && $_POST["action"] === "addVideoLink")
+		{
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
+	
+			if(!isset($_POST["urlVideo"]) || $_POST["urlVideo"] === "")
+			{
+				$errors[] = "Veuillez renseigner le lien";
+			}
 
-		var_dump($_POST);
-		var_dump($_FILES);
+			if($errors !== [])
+			{
+				$this->render($template, ["title" => $title, "errors" => $errors]);
+			}
+			else if($errors === [])
+			{
 
-		$allSongs = $this->sm->getAllSongsTitles();
+				$urlVideo = $_POST["urlVideo"];
 
-		$this->render($template, ["title" => $title]);
+				$this->sm->updateUrlVideo($songId, $urlVideo);
+
+				$validation = "Le lien a bien été enregistré";
+
+				$this->render($template, ["title" => $title, "validation" => $validation]);
+			}
+
+			$this->render($template, ["title" => $title]);
+
+		}
+		else if(!isset($_POST["action"]) || $_POST["action"] === "")
+		{
+			$template = "adminSongs";
+
+			$allSongs = $this->sm->getAllSongsTitles();
+
+			$this->render($template, ["allSongs" => $allSongs]);
+		}
 	}
 
 	public function addCurrent() : void
 	{
 		$template = "adminCurrent";
-		$songId = intval($_POST["songId"]);
-		$title = $this->sm->getSongTitle($songId);
 
 		if(isset($_POST["action"]) && $_POST["action"] === "addCurrent")
 		{
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
+	
 			$this->render($template, ["title" => $title]);
 
 		}
 		else if(isset($_POST["action"]) && $_POST["action"] === "updateStatus")
 		{
-			$status = $_POST["status"];
-			$this->sm->updateCurrent($songId, $status);
-			$validation = "Le statut a bien été changé";
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
+	
+			if(!isset($_POST["status"]) || $_POST["status"] === "")
+			{
+				$errors[] = "veuillez choisir un statut";
+			}
 
-			$this->render($template, ["title" => $title, "validation" => $validation]);
+			if(!isset($errors) || $errors === [])
+			{
+				$status = $_POST["status"];
+				$this->sm->updateCurrent($songId, $status);
+				$validation = "Le statut a bien été changé";
+	
+				$this->render($template, ["title" => $title, "validation" => $validation]);
+			}
+			else
+			{
+				$this->render($template, ["title" => $title, "errors" => $errors]);
+			}
+			
 		}
-		else
+		else if(!isset($_POST["action"]) || $_POST["action"] === "")
 		{
+			$template = "adminSongs";
+
 			$allSongs = $this->sm->getAllSongsTitles();
 
 			$this->render($template, ["allSongs" => $allSongs]);
