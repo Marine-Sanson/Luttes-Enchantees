@@ -1,12 +1,34 @@
 <main id="membersSongs">
 
-    <?php
-    require "./templates/_membersNav.phtml";
-    ?>
+	<?php
+	require "./templates/_membersNav.phtml";
+	?>
 
+	<h1>Liste des chants</h1>
 
-    <h1>Liste des chants</h1>
+	<p>Pour voir le détail d'un chant (paroles, voix) cliquer dessus</p>
 
-    <p>Pour voir le détail d'un chant (paroles, voix) cliquer dessus</p>
+	<ul>
+		<?php
+		foreach($data["allSongs"] as $key => $song)
+		{
+		?>
+		<li>
+			<form class="songsForDetail"
+				method="POST"
+				action="/Luttes-enchantees/detail-chant/<?= $song["id"]; ?>">
+				
+				<input type="hidden"
+					name="id"
+					value="<?= $song["id"] ?>">
+					
+				<input type="submit" value="<?= $song["title"]; ?>">
+				
+            	</form>
+		</li>
+		<?php
+		}
+		?>
+	</ul>
 
 </main>

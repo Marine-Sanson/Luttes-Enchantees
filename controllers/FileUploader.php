@@ -65,7 +65,6 @@ class FileUploader
 	
 	public function uploadVoice(array $file, int $songId, string $title, string $voiceType) : array
 	{
-		var_dump("entre dans uploadVoice");
 		$errors = [];
 		$fileToUpload = $file['fileToUpload'];
 		
@@ -76,13 +75,10 @@ class FileUploader
 		{
 			$explode = explode("/", $fileToUpload['type']);
 			$fileType = $explode[1];
-			var_dump($fileType);
 			$allowedTypes = $this->allowedVoiceTypes;
 			
 			// appeler $this->checkFileType(string $fileType) pour vérifier le type du fichier
 			$fileTypeCheked = $this->checkFileType($fileType, $allowedTypes);
-			var_dump($fileTypeCheked);
-
 		}
 		else
 		{
@@ -93,7 +89,6 @@ class FileUploader
 		{
 			$maxFileSize = $this->maxVoiceSize;
 			$fileSizeCheked = $this->checkFileSize($fileToUpload['size'], $maxFileSize);
-			var_dump($fileSizeCheked);
 		}
 			
 		if(!$fileTypeCheked)
@@ -116,20 +111,13 @@ class FileUploader
 		}
 		else
 		{
-			var_dump("entre dans else");
-			var_dump($fileToUpload);
-
 			$originalName = $fileToUpload["name"];
-			$voiceForFileName = "voix-" . $voiceType;
+			$voiceForFileName = str_replace([" "], "-", $voiceType);
 			$fileName = $this->generateFileName($title, $voiceForFileName);
 			$fileType = pathinfo($originalName)["extension"];
 			$path = getcwd() . $this->uploadDir . "voix/" . $fileName . ".". $fileType;
 			$url = "http://localhost/Luttes-Enchantees/uploads/voix/" . $fileName . ".". $fileType;
 
-			var_dump($fileType);
-			var_dump($path);
-			var_dump($url);
-			
 			move_uploaded_file($fileToUpload["tmp_name"], $path);
 
 			$voice = new Voice(null, $songId, $voiceType, $originalName, $fileName, $fileType, $url);

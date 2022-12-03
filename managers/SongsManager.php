@@ -36,6 +36,20 @@ class SongsManager extends AbstractManager
 		return $title;
 	}
 
+	public function getSongDetails($id) : array
+	{
+		$query = $this->db->prepare('SELECT * FROM songs WHERE id = :id');
+		$parameters = [
+			'id' => $id
+			];
+		$query->execute($parameters);
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		$song = $result[0];
+		
+		return $song;
+	}
+
 	public function updateUrlVideo(int $songId, string $urlVideo)
 	{
 		$query = $this->db->prepare('UPDATE songs SET url_video = :urlVideo WHERE id = :id');

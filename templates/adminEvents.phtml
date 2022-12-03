@@ -1,0 +1,175 @@
+<main id="adminEvents">
+
+       <?php
+       require "./templates/_adminNav.phtml";
+       ?>
+
+       <h1>Gérer les dates</h1>
+
+	 <?php
+	require "./templates/_messages.phtml";
+	?>
+	<section>
+		<h2>Créer une nouvelle date</h2>
+
+		<form  id="newEventForm"
+			action="/Luttes-Enchantees/admin-dates"
+			method="post">
+
+		<input type="hidden"
+			id="newEvent"
+			name="action"
+			value="newEvent">
+			
+		<input type="date"
+			name="eventDate"
+			id="eventDate"
+			<?php
+			if(isset($data["event"]["date"]))
+			{
+			?>
+			value="<?= $data["event"]["date"]; ?>">
+			<?php
+			}
+			?>
+			<fieldset>
+				<legend>Choisir une catégorie :</legend>
+
+				<?php
+				foreach($data["cats"] as $key => $cat)
+				{
+					if(isset($data["cats"]))
+				?>
+					<input type="radio" name="cat" value="<?= $cat["id"]; ?>"
+					<?php
+					if(isset($data["event"]) && intval($cat["id"]) === $data["event"]["cat"])
+					{
+					?>
+						checked
+					<?php
+					}
+					?>
+					>
+					<label for="cat"><?= $cat["name"]; ?></label>
+				<?php
+				}
+				?>
+			</fieldset>
+
+			<fieldset>
+				<legend>Cet événement est il privé ou public ?</legend>
+
+					<input type="radio" name="status" value=1
+					<?php
+						if(isset($data["event"]) && isset($_POST["status"]) && intval($_POST["status"]) === $data["event"]["status"] && $data["event"]["status"] === 1)
+						{
+						?>
+							checked
+						<?php
+						}								
+					?>
+					>
+					<label for="cat">Privé</label>
+					
+					<input type="radio" name="status" value=0
+					<?php
+						if(isset($data["event"]) && isset($_POST["status"]) && intval($_POST["status"]) === $data["event"]["status"] && $data["event"]["status"] === 0)
+						{
+						?>
+							checked
+						<?php
+						}
+					?>
+					>
+					<label for="cat">Public</label>
+			</fieldset>
+
+		<label for="privateDetails">Infos internes : </label>
+		<textarea
+			name="privateDetails"
+			id="privateDetails"
+			rows="5" cols="33"
+			maxlength="1024"><?php
+			if(isset($data["event"]))
+			{
+			echo $data["event"]["privateDetails"];
+			}
+			?></textarea>
+
+		<label for="publicDetails">Infos publiques : </label>
+		<textarea
+			name="publicDetails"
+			id="publicDetails"
+			rows="5" cols="33"
+			maxlength="1024"><?php
+			if(isset($data["event"]))
+			{
+			echo $data["event"]["publicDetails"];
+			}
+			?></textarea>
+				
+		<input class="button"
+			type="submit">
+
+		</form> 
+
+			<p>Par défaut les infos publiques(si elles sont laissée vides) seront les mêmes que les infos privées, sauf pour la catégorie Répés.</p>
+			<p>Pour les Répés le texte par défaut (si le champ est laissé vide) est :"Arrivée entre 9h30 et 10H - Début séance 10h, fin 13h et papotages rangement. 46 rue de lorient, locaux de l ASFAD en face stade rennais salle Angelina Gonidec. Amenez verres boissons... Enfants bienvenus !" pour les infos internes, et "Répétition de 10h à 13h" pour les infos externes.</p>
+	</section>
+
+	<section>
+		<h2>Evenements déjà enregistrés :</h2>
+
+		<?php
+		foreach($data["events"] as $key => $event)
+		{
+		?>
+			<h3><?= $event["date"]; ?></h3>
+			<?php
+			foreach($data["cats"] as $key => $cat)
+			{
+				if($cat["id"] === $event["event_cat_id"])
+				{
+				?>
+					<p><?=$cat["name"]; ?>
+				<?php
+				}
+			}
+
+			if($event["status"] === "1")
+			{
+			?>
+				<p>Evenement privé</p>
+			<?php
+			}
+			else
+			{
+			?>
+				<p>Evenement public</p>
+			<?php	
+			}
+			?>
+			<p><?= $event["private_details"]; ?></p>
+			<p><?= $event["public_details"]; ?></p>
+
+			<form  id="updateEventForm"
+			action="/Luttes-Enchantees/admin-modif-date"
+			method="post">
+
+				<input type="hidden"
+					id="updateEvent"
+					name="action"
+					value="updateEvent">
+				<input type="hidden"
+					 id="idEvent"
+					 name="idEvent"
+					 value="<?= $event["id"]; ?>">
+				<input class="button"
+					 type="submit">
+		</form>
+		
+		<?php
+		}
+		?>
+	</section>
+</main>

@@ -4,7 +4,8 @@
 /accueil-membres MembersHomeController:index
 /liste MembersListController:index
 /chants MembersSongsController:index
-/repes MembersRehearsalController:index
+/detail-chant/* MembersSongsController:songDetail
+/repes MembersEventsController:index
 /messages MembersChatController:index
 /echanges MembersSharingZoneController:index
 /videos MembersVideosController:index
@@ -13,4 +14,5 @@
 /admin-texte AdminSongsController:addText
 /admin-video AdminSongsController:addVideo
 /admin-moment AdminSongsController:addCurrent
-/admin-dates AdminRehearsalController:index
+/admin-dates AdminEventsController:index
+admin-modif-date AdminEventsController:updateEvent

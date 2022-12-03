@@ -1,0 +1,39 @@
+<main id="membersSongDetail">
+	<?php
+		require "./templates/_membersNav.phtml";
+	
+		$title = $data["song"]["title"];
+		$description = $data["song"]["description"];
+		$url = $data["song"]["url_video"];
+		$voices = $data["voices"];
+	?>
+	<h1><?= $title; ?>
+
+	<p><?= $description; ?>
+
+	<ul>
+		<?php
+		foreach($voices as $key => $voice)
+		{
+		?>
+			<li>
+
+				<figure>
+					<figcaption><?= $voice["voice_type"]; ?></figcaption>
+					<audio
+						controls
+						src="/media/cc0-audio/t-rex-roar.mp3">
+							<a href="/media/cc0-audio/t-rex-roar.mp3">
+							Download audio
+							</a>
+					</audio>
+				</figure>
+
+			</li>
+		<?php                       
+		}
+		?>
+	</ul>
+	<?= $url; ?>
+
+</main>
