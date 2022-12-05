@@ -88,7 +88,7 @@
 		<textarea
 			name="privateDetails"
 			id="privateDetails"
-			rows="5" cols="33"
+			rows="10" cols="80"
 			maxlength="1024"><?php
 			if(isset($data["event"]))
 			{
@@ -100,7 +100,7 @@
 		<textarea
 			name="publicDetails"
 			id="publicDetails"
-			rows="5" cols="33"
+			rows="10" cols="80"
 			maxlength="1024"><?php
 			if(isset($data["event"]))
 			{
@@ -152,21 +152,28 @@
 			<p><?= $event["private_details"]; ?></p>
 			<p><?= $event["public_details"]; ?></p>
 
-			<form  id="updateEventForm"
-			action="/Luttes-Enchantees/admin-modif-date"
+			<?php
+			$id = intval($event["id"]);
+			var_dump($id);
+
+			?>
+
+			<form  id="displayUpdateEventForm"
+			action="/Luttes-Enchantees/admin-modif-date/<?= $id; ?>"
 			method="post">
 
 				<input type="hidden"
-					id="updateEvent"
+					id="displayUpdateEvent"
 					name="action"
-					value="updateEvent">
+					value="displayUpdateEvent">
 				<input type="hidden"
-					 id="idEvent"
-					 name="idEvent"
-					 value="<?= $event["id"]; ?>">
+					 id="eventId"
+					 name="eventId"
+					 value="<?= $id; ?>">
 				<input class="button"
-					 type="submit">
-		</form>
+					 type="submit"
+					 value="Modifier">
+			</form>
 		
 		<?php
 		}

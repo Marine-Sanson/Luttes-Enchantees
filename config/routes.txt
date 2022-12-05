@@ -15,4 +15,4 @@
 /admin-video AdminSongsController:addVideo
 /admin-moment AdminSongsController:addCurrent
 /admin-dates AdminEventsController:index
-admin-modif-date AdminEventsController:updateEvent
+/admin-modif-date/* AdminEventsController:updateEvent

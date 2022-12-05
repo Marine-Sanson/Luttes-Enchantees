@@ -1,3 +1,115 @@
 <main>
+	<?php
+      var_dump($_POST);
+	$event = $data["event"];
+	$id = $event->getId();
+      $date = $event->getDate();
+      $tempDate = explode("-", $date);
+      $dateForInput = $tempDate[2] . "-" . $tempDate[1] . "-" . $tempDate[0];
+      $eventCatId = $event->getEventCatId();
+      $privateDetails = $event->getPrivateDetails();
+      $publicDetails = $event->getPublicDetails();
+      $status = $event->getStatus();
+      $cat = $data["cat"];
+	?>
+
+	<h1><?= $cat; ?> du <?= $date; ?></h1>
+
+	<form  id="updateEventForm"
+		 action="/Luttes-Enchantees/admin-modif-date/<?= $id; ?>"
+		 method="post">
+
+		<input type="hidden"
+			id="updateEvent"
+			name="action"
+			value="updateEvent">
+		<input type="hidden"
+				id="eventId"
+				name="eventId"
+				value="<?= $id; ?>">
+
+		<fieldset>
+			<legend>Choisir une catégorie :</legend>
+
+			<?php
+			foreach($data["cats"] as $key => $catItem)
+			{
+			?>
+				<input type="radio" name="cat" value="<?= $catItem["id"]; ?>"
+				<?php
+				if(intval($catItem["id"]) === $eventCatId)
+				{
+				?>
+					checked
+				<?php
+				}
+				?>
+				>
+				<label for="cat"><?= $catItem["name"]; ?></label>
+			<?php
+			}
+			?>
+		</fieldset>
+
+		<fieldset>
+			<legend>Cet événement est il privé ou public ?</legend>
+
+				<input type="radio" name="status" value=1
+				<?php
+					if(isset($status) && $status)
+					{
+					?>
+						checked
+					<?php
+					}
+				?>
+				>
+				<label for="cat">Privé</label>
+				
+				<input type="radio" name="status" value=0
+				<?php
+					if(isset($status) && !$status)
+					{
+					?>
+						checked
+					<?php
+					}
+				?>
+				>
+				<label for="cat">Public</label>
+		</fieldset>
+
+		<input type="date"
+				id="date"
+				name="date"
+				value="<?= $dateForInput; ?>">
+				<label for="privateDetails">Infos internes : </label>
+		<textarea
+			name="privateDetails"
+			id="privateDetails"
+			rows="10" cols="80"
+			maxlength="1024"><?php
+			if(isset($data["event"]))
+			{
+			echo $privateDetails;
+			}
+			?></textarea>
+
+		<label for="publicDetails">Infos publiques : </label>
+		<textarea
+			name="publicDetails"
+			id="publicDetails"
+			rows="10" cols="80"
+			maxlength="1024"><?php
+			if(isset($data["event"]))
+			{
+			echo $publicDetails;
+			}
+			?></textarea>
+		<input class="button"
+				type="submit"
+				value="Modifier">
+	</form>
+
 
 </main>

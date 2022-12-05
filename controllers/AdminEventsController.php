@@ -133,13 +133,47 @@ Class AdminEventsController extends AbstractController
 		}
 	}
 
-	public function updateEvent(int $id) : void
+	public function updateEvent() : void
 	{
-		$id = intval($_POST["eventId"]);
-		$event = $this->em->getEventById($id);
-		var_dump($event);
+		if(isset($_POST) && $_POST["action"] === "displayUpdateEvent")
+		{
+			$id = intval($_POST["eventId"]);
+			$event = $this->em->getEventById($id);
+			$catId = $event->getEventCatId();
+	
+			$cat = $this->em->getCatById($catId);
+			$cats = $this->em->getCats();
 
-		$template = "adminUpdateEvent";
-		$this->render($template, ["event" => $event]);
+			$validation = "cet évenement à bien été modifé";
+			$template = "adminUpdateEvent";
+			$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
+		}
+		else if(isset($_POST) && $_POST["action"] === "updateEvent")
+		{
+			$id = intval($_POST["eventId"]);
+
+			$tempDate = explode("-", $_POST["date"]);
+			$date = $tempDate[2] . "-" . $tempDate[1] . "-" . $tempDate[0];
+
+			$updatedEvent = new Event($_POST["eventId"], $date, $_POST["cat"], $_POST["privateDetails"], $_POST["publicDetails"], $_POST["status"]);
+
+			$this->em->updatedEvent($updatedEvent);
+
+			$event = $this->em->getEventById($id);
+			$catId = $event->getEventCatId();
+			$cat = $this->em->getCatById($catId);
+			$cats = $this->em->getCats();
+		
+			$template = "adminUpdateEvent";
+			$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
+		}
+		else
+		{
+			$events = $this->em->getEvents();
+			$cats = $this->em->getCats();
+
+			$template = "adminEvents";
+			$this->render($template, ["cats" => $cats, "events" => $events]);
+		}
 	}
 }
