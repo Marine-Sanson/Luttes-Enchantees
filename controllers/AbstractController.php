@@ -7,17 +7,19 @@ abstract class AbstractController
     protected VoiceManager $vm;
     protected TextManager $tm;
     protected EventManager $em;
+    protected ParticipationManager $pm;
 
     protected FileUploader $fu;
 
     // fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-    public function init(UserManager $um, SongsManager $sm, VoiceManager $vm, TextManager $tm, EventManager $em, FileUploader $fu)
+    public function init(UserManager $um, SongsManager $sm, VoiceManager $vm, TextManager $tm, EventManager $em, ParticipationManager $pm, FileUploader $fu)
     {
         $this->um = $um;
         $this->sm = $sm;
         $this->vm = $vm;
         $this->tm = $tm;
         $this->em = $em;
+        $this->pm = $pm;
         $this->fu = $fu;
     }
 

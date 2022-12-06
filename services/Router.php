@@ -51,10 +51,11 @@ class Router {
 					$vm = new VoiceManager();
 					$tm = new TextManager();
 					$em = new EventManager();
+					$pm = new ParticipationManager();
 					$fu = new FileUploader();
 
 					$ctrl = new $controller();
-					$ctrl->init($um, $sm, $vm, $tm, $em, $fu);
+					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $fu);
 					$ctrl->$method($_POST, $requestData["parameter"]);
 				}
 				else if(!$route["parameter"] && $requestData["parameter"] === null)
@@ -66,10 +67,11 @@ class Router {
 					$vm = new VoiceManager();
 					$tm = new TextManager();
 					$em = new EventManager();
+					$pm = new ParticipationManager();
 					$fu = new FileUploader();
 
 					$ctrl = new $controller();
-					$ctrl->init($um, $sm, $vm, $tm, $em, $fu);
+					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $fu);
 					$ctrl-> $method($_POST);
 				}
 			}

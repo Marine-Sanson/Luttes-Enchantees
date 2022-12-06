@@ -1,46 +1,36 @@
 <?php
 
-class EventManager extends AbstractManager
+class ParticipationManager extends AbstractManager
 {
-	public function createEvent(Event $event) : int
+	public function createParticipation(int $event_id, int $user_id, string $status) : void
 	{
-		$query = $this->db->prepare('INSERT INTO events (date, event_cat_id, private_details, public_details, status)
-		VALUES (:date, :event_cat_id, :private_details, :public_details, :status)');
+		$query = $this->db->prepare('INSERT INTO participations (event_id, user_id, status)
+		VALUES (:event_id, :user_id, :status)');
 		$parameters = [
-			'date' => $event->getDate(),
-			'event_cat_id' => $event->getEventCatId(),
-			'private_details' => $event->getPrivateDetails(),
-			'public_details' => $event->getPublicDetails(),
-			'status' => $event->getStatus()
+			'event_id' => $event_id,
+			'user_id' => $user_id,
+			'status' => $status
 			];
 		$query->execute($parameters);
-
-		$eventId = $this->db->lastInsertId();
-        
-        	return $eventId;
 	}
 
-	public function getCats() : array
+	public function getParticipationData(int $event_id, int $user_id) : array
 	{
-		$query = $this->db->prepare('SELECT * FROM events_categories');
-		$query->execute();
-		$cats = $query->fetchAll(PDO::FETCH_ASSOC);
-
-		return $cats;
-	}
-
-	public function getCatById(int $id) : string
-	{
-		$query = $this->db->prepare('SELECT name FROM events_categories WHERE id = :id');
+		$query = $this->db->prepare('SELECT * FROM participations WHERE event_id = :event_id AND user_id = :user_id');
 		$parameters = [
-			'id' => $id
+                  'event_id' => $event_id,
+			'user_id' => $user_id
 			];
 		$query->execute($parameters);
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
-		$cat = $result[0]["name"];
+		$part = $result["name"];
 
-		return $cat;
+		return $part;
 	}
+
+
+
+
 
 	public function getEvents() : array
 	{

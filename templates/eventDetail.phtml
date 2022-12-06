@@ -1,0 +1,27 @@
+<main id="eventDetail">
+
+      <?php
+      var_dump($_POST);
+	$event = $data["event"];
+	$id = $event->getId();
+      $date = $event->getDate();
+      $tempDate = explode("-", $date);
+      $dateForInput = $tempDate[2] . "-" . $tempDate[1] . "-" . $tempDate[0];
+      $eventCatId = $event->getEventCatId();
+      $privateDetails = $event->getPrivateDetails();
+      $publicDetails = $event->getPublicDetails();
+      $status = $event->getStatus();
+      $cat = $data["cat"];
+	?>
+
+	<h1><?= $cat; ?> du <?= $date; ?></h1>
+
+	<h2>Infos internes : </h2>
+
+      <p><?= $privateDetails; ?></p>
+      
+      <h2>Infos publiques : </h2>
+      
+	<p><?= $publicDetails; ?></p>
+
+</main>

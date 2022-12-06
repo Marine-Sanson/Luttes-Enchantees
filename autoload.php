@@ -22,6 +22,7 @@ require "./managers/SongsManager.php";
 require "./managers/VoiceManager.php";
 require "./managers/TextManager.php";
 require "./managers/EventManager.php";
+require "./managers/ParticipationManager.php";
 
 require "./controllers/FileUploader.php";
 

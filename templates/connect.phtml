@@ -1,7 +1,26 @@
 <main id="connect">
 
-    <h1>Connection à l'espace de travail</h1>
+	<h1>Connection à l'espace de travail</h1>
 
-    <p>Cet espace est réservé aux membres de la chorale</p>
+	<p>Cet espace est réservé aux membres de la chorale</p>
+
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
+	<form id="connectUser"
+		action="/Luttes-Enchantees/checkConnection"
+		method="post">
+
+		<input type="hidden" id="checkConnectionAction" name="action" value="checkConnection">
+
+		<label for="email">Email :</label>
+		<input type="email" id="emailForConnection" name="email">
+
+		<label for="password">Mot de passe :</label>
+		<input type="password" id="pwForConnection" name="password">
+
+		<input class="button" type="submit" value="Me connecter">
+	</form>
 
 </main>

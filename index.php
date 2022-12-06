@@ -2,11 +2,6 @@
 
 // initialise la session
 session_start();
-if(!isset($_SESSION["connectAdmin"]))
-{
-    $_SESSION["connectAdmin"] = [];
-}
-
 if(!isset($_SESSION["connectUser"]))
 {
     $_SESSION["connectUser"] = [];

@@ -1,11 +1,13 @@
 / HomeController:index
 /contact ContactController:index
 /connect ConnectController:index
+/checkConnection ConnectController:checkConnection
 /accueil-membres MembersHomeController:index
 /liste MembersListController:index
 /chants MembersSongsController:index
 /detail-chant/* MembersSongsController:songDetail
 /repes MembersEventsController:index
+/detail-date/* MembersEventsController:eventDetail
 /messages MembersChatController:index
 /echanges MembersSharingZoneController:index
 /videos MembersVideosController:index

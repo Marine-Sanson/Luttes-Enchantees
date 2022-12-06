@@ -77,7 +77,14 @@ Class AdminEventsController extends AbstractController
 			if(!isset($errors) || $errors === [])
 			{
 				$newEvent = new Event(null, $date, $eventCatId, $privateDetails, $publicDetails, $status);
-				$this->em->createEvent($newEvent);
+				$eventId = $this->em->createEvent($newEvent);
+				$users = $this->um->getAllUsersId();
+				$status = "Non répondu";
+
+				foreach($users as $key => $user)
+				{
+					$this->pm->createParticipation($eventId, $user["id"], $status);
+				}
 	
 				$validation = "Cette date a bien été enregistrée";
 				$events = $this->em->getEvents();
@@ -146,7 +153,7 @@ Class AdminEventsController extends AbstractController
 
 			$validation = "cet évenement à bien été modifé";
 			$template = "adminUpdateEvent";
-			$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
+			$this->render($template, ["event" => $event, "validation" => $validation, "cat" => $cat, "cats" => $cats]);
 		}
 		else if(isset($_POST) && $_POST["action"] === "updateEvent")
 		{

@@ -1,9 +1,55 @@
 <main id="membersHome">
 
-    <?php
-    require "./templates/_membersNav.phtml";
-    ?>
+	<?php
+	require "./templates/_membersNav.phtml";
+	?>
 
-    <h1>Bienvenue sur l'esapce réservé aux membres des Luttes Enchantées</h1>
+	<h1>Bonjour <?= $_SESSION["user"]["name"]; ?>, bienvenue sur l'espace réservé aux membres des Luttes Enchantées</h1>
+
+	<section>
+
+		<h2>Prochaines dates</h2>
+
+		<?php
+		foreach($data["events"] as $key => $event)
+		{
+		?>
+			<p><?= $event["cat"]; ?> du <?= $event["date"]; ?></p>
+			<p><?= $event["private_details"]; ?></p>
+
+			<form id="setParticipationForm"
+				action="/Luttes-Enchantees/accueil-membres"
+				method="post">
+
+				<input type="hidden" id="setParticipationAction" name="action" value="setParticipation">
+				<input type="hidden" id="participationUserId" name="userId" value="<?= $_SESSION["user"]["id"]; ?>">
+				<input type="hidden" id="participationEventId" name="eventId" value="<?= $event["id"]; ?>">
+
+				<fieldset>
+					<legend>Je serais présente à cette date :</legend>
+
+					<input type="radio" id="oui" name="participation" value="oui">
+					<label for="oui">Oui</label>
+
+					<input type="radio" id="non" name="participation" value="non">
+					<label for="non">Non</label>
+
+					<input type="radio" id="jnsp" name="participation" value="jnsp">
+					<label for="jnsp">Je ne sais pas</label>
+
+					<input type="radio" id="partiellement" name="participation" value="partiellement">
+					<label for="partiellement">Partiellement</label>
+
+					<input type="radio" id="nonRepondu" name="participation" value="nonRepondu">
+					<label for="nonRepondu">Non répondu</label>
+				</fieldset>
+
+				<input class="button" type="submit" value="Valider">
+			</form>
+		<?php
+		}
+		?>
+
+	</section>
 
 </main>
