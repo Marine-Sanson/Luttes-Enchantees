@@ -54,11 +54,13 @@ Class ConnectController extends AbstractController
 						foreach($allEvents as $key => $event)
 						{
 							$cat = $this->em->getCatById($event["event_cat_id"]);
+							$part = $this->pm->getParticipationStatus($event["id"], $_SESSION["user"]["id"]);
 							$events[] = [
 								"id" => $event["id"],
 								"date" => $event["date"],
 								"event_cat_id" => $event["event_cat_id"],
 								"cat" => $cat,
+								"part" => $part,
 								"private_details" => $event["private_details"]
 							];
 						}

@@ -1,7 +1,6 @@
 <main id="eventDetail">
 
       <?php
-      var_dump($_POST);
 	$event = $data["event"];
 	$id = $event->getId();
       $date = $event->getDate();
@@ -23,5 +22,63 @@
       <h2>Infos publiques : </h2>
       
 	<p><?= $publicDetails; ?></p>
+
+      <h2>Participantes</h2>
+
+      <h3>Présentes : <?= $data["count"]["oui"]; ?></h3>
+
+      <?php
+            foreach($data["parts"] as $key => $part)
+            {
+                  if($part["status"] === "oui")
+                  {
+                  ?>
+                        <?= $part["user_name"]; ?>
+                  <?php
+                  }
+            }
+      ?>
+
+      <h3>Absentes : <?= $data["count"]["non"]; ?></h3>
+
+      <?php
+            foreach($data["parts"] as $key => $part)
+            {
+                  if($part["status"] === "Non")
+                  {
+                  ?>
+                        <?= $part["user_name"]; ?>
+                  <?php
+                  }
+            }
+      ?>
+
+      <h3>Ne savent pas : <?= $data["count"]["nsp"]; ?></h3>
+
+      <?php
+            foreach($data["parts"] as $key => $part)
+            {
+                  if($part["status"] === "Je ne sais pas")
+                  {
+                  ?>
+                        <?= $part["user_name"]; ?>
+                  <?php
+                  }
+            }
+      ?>
+
+      <h3>Non répondu : <?= $data["count"]["nonrep"]; ?></h3>
+
+      <?php
+            foreach($data["parts"] as $key => $part)
+            {
+                  if($part["status"] === "Non répondu")
+                  {
+                  ?>
+                        <?= $part["user_name"]; ?>
+                  <?php
+                  }
+            }
+      ?>
 
 </main>

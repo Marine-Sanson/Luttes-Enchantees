@@ -17,6 +17,10 @@
 			<p><?= $event["cat"]; ?> du <?= $event["date"]; ?></p>
 			<p><?= $event["private_details"]; ?></p>
 
+			<?php
+
+			?>
+
 			<form id="setParticipationForm"
 				action="/Luttes-Enchantees/accueil-membres"
 				method="post">
@@ -28,23 +32,56 @@
 				<fieldset>
 					<legend>Je serais présente à cette date :</legend>
 
-					<input type="radio" id="oui" name="participation" value="oui">
+					<input type="radio" id="oui" name="participation" value="Oui"
+					<?php
+						if($event["part"] === "Oui")
+						{
+						?>
+							checked
+						<?php
+						}
+					?>
+					>
 					<label for="oui">Oui</label>
 
-					<input type="radio" id="non" name="participation" value="non">
+					<input type="radio" id="non" name="participation" value="Non"
+					<?php
+						if($event["part"] === "Non")
+						{
+						?>
+							checked
+						<?php
+						}
+					?>
+					>
 					<label for="non">Non</label>
 
-					<input type="radio" id="jnsp" name="participation" value="jnsp">
+					<input type="radio" id="jnsp" name="participation" value="Je ne sais pas"
+					<?php
+						if($event["part"] === "Je ne sais pas")
+						{
+						?>
+							checked
+						<?php
+						}
+					?>
+					>
 					<label for="jnsp">Je ne sais pas</label>
 
-					<input type="radio" id="partiellement" name="participation" value="partiellement">
-					<label for="partiellement">Partiellement</label>
-
-					<input type="radio" id="nonRepondu" name="participation" value="nonRepondu">
+					<input type="radio" id="nonRepondu" name="participation" value="Non répondu"
+					<?php
+						if($event["part"] === "Non répondu")
+						{
+						?>
+							checked
+						<?php
+						}
+					?>
+					>
 					<label for="nonRepondu">Non répondu</label>
 				</fieldset>
 
-				<input class="button" type="submit" value="Valider">
+				<input class="button" type="submit" value="Valider ma réponse">
 			</form>
 		<?php
 		}

@@ -37,13 +37,15 @@
 			<?php	
 			}
 			?>
+			<p>Présentes : <?= $event["oui"]; ?></p>
+			<p>Absentes : <?= $event["non"]; ?></p>
+			<p>Ne savent pas : <?= $event["nsp"]; ?></p>
+			<p>Non répondu : <?= $event["nonrep"]; ?></p>
 			<p><?= $event["private_details"]; ?></p>
 			<p><?= $event["public_details"]; ?></p>
 
 			<?php
 			$id = intval($event["id"]);
-			var_dump($id);
-
 			?>
 
 			<form id="displayUpdateEventForm"
