@@ -4,35 +4,60 @@ Class AdminSongsController extends AbstractController
 {
 	public function index() :void
 	{
-		$template = "adminSongs";
-		$validation = "";
-		$allSongs = $this->sm->getAllSongsTitles();
-
-		if(isset($_POST["action"]) && $_POST["action"] === "addSong")
+		if($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "admin")
 		{
-			$errors = [];
-			if(!isset($_POST["title"]) || $_POST["title"] === "")
-			{
-				$errors[] = "Veuillez mettre un titre";
-			}
-
-			if($errors !== [])
-			{
-				$this->render($template, ["allSongs" => $allSongs, "errors" => $errors]);
-			}
-			else if(!isset($errors) || $errors === [])
-			{
-				$this->sm->createSong($_POST["title"], $_POST["description"]);
-				$validation = "Le nouveau chant à bien été créé";
-
-				$allSongs = $this->sm->getAllSongsTitles();
-				$this->render($template, ["allSongs" => $allSongs, "validation" => $validation]);
-			}
-		}
-		else if(!isset($_POST["action"]))
-		{
+			$template = "adminSongs";
+			$validation = "";
 			$allSongs = $this->sm->getAllSongsTitles();
-			$this->render($template, ["allSongs" => $allSongs]);
+	
+			if(isset($_POST["action"]) && $_POST["action"] === "addSong")
+			{
+				$errors = [];
+				if(!isset($_POST["title"]) || $_POST["title"] === "")
+				{
+					$errors[] = "Veuillez mettre un titre";
+				}
+	
+				if($errors !== [])
+				{
+					$this->render($template, ["allSongs" => $allSongs, "errors" => $errors]);
+				}
+				else if(!isset($errors) || $errors === [])
+				{
+					$this->sm->createSong($_POST["title"], $_POST["description"]);
+					$validation = "Le nouveau chant à bien été créé";
+	
+					$allSongs = $this->sm->getAllSongsTitles();
+					$this->render($template, ["allSongs" => $allSongs, "validation" => $validation]);
+				}
+			}
+			else if(!isset($_POST["action"]))
+			{
+				$allSongs = $this->sm->getAllSongsTitles();
+				$this->render($template, ["allSongs" => $allSongs]);
+			}	
+		}
+		else
+		{
+			$allEvents = $this->em->getEvents();
+			$events = [];
+
+			foreach($allEvents as $key => $event)
+			{
+				$cat = $this->em->getCatById($event["event_cat_id"]);
+				$part = $this->pm->getParticipationStatus($event["id"], $_SESSION["user"]["id"]);
+				$events[] = [
+					"id" => $event["id"],
+					"date" => $event["date"],
+					"event_cat_id" => $event["event_cat_id"],
+					"cat" => $cat,
+					"part" => $part,
+					"private_details" => $event["private_details"]
+				];
+			}
+			$template = "membersHome";
+
+			$this->render($template, ["events" => $events]);
 		}
 	}
 
@@ -141,7 +166,6 @@ Class AdminSongsController extends AbstractController
 
 	public function addText() : void
 	{
-
 		if(isset($_POST["action"]) && $_POST["action"] === "uploadText")
 		{
 			$songId = intval($_POST["songId"]);
@@ -293,5 +317,4 @@ Class AdminSongsController extends AbstractController
 			$this->render($template, ["allSongs" => $allSongs]);
 		}
 	}
-
 }

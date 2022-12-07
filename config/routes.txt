@@ -3,6 +3,7 @@
 /connect ConnectController:index
 /checkConnection ConnectController:checkConnection
 /accueil-membres MembersHomeController:index
+/deconnexion ConnectController:disconnect
 /liste MembersListController:index
 /chants MembersSongsController:index
 /detail-chant/* MembersSongsController:songDetail

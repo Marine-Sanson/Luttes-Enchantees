@@ -4,9 +4,11 @@ Class MembersChatController extends AbstractController
 {
     public function index() :void
     {
-        $template = "membersChat";
+        if($_SESSION["connectUser"])
+        {
+            $template = "membersChat";
 
-        $this->render($template);
-
+            $this->render($template);
+        }
     }
 }

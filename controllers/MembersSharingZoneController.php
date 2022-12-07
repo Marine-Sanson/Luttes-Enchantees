@@ -4,9 +4,17 @@ Class MembersSharingZoneController extends AbstractController
 {
     public function index() :void
     {
-        $template = "membersSharingZone";
+        if($_SESSION["connectUser"])
+        {
+            $template = "membersSharingZone";
 
-        $this->render($template);
+            $this->render($template);
+        }
+        else
+		{
+			$template = "connect";
 
+			$this->render($template);
+		}
     }
 }

@@ -35,6 +35,7 @@ require "./controllers/MembersSongsController.php";
 require "./controllers/MembersChatController.php";
 require "./controllers/MembersSharingZoneController.php";
 require "./controllers/MembersEventsController.php";
+require "./controllers/MembersVideosController.php";
 require "./controllers/AdminSongsController.php";
 require "./controllers/AdminEventsController.php";
 

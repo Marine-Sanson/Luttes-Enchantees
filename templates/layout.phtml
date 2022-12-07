@@ -13,6 +13,15 @@
 		
 		<?php
 			require "./templates/_header.phtml";
+			if($_SESSION !== [] && $_SESSION["connectUser"])
+			{
+				require "./templates/_membersNav.phtml";
+
+				if($_SESSION["user"]["role"] === "admin")
+				{
+		            require "./templates/_adminNav.phtml";
+				}
+			}
 			require "./templates/$template.phtml";
 			require "./templates/_footer.phtml";
 		?>

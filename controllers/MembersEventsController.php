@@ -28,46 +28,47 @@ Class MembersEventsController extends AbstractController
 				"nonrep" => $nonrep
 			];
 		}
-		var_dump($events);
-
 		$cats = $this->em->getCats();
 
 		$this->render($template, ["cats" => $cats, "events" => $events]);
 	}
 
-	public function eventDetail() : void
+	public function eventDetail(): void
 	{
-		if(isset($_POST) && $_POST["action"] === "eventDetail")
-		{
-			$id = intval($_POST["eventId"]);
-			$event = $this->em->getEventById($id);
-			$catId = $event->getEventCatId();
-			$parts = $this->pm->getMembersPartByEventId($id);
-	
-			$oui = $this->pm->countParticipation($id, "Oui");
-			$non = $this->pm->countParticipation($id, "Non");
-			$nsp = $this->pm->countParticipation($id, "Je ne sais pas");
-			$nonrep = $this->pm->countParticipation($id, "Non répondu");
+		if ($_SESSION["connectUser"]) {
+			if (isset($_POST) && $_POST["action"] === "eventDetail") {
+				$id = intval($_POST["eventId"]);
+				$event = $this->em->getEventById($id);
+				$catId = $event->getEventCatId();
+				$parts = $this->pm->getMembersPartByEventId($id);
 
-			$count = [
-				"oui" => $oui,
-				"non" => $non,
-				"nsp" => $nsp,
-				"nonrep" => $nonrep
-			];
+				$oui = $this->pm->countParticipation($id, "Oui");
+				$non = $this->pm->countParticipation($id, "Non");
+				$nsp = $this->pm->countParticipation($id, "Je ne sais pas");
+				$nonrep = $this->pm->countParticipation($id, "Non répondu");
 
-			$cat = $this->em->getCatById($catId);
+				$count = [
+					"oui" => $oui,
+					"non" => $non,
+					"nsp" => $nsp,
+					"nonrep" => $nonrep
+				];
 
-			$template = "eventDetail";
-			$this->render($template, ["event" => $event, "parts" =>$parts, "count" => $count, "cat" => $cat]);
+				$cat = $this->em->getCatById($catId);
+
+				$template = "eventDetail";
+				$this->render($template, ["event" => $event, "parts" => $parts, "count" => $count, "cat" => $cat]);
+			} else {
+				$events = $this->em->getEvents();
+				$cats = $this->em->getCats();
+
+				$template = "membersEvents";
+				$this->render($template, ["cats" => $cats, "events" => $events]);
+			}
+		} else {
+			$template = "connect";
+
+			$this->render($template);
 		}
-		else
-		{
-			$events = $this->em->getEvents();
-			$cats = $this->em->getCats();
-
-			$template = "membersEvents";
-			$this->render($template, ["cats" => $cats, "events" => $events]);
-		}	
 	}
 }

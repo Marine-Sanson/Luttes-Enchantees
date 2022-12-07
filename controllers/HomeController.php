@@ -4,7 +4,7 @@ Class HomeController extends AbstractController
 {
     public function index() :void
     {
-        $template = "membersHome";
+        $template = "home";
 
         $this->render($template);
 

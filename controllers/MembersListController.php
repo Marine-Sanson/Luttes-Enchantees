@@ -4,9 +4,17 @@ Class MembersListController extends AbstractController
 {
     public function index() :void
     {
-        $template = "membersList";
+        if($_SESSION["connectUser"])
+        {
+            $template = "membersList";
 
-        $this->render($template);
+            $this->render($template);
+        }
+        else
+		{
+			$template = "connect";
 
+			$this->render($template);
+		}
     }
 }

@@ -4,9 +4,36 @@ Class ConnectController extends AbstractController
 {
 	public function index() : void
 	{
-		$template = "connect";
+		if($_SESSION["connectUser"])
+		{
+			$template = "membersHome";
 
-		$this->render($template);
+			$allEvents = $this->em->getEvents();
+			$events = [];
+
+			foreach($allEvents as $key => $event)
+			{
+				$cat = $this->em->getCatById($event["event_cat_id"]);
+				$part = $this->pm->getParticipationStatus($event["id"], $_SESSION["user"]["id"]);
+				$events[] = [
+					"id" => $event["id"],
+					"date" => $event["date"],
+					"event_cat_id" => $event["event_cat_id"],
+					"cat" => $cat,
+					"part" => $part,
+					"private_details" => $event["private_details"]
+				];
+			}
+
+			$this->render($template, ["events" => $events]);
+		}
+		else
+		{
+			$template = "connect";
+
+			$this->render($template);
+		}
+
 	}
 
 	public function checkConnection() : void
@@ -93,4 +120,15 @@ Class ConnectController extends AbstractController
 			$this->render($template);
 		}
 	}
+
+	public function disconnect(){
+		unset($_SESSION["connectUser"]);
+		session_destroy();
+		
+		$validation = "Tu as bien été déconnectée";
+		$template = "connect";
+		
+		$this->render($template, ["validation" => $validation]);
+	  }
+    
 }
