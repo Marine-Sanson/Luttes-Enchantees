@@ -1,7 +1,32 @@
 <main id="membersList">
 
-    <h1>Liste des membres</h1>
+	<h1>Liste des membres</h1>
 
-    
+	<ul>
 
+		<?php
+			foreach($data["users"] as $key => $user)
+			{
+			?>
+				<li>
+					<p><?= $user["name"]; ?></p>
+					<?php
+					if(intval($user["agreement"]) === 1)
+					{
+					?>
+						<p><?= $user["email"]; ?></p>
+					<?php
+					} else if(intval($user["agreement"]) === 2)
+					{
+					?>
+						<p><?= $user["email"]; ?></p>
+						<p><?= $user["tel"]; ?></p>
+					<?php
+					}
+					?>
+				</li>
+			<?php
+			}
+		?>
+	</ul>
 </main>

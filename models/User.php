@@ -3,18 +3,22 @@
 class User
 {
     private ?int $id;
-    private string $email;
     private string $name;
+    private string $email;
+    private string $tel;
     private string $password;
     private string $role;
+    private int $agreement;
 
-    function __construct(?int $id, string $email, string $name, string $password, string $role)
+    function __construct(?int $id, string $name, string $email, string $tel, string $password, string $role, int $agreement)
     {
         $this->id = $id;
-        $this->email = $email;
         $this->name = $name;
+        $this->email = $email;
+        $this->tel = $tel;
         $this->password = $password;
         $this->role = $role;
+        $this->agreement = $agreement;
     }
 
     public function getId() : ?int
@@ -27,6 +31,16 @@ class User
         $this->id = $id;
     }
 
+    public function getName() : string
+    {
+        return $this->name;
+    }
+    
+    public function setName(string $name) : void
+    {
+        $this->name = $name;
+    }
+
     public function getEmail() : string
     {
         return $this->email;
@@ -37,14 +51,14 @@ class User
         $this->email = $email;
     }
 
-    public function getName() : string
+    public function getTel() : string
     {
-        return $this->name;
+        return $this->tel;
     }
     
-    public function setName(string $name) : void
+    public function setTel(string $tel) : void
     {
-        $this->name = $name;
+        $this->tel = $tel;
     }
 
     public function getPassword() : string
@@ -67,4 +81,13 @@ class User
         $this->role = $role;
     }
 
+    public function getAgreement() : ?int
+    {
+        return $this->agreement;
+    }
+    
+    public function setAgreement(?int $agreement) : void
+    {
+        $this->agreement = $agreement;
+    }
 }

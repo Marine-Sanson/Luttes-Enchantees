@@ -6,9 +6,10 @@ Class MembersListController extends AbstractController
     {
         if($_SESSION["connectUser"])
         {
+            $users = $this->um->getAllUsers();
             $template = "membersList";
 
-            $this->render($template);
+            $this->render($template, ["users" => $users]);
         }
         else
 		{
