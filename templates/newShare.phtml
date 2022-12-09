@@ -1,0 +1,69 @@
+<main id="newShare">
+
+	<h1>Créer un nouvel échange dans la catégorie <?= $_POST["catName"]; ?></h1>
+
+	<p>Si tu veux changer de catégorie, pas de problème ! Choisi en dessous :</p>
+
+	<ul>
+		<?php
+            var_dump($_POST);
+            var_dump($data);
+		var_dump($_SESSION);
+			foreach($data["allCats"] as $key => $cat)
+			{
+			?>
+				<li>
+					<form  id="newSharingMessageForm"
+						action="/Luttes-Enchantees/nouvel-echange"
+						method="post">
+
+						<input type="hidden" id="newSharingMessage" name="action" value="newSharingMessage">
+						<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
+						<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
+
+						<input class="button"
+							type="submit" value="<?= $cat["name"]; ?>">
+					</form>
+				</li>
+			<?php
+			}
+		?>
+	</ul>
+
+	<p>Sinon tu peux écrire ton message :</p>
+
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
+	<form  id="newShareForm"
+		action="/Luttes-Enchantees/nouvel-echange"
+		method="post">
+
+		<input type="hidden" id="newShare" name="action" value="newShare">
+		<input type="hidden" id="catId" name="catId" value= "<?= $_POST["catId"]; ?>">
+		<input type="hidden" id="catName" name="catName" value= "<?= $_POST["catName"]; ?>">
+
+		<label for="newShareTitle">Titre :</label>
+		<input type="text" id="newShareTitle" name="title" value="<?php
+		if(isset($_POST["title"]) && $_POST["title"] !== "")
+		{
+			echo $_POST["title"];
+		}
+		?>">
+
+		<label for="newShareContent">Infos publiques : </label>
+		<textarea
+			name="content"
+			id="newShareContent"
+			rows="10" cols="80"><?php
+			if(isset($_POST["content"]) && $_POST["content"] !== "")
+			{
+			echo $_POST["content"];
+			}
+			?></textarea>
+
+		<input class="button"
+				type="submit" value="Envoyer">
+	</form>
+</main>

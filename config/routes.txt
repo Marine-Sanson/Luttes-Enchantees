@@ -11,6 +11,7 @@
 /detail-date/* MembersEventsController:eventDetail
 /messages MembersChatController:index
 /echanges MembersSharingZoneController:index
+/nouvel-echange MembersSharingZoneController:newShare
 /videos MembersVideosController:index
 /admin-chants AdminSongsController:index
 /admin-voix AdminSongsController:addVoice

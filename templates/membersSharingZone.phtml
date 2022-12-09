@@ -1,7 +1,36 @@
 <main id="membersSharingZone">
 
-    <h1>Espace d'échange</h1>
+	<h1>Espace d'échange</h1>
 
-    <p>Ici un espace pour s'échanger des recettes, idées de lecture, spectacles, films...</p>
+	<p>Ici un espace pour s'échanger des recettes, idées de lecture, spectacles, films...</p>
+
+	<section>
+		<h2>Ajouter un message</h2>
+
+		<p>Pour ajouter un message, clique sur la catégorie concernée :</p>
+
+		<ul>
+			<?php
+				foreach($data["allCats"] as $key => $cat)
+				{
+				?>
+					<li>
+						<form  id="newSharingMessageForm"
+							action="/Luttes-Enchantees/nouvel-echange"
+							method="post">
+
+							<input type="hidden" id="newSharingMessage" name="action" value="newSharingMessage">
+							<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
+							<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
+
+							<input class="button"
+								type="submit" value="<?= $cat["name"]; ?>">
+						</form>
+					</li>
+				<?php
+				}
+			?>
+		</ul>
+	</section>
 
 </main>

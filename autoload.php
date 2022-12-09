@@ -23,6 +23,9 @@ require "./managers/VoiceManager.php";
 require "./managers/TextManager.php";
 require "./managers/EventManager.php";
 require "./managers/ParticipationManager.php";
+require "./managers/SahringItemManager.php";
+require "./managers/SahringCategoriesManager.php";
+
 
 require "./controllers/FileUploader.php";
 

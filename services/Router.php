@@ -52,10 +52,12 @@ class Router {
 					$tm = new TextManager();
 					$em = new EventManager();
 					$pm = new ParticipationManager();
+					$sim = new SahringItemManager();
+					$scm = new SahringCategoriesManager();
 					$fu = new FileUploader();
 
 					$ctrl = new $controller();
-					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $fu);
+					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $sim, $scm, $fu);
 					$ctrl->$method($_POST, $requestData["parameter"]);
 				}
 				else if(!$route["parameter"] && $requestData["parameter"] === null)
@@ -68,10 +70,12 @@ class Router {
 					$tm = new TextManager();
 					$em = new EventManager();
 					$pm = new ParticipationManager();
+					$sim = new SahringItemManager();
+					$scm = new SahringCategoriesManager();
 					$fu = new FileUploader();
 
 					$ctrl = new $controller();
-					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $fu);
+					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $sim, $scm, $fu);
 					$ctrl-> $method($_POST);
 				}
 			}
