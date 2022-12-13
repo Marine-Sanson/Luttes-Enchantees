@@ -17,7 +17,7 @@ class SahringItemManager extends AbstractManager
 
 	public function getAllSharingItems() : array
 	{
-		$query = $this->db->prepare('SELECT * FROM sharing_items');
+		$query = $this->db->prepare('SELECT sharing_items.*, users.name, sharing_categories.name AS catName FROM sharing_items JOIN users ON sharing_items.user_id = users.id JOIN sharing_categories ON sharing_items.category_id = sharing_categories.id ORDER BY date DESC');
 		$query->execute();
 		$allSharingItems = $query->fetchAll(PDO::FETCH_ASSOC);
 		

@@ -9,7 +9,7 @@
 	<p>Ici un espace pour s'échanger des recettes, idées de lecture, spectacles, films...</p>
 
 	<section>
-		<h2>Ajouter un message</h2>
+		<h2>Ajouter un échange</h2>
 
 		<p>Pour ajouter un échange, clique sur la catégorie concernée :</p>
 
@@ -39,9 +39,9 @@
 
 	<section>
 		
-		<h2>Messages</h2>
+		<h2>Echanges</h2>
 
-		<p>Voici les échanges, si tu veux voir uniquement ceux d'une catégorie, clique sur la catégorie concernée</p>
+		<p>Voici l'ensemble des échanges, si tu veux voir uniquement ceux d'une catégorie, clique sur la catégorie concernée</p>
 
 		<ul>
 			<?php
@@ -50,7 +50,7 @@
 				?>
 					<li>
 						<form  id="displaySharingMessagesForm"
-							action="/Luttes-Enchantees/echange-par-categorie"
+							action="/Luttes-Enchantees/echanges-par-categorie"
 							method="post">
 
 							<input type="hidden" id="displaySharingMessage" name="action" value="displaySharingMessage">
@@ -58,11 +58,65 @@
 							<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
 
 							<input class="button"
-								type="submit" value="<?= $cat["name"]; ?>">
+								 type="submit" value="<?= $cat["name"]; ?>">
 						</form>
 					</li>
 				<?php
 				}
+			?>
+		</ul>
+	</section>
+
+	<section>
+		<ul>
+			<?php
+			foreach($data["allShares"] as $key => $share)
+			{
+			?>
+				<li>
+					<h3>Catégorie : <?= $share["catName"]; ?></h3>
+
+					<h2><?= $share["title"]; ?></h2>
+
+					<p><?= $share["content"]; ?></p>
+
+					<p><?= $share["name"]; ?></p>
+
+					<?php
+						if(isset($share["answers"]) && $share["answers"] !== [])
+						{
+							foreach($share["answers"] as $key => $answer)
+							{
+							?>
+								<p><?= $answer["content"]; ?></p>
+								<p><?= $answer["name"]; ?></p>
+							<?php
+							}
+						}
+					?>
+
+					<form  id="shareAnswerForm"
+						action="/Luttes-Enchantees/echanges"
+						method="post">
+
+						<input type="hidden" id="shareAnswer" name="action" value="shareAnswer">
+						<input type="hidden" id="catId" name="catId" value= "<?= $share["category_id"]; ?>">
+						<input type="hidden" id="catName" name="catName" value= "<?= $share["catName"]; ?>">
+						<input type="hidden" id="userName" name="userName" value= "<?= $_SESSION["user"]["name"]; ?>">
+						<input type="hidden" id="shareId" name="shareId" value= "<?= $share["id"]; ?>">
+
+						<textarea
+							name="shareAnswerContent"
+							id="shareAnswerContent"
+							rows="3" cols="80"
+							maxlength="1024"></textarea>
+
+						<input class="button"
+							type="submit" value="Répondre">
+					</form>
+				</li>
+			<?php
+			}
 			?>
 		</ul>
 	</section>

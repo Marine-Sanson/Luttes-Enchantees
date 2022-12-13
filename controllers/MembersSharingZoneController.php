@@ -9,8 +9,57 @@ Class MembersSharingZoneController extends AbstractController
 			$template = "membersSharingZone";
 			$allCats = $this->scm->getAllCategories();
 			$allMessages = $this->sim->getAllSharingItems();
+			foreach($allMessages as $key => $share)
+			{
+				$answers = $this->sam->getAllShareAnswersBySharingItemId($share["id"]);
+				$share["answers"] = $answers;
+				$allShares[] = $share;
+			}
 
-			$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages]);
+			if (isset($_POST["action"]) && $_POST["action"] === "shareAnswer")
+			{
+				if(!isset($_POST["shareAnswerContent"]) || $_POST["shareAnswerContent"] === "")
+				{
+					$allMessages = $this->sim->getAllSharingItems();
+					foreach($allMessages as $key => $share)
+					{
+						$answers = $this->sam->getAllShareAnswersBySharingItemId($share["id"]);
+						$share["answers"] = $answers;
+						$allShares[] = $share;
+					}
+					
+					$template = "membersSharingZone";
+					$allCats = $this->scm->getAllCategories();
+					$catName = $_POST["catName"];
+					$errors[] = "attention a bien compléter ta réponse";
+		
+					$this->render($template, ["errors" => $errors, "allShares" => $allShares, "catName" => $catName, "allCats" => $allCats]);
+				}
+				else
+				{
+					$this->sam->createShareAnswer($_POST["shareId"], $_SESSION["user"]["id"], $_POST["shareAnswerContent"]);
+					$validation = "Ta réponse a bien été prise en compte";
+		
+					$allMessages = $this->sim->getAllSharingItems();
+					foreach($allMessages as $key => $share)
+					{
+						$answers = $this->sam->getAllShareAnswersBySharingItemId($share["id"]);
+						$share["answers"] = $answers;
+						$allShares[] = $share;
+					}
+
+					$template = "membersSharingZone";
+					$allCats = $this->scm->getAllCategories();
+					$catName = $_POST["catName"];
+					$validation = "ta réponse à bien été enregistrée";
+		
+					$this->render($template, ["validation" => $validation, "allShares" => $allShares, "catName" => $catName, "allCats" => $allCats]);
+				}
+			}
+			else
+			{
+				$this->render($template, ["allCats" => $allCats, "allShares" => $allShares]);
+			}
 		}
 		else
 		{
@@ -101,11 +150,26 @@ Class MembersSharingZoneController extends AbstractController
 				$sharesByCat[] = $share;
 			}
 
-			$allCats = $this->scm->getAllCategories();
-			$catName = $_POST["catName"];
-			$template = "membersShareByCat";
+			if(isset($sharesByCat) && $sharesByCat !== [])
+			{
+				$allCats = $this->scm->getAllCategories();
+				$catName = $_POST["catName"];
+				$template = "membersShareByCat";
+	
+				$this->render($template, ["sharesByCat" => $sharesByCat, "catName" => $catName, "allCats" => $allCats]);
+			}
+			else
+			{
+				$allCats = $this->scm->getAllCategories();
+				$catName = $_POST["catName"];
+				$errors[] = "aucun message dans la catégorie " . $catName . " pour l'instant";
 
-			$this->render($template, ["sharesByCat" => $sharesByCat, "catName" => $catName, "allCats" => $allCats]);
+				$template = "membersShareByCat";
+
+				$this->render($template, ["errors" => $errors, "catName" => $catName, "allCats" => $allCats]);
+ 			}
+
+
 		}
 		else if (isset($_POST) && $_POST["action"] === "shareAnswer")
 		{

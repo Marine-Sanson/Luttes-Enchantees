@@ -16,7 +16,7 @@ class ShareAnswerManager extends AbstractManager
 
 	public function getAllShareAnswersBySharingItemId(int $sharingItemId) : array
 	{
-		$query = $this->db->prepare('SELECT share_answers.*, users.name FROM share_answers JOIN users On share_answers.user_id = users.id WHERE sharing_item_id = :sharing_item_id');
+		$query = $this->db->prepare('SELECT share_answers.*, users.name FROM share_answers JOIN users On share_answers.user_id = users.id WHERE sharing_item_id = :sharing_item_id ORDER BY id');
 		$parameters = [
 			'sharing_item_id' => $sharingItemId
 			];

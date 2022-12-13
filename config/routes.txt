@@ -11,7 +11,7 @@
 /detail-date/* MembersEventsController:eventDetail
 /messages MembersChatController:index
 /echanges MembersSharingZoneController:index
-/echange-par-categorie MembersSharingZoneController:shareByCat
+/echanges-par-categorie MembersSharingZoneController:shareByCat
 /nouvel-echange MembersSharingZoneController:newShare
 /videos MembersVideosController:index
 /admin-chants AdminSongsController:index
