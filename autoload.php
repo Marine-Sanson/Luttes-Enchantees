@@ -26,6 +26,8 @@ require "./managers/ParticipationManager.php";
 require "./managers/SahringItemManager.php";
 require "./managers/SahringCategoriesManager.php";
 require "./managers/ShareAnswerManager.php";
+require "./managers/ChatItemsManager.php";
+require "./managers/ChatAnswersManager.php";
 
 require "./controllers/FileUploader.php";
 

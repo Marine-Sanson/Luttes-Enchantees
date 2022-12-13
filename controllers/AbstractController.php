@@ -11,10 +11,12 @@ abstract class AbstractController
     protected SahringItemManager $sim;
     protected SahringCategoriesManager $scm;
     protected ShareAnswerManager $sam;
+    protected ChatItemsManager $cim;
+    protected ChatAnswersManager $cam;
     protected FileUploader $fu;
 
     // fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-    public function init(UserManager $um, SongsManager $sm, VoiceManager $vm, TextManager $tm, EventManager $em, ParticipationManager $pm, SahringItemManager $sim, SahringCategoriesManager $scm, ShareAnswerManager $sam, FileUploader $fu)
+    public function init(UserManager $um, SongsManager $sm, VoiceManager $vm, TextManager $tm, EventManager $em, ParticipationManager $pm, SahringItemManager $sim, SahringCategoriesManager $scm, ShareAnswerManager $sam, ChatItemsManager $cim, ChatAnswersManager $cam, FileUploader $fu)
     {
         $this->um = $um;
         $this->sm = $sm;
@@ -25,6 +27,8 @@ abstract class AbstractController
         $this->sim = $sim;
         $this->scm = $scm;
         $this->sam = $sam;
+        $this->cim = $cim;
+        $this->cam = $cam;
         $this->fu = $fu;
     }
 

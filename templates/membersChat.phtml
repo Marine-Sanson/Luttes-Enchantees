@@ -1,7 +1,97 @@
 <main id="membersChat">
 
-    <h1>Messages</h1>
+	<h1>Messages</h1>
 
-    <p>Les messages envoyés ici seront visibles par l'ensemble des adhérentes.</p>
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
+	<p>Les messages envoyés ici seront visibles par l'ensemble des adhérentes.</p>
+
+	<section>
+
+		<h2>Envoyer un message</h2>
+
+		<form  id="newChatForm"
+			action="/Luttes-Enchantees/messages"
+			method="post">
+
+			<input type="hidden" id="newChat" name="action" value="newChat">
+
+			<label for="newChatTitle">Titre :</label>
+			<input type="text" id="newChatTitle" name="title" value="<?php
+			if(isset($_POST["title"]) && $_POST["title"] !== "")
+			{
+				echo $_POST["title"];
+			}
+			?>">
+
+			<label for="newChatContent">Message : </label>
+			<textarea
+				name="content"
+				id="newChatContent"
+				rows="10" cols="80"><?php
+				if(isset($_POST["content"]) && $_POST["content"] !== "")
+				{
+				echo $_POST["content"];
+				}
+				?></textarea>
+
+			<input class="button"
+				type="submit" value="Envoyer">
+		</form>
+
+	</section>
+
+	<section>
+
+		<h2>Liste des messages</h2>
+		
+		<ul>
+			<?php
+				foreach($data["allChats"] as $key => $chatItem)
+				{
+				?>
+					<li>
+						<h3><?= $chatItem["title"]; ?></h3>
+						<p><?= $chatItem["message"]; ?></p>
+						<p><?= $chatItem["name"]; ?></p>
+						<?php
+						if(isset($chatItem["answers"]))
+						{
+							foreach($chatItem["answers"] as $key => $answer)
+							{
+							?>
+								<p><?= $answer["content"]; ?></p>
+								<p><?= $answer["name"]; ?></p>
+							<?php
+							}
+						}
+						?>
+
+						<form  id="chatAnswerForm"
+							 action="/Luttes-Enchantees/messages"
+							 method="post">
+
+							<input type="hidden" id="chatAnswer" name="action" value="chatAnswer">
+							<input type="hidden" id="userName" name="userName" value= "<?= $_SESSION["user"]["name"]; ?>">
+							<input type="hidden" id="chatId" name="chatId" value= "<?= $chatItem["id"]; ?>">
+
+							<textarea
+								name="chatAnswerMessage"
+								id="chatAnswerMessage"
+								rows="3" cols="80"
+								maxlength="1024"></textarea>
+
+							<input class="button"
+								 type="submit" value="Répondre">
+						</form>
+					</li>
+				<?php
+				}
+			?>
+		</ul>
+
+	</section>
 
 </main>

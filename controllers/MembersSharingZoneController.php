@@ -73,7 +73,7 @@ Class MembersSharingZoneController extends AbstractController
 	{
 		if(isset($_POST) && $_POST["action"] === "newSharingMessage")
 		{
-			$template = "newShare";
+			$template = "membersNewShare";
 			$allCats = $this->scm->getAllCategories();
 	
 			$this->render($template, ["allCats" => $allCats]);
@@ -108,7 +108,7 @@ Class MembersSharingZoneController extends AbstractController
 			}
 			else if($errors !== [])
 			{
-				$template = "newShare";
+				$template = "membersNewShare";
 				$allCats = $this->scm->getAllCategories();
 				$allMessages = $this->sim->getAllSharingItems();
 
