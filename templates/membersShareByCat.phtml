@@ -1,0 +1,85 @@
+<main>
+	<h1>Echanges catégorie <?= $data["catName"]; ?></h1>
+
+	<p>Si tu veux changer de catégorie, pas de problème ! Choisi en dessous :</p>
+
+	<ul>
+		<?php
+			foreach($data["allCats"] as $key => $cat)
+			{
+			?>
+				<li>
+					<form  id="newSharingMessageForm"
+						action="/Luttes-Enchantees/nouvel-echange"
+						method="post">
+
+						<input type="hidden" id="newSharingMessage" name="action" value="newSharingMessage">
+						<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
+						<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
+
+						<input class="button"
+							type="submit" value="<?= $cat["name"]; ?>">
+					</form>
+				</li>
+			<?php
+			}
+		?>
+	</ul>
+
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
+	<section>
+		<ul>
+			<?php
+			foreach($data["sharesByCat"] as $key => $share)
+				{
+				?>
+					<li>
+						<h2><?= $share["title"]; ?></h2>
+
+						<p><?= $share["content"]; ?></p>
+
+						<p><?= $share["name"]; ?></p>
+
+						<?php
+							if(isset($share["answers"]) && $share["answers"] !== [])
+							{
+								foreach($share["answers"] as $key => $answer)
+								{
+								?>
+									<p><?= $answer["content"]; ?></p>
+									<p><?= $answer["name"]; ?></p>
+								<?php
+								}
+							}
+						?>
+
+						<form  id="shareAnswerForm"
+							action="/Luttes-Enchantees/echange-par-categorie"
+							method="post">
+
+							<input type="hidden" id="shareAnswer" name="action" value="shareAnswer">
+							<input type="hidden" id="catId" name="catId" value= "<?= $share["category_id"]; ?>">
+							<input type="hidden" id="catName" name="catName" value= "<?= $_POST["catName"]; ?>">
+							<input type="hidden" id="userName" name="userName" value= "<?= $_SESSION["user"]["name"]; ?>">
+							<input type="hidden" id="shareId" name="shareId" value= "<?= $share["id"]; ?>">
+
+							<textarea
+								name="shareAnswerContent"
+								id="shareAnswerContent"
+								rows="3" cols="80"
+								maxlength="1024"></textarea>
+
+							<input class="button"
+								type="submit" value="Répondre">
+						</form>
+					</li>
+				<?php
+				}
+			?>
+		</ul>
+	</section>
+
+</main>

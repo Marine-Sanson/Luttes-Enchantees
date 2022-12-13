@@ -2,13 +2,14 @@
 
 	<h1>Créer un nouvel échange dans la catégorie <?= $_POST["catName"]; ?></h1>
 
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
 	<p>Si tu veux changer de catégorie, pas de problème ! Choisi en dessous :</p>
 
 	<ul>
 		<?php
-            var_dump($_POST);
-            var_dump($data);
-		var_dump($_SESSION);
 			foreach($data["allCats"] as $key => $cat)
 			{
 			?>

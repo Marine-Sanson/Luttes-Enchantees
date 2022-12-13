@@ -2,12 +2,16 @@
 
 	<h1>Espace d'échange</h1>
 
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
 	<p>Ici un espace pour s'échanger des recettes, idées de lecture, spectacles, films...</p>
 
 	<section>
 		<h2>Ajouter un message</h2>
 
-		<p>Pour ajouter un message, clique sur la catégorie concernée :</p>
+		<p>Pour ajouter un échange, clique sur la catégorie concernée :</p>
 
 		<ul>
 			<?php
@@ -20,6 +24,36 @@
 							method="post">
 
 							<input type="hidden" id="newSharingMessage" name="action" value="newSharingMessage">
+							<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
+							<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
+
+							<input class="button"
+								type="submit" value="<?= $cat["name"]; ?>">
+						</form>
+					</li>
+				<?php
+				}
+			?>
+		</ul>
+	</section>
+
+	<section>
+		
+		<h2>Messages</h2>
+
+		<p>Voici les échanges, si tu veux voir uniquement ceux d'une catégorie, clique sur la catégorie concernée</p>
+
+		<ul>
+			<?php
+				foreach($data["allCats"] as $key => $cat)
+				{
+				?>
+					<li>
+						<form  id="displaySharingMessagesForm"
+							action="/Luttes-Enchantees/echange-par-categorie"
+							method="post">
+
+							<input type="hidden" id="displaySharingMessage" name="action" value="displaySharingMessage">
 							<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
 							<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
 

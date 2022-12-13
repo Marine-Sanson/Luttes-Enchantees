@@ -24,7 +24,6 @@ Class MembersSharingZoneController extends AbstractController
 	{
 		if(isset($_POST) && $_POST["action"] === "newSharingMessage")
 		{
-			var_dump("entre dans action = newSharingMessage");
 			$template = "newShare";
 			$allCats = $this->scm->getAllCategories();
 	
@@ -32,31 +31,25 @@ Class MembersSharingZoneController extends AbstractController
 		}
 		else if(isset($_POST) && $_POST["action"] === "newShare")
 		{
-			var_dump("entre dans action = newShare");
-
 			$errors = [];
 			if(!isset($_POST["title"]) || $_POST["title"] === "" )
 			{
-				var_dump("entre dans title = vide");
 				$errors[] = "N'oublie pas de mettre un titre";
 			}
 
 			if(!isset($_POST["content"]) || $_POST["content"] === "")
 			{
-				var_dump("entre dans content = vide");
-
 				$errors[] = "N'oublie pas de mettre un contenu";
 			}
 
 			if($errors === [])
 			{
-				var_dump("entre dans errors = vide");
 				$userId = $_SESSION["user"]["id"];
 				$title = $_POST["title"];
 				$content = $_POST["content"];
 				$categoryId = $_POST["catId"];
 
-				$this->sim->createSahringItem($userId, $title, $content, $categoryId);
+				$this->sim->createSharingItem($userId, $title, $content, $categoryId);
 				$validation = "Ton message a bien été créé";
 
 				$template = "newShare";
@@ -66,8 +59,6 @@ Class MembersSharingZoneController extends AbstractController
 			}
 			else if($errors !== [])
 			{
-				var_dump("entre dans errors != vide");
-
 				$template = "newShare";
 				$allCats = $this->scm->getAllCategories();
 				$allMessages = $this->sim->getAllSharingItems();
@@ -87,17 +78,74 @@ Class MembersSharingZoneController extends AbstractController
 		
 				$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages, "errors" => $errors, "title" => $title, "content" => $content]);
 			}
-
 		}
 		else
 		{
-			var_dump("entre dans le dernier else");
-
 			$template = "membersSharingZone";
 			$allCats = $this->scm->getAllCategories();
 			$allMessages = $this->sim->getAllSharingItems();
 
 			$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages]);
 		}
-}
+	}
+
+	public function shareByCat($catId) : void
+	{
+		if(isset($_POST) && $_POST["action"] === "displaySharingMessage")
+		{
+			$shares = $this->sim->getSharingItemsByCatId($_POST["catId"]);
+			foreach($shares as $key => $share)
+			{
+				$answers = $this->sam->getAllShareAnswersBySharingItemId($share["id"]);
+				$share["answers"] = $answers;
+				$sharesByCat[] = $share;
+			}
+
+			$allCats = $this->scm->getAllCategories();
+			$catName = $_POST["catName"];
+			$template = "membersShareByCat";
+
+			$this->render($template, ["sharesByCat" => $sharesByCat, "catName" => $catName, "allCats" => $allCats]);
+		}
+		else if (isset($_POST) && $_POST["action"] === "shareAnswer")
+		{
+			if(!isset($_POST["shareAnswerContent"]) || $_POST["shareAnswerContent"] === "")
+			{
+				$shares = $this->sim->getSharingItemsByCatId($_POST["catId"]);
+				foreach($shares as $key => $share)
+				{
+					$answers = $this->sam->getAllShareAnswersBySharingItemId($share["id"]);
+					$share["answers"] = $answers;
+					$sharesByCat[] = $share;
+				}
+	
+				$allCats = $this->scm->getAllCategories();
+				$catName = $_POST["catName"];
+				$errors[] = "attention a bien compléter ta réponse";
+				$template = "membersShareByCat";
+	
+				$this->render($template, ["errors" => $errors, "sharesByCat" => $sharesByCat, "catName" => $catName, "allCats" => $allCats]);
+			}
+			else
+			{
+				$this->sam->createShareAnswer($_POST["shareId"], $_SESSION["user"]["id"], $_POST["shareAnswerContent"]);
+				$validation = "Ta réponse a bien été prise en compte";
+	
+				$shares = $this->sim->getSharingItemsByCatId($_POST["catId"]);
+				foreach($shares as $key => $share)
+				{
+					$answers = $this->sam->getAllShareAnswersBySharingItemId($share["id"]);
+					$share["answers"] = $answers;
+					$sharesByCat[] = $share;
+				}
+	
+				$allCats = $this->scm->getAllCategories();
+				$catName = $_POST["catName"];
+				$validation = "ta réponse à bien été enregistrée";
+				$template = "membersShareByCat";
+	
+				$this->render($template, ["validation" => $validation, "sharesByCat" => $sharesByCat, "catName" => $catName, "allCats" => $allCats]);
+			}
+		}
+	}
 }

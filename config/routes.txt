@@ -11,6 +11,7 @@
 /detail-date/* MembersEventsController:eventDetail
 /messages MembersChatController:index
 /echanges MembersSharingZoneController:index
+/echange-par-categorie MembersSharingZoneController:shareByCat
 /nouvel-echange MembersSharingZoneController:newShare
 /videos MembersVideosController:index
 /admin-chants AdminSongsController:index
@@ -19,4 +20,4 @@
 /admin-video AdminSongsController:addVideo
 /admin-moment AdminSongsController:addCurrent
 /admin-dates AdminEventsController:index
-/admin-modif-date/* AdminEventsController:updateEvent
+/admin-modif-date/* AdminEventsController:updateEvents

@@ -25,7 +25,7 @@ require "./managers/EventManager.php";
 require "./managers/ParticipationManager.php";
 require "./managers/SahringItemManager.php";
 require "./managers/SahringCategoriesManager.php";
-
+require "./managers/ShareAnswerManager.php";
 
 require "./controllers/FileUploader.php";
 
