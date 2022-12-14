@@ -1,5 +1,6 @@
 / HomeController:index
 /contact ContactController:index
+/envoi-mail ContactController:sendMail
 /connect ConnectController:index
 /checkConnection ConnectController:checkConnection
 /accueil-membres MembersHomeController:index

@@ -1,7 +1,40 @@
 <main id="contact">
 
-    <h1>Nous contacter</h1>
+	<h1>Nous contacter</h1>
 
-    <p>Pour nous contacter veuiller remplir le formulaire ci dessous, nous vous répondrons dans les meilleurs délais</p>
+	<p>Pour nous contacter veuiller remplir le formulaire ci dessous, nous vous répondrons dans les meilleurs délais</p>
+
+	<form  id="contactForm"
+			action="/Luttes-Enchantees/envoi-mail"
+			method="post">
+
+		<input type="hidden"
+			 id="newMail"
+			 name="action"
+			 value="newMail">
+
+		<label for="mailObject">Votre adresse mail : </label>
+		<input type="mail" name="mailAdress" id="mailAdress">
+			
+		<label for="mailObject">Objet : </label>
+		<textarea
+			name="mailObject"
+			id="mailObject"
+			rows="1" cols="80"
+			maxlength="155"></textarea>
+
+		<label for="mailContent">Contenu : </label>
+		<textarea
+			name="mailContent"
+			id="mailContent"
+			rows="10" cols="80"
+			maxlength="1024"></textarea>
+				
+		<input class="button"
+			 type="submit"
+			 value="Envoyer">
+
+	</form> 
+
 
 </main>
