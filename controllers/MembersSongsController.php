@@ -28,8 +28,9 @@ Class MembersSongsController extends AbstractController
 
 			$song = $this->sm->getSongDetails($_POST["id"]);
 			$voices = $this->vm->getVoicesBySongId($_POST["id"]);
+			$text = $this->tm->getTextBySongId(intval($song["id"]));
 			
-			$this->render($template, ["song" => $song, "voices" => $voices]);
+			$this->render($template, ["song" => $song, "voices" => $voices, "text" => $text]);
 		}
 		else
 		{

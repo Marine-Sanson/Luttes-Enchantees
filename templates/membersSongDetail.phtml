@@ -2,36 +2,87 @@
 	<?php
 		$title = $data["song"]["title"];
 		$description = $data["song"]["description"];
-		$url = $data["song"]["url_video"];
-		$voices = $data["voices"];
+
+		if(isset($data["song"]) && $data["song"] !== "")
+		{
+			$urlVideo = $data["song"]["url_video"];
+		}
+		else
+		{
+	      $urlVideo = "";
+		}
+
+		if(isset($data["voices"]) && $data["voices"] !== "")
+		{
+			$voices = $data["voices"];
+		}
+		else
+		{
+	      $voices = "";
+		}
+
+		if(isset($data["text"]) && $data["text"] !== [])
+		{
+			$urlText = $data["text"]["url"];
+		}
+		else
+		{
+	      	$urlText = "";
+		}
 	?>
 	<h1><?= $title; ?>
 
 	<p><?= $description; ?>
 
-	<ul>
-		<?php
-		foreach($voices as $key => $voice)
-		{
-		?>
-			<li>
+	<?php
+	if($voices !== "")
+	{
+	?>
+		<ul>
+			<?php
+			foreach($voices as $key => $voice)
+			{
+			?>
+				<li>
 
-				<figure>
-					<figcaption><?= $voice["voice_type"]; ?></figcaption>
-					<audio
-						controls
-						src="/media/cc0-audio/t-rex-roar.mp3">
-							<a href="/media/cc0-audio/t-rex-roar.mp3">
-							Download audio
-							</a>
-					</audio>
-				</figure>
+					<figure>
+						<figcaption><?= $voice["voice_type"]; ?></figcaption>
+						<audio
+							controls
+							src="/media/cc0-audio/t-rex-roar.mp3">
+								<a href="/media/cc0-audio/t-rex-roar.mp3">
+								Download audio
+								</a>
+						</audio>
+					</figure>
 
-			</li>
-		<?php                       
-		}
-		?>
-	</ul>
-	<?= $url; ?>
+				</li>
+			<?php
+			}
+			?>
+		</ul>
+	<?php
+	}
+	?>
+
+	<?php
+	if($urlVideo !== "")
+	{
+	?>
+		<?= $urlVideo; ?>
+	<?php
+	}
+	?>
+
+	<?php
+	if($urlText !== "")
+	{
+	?>
+		<iframe src="<?= $urlText; ?>" width="100%" height="500px"> </iframe> 
+	<?php
+	}
+	?>
+
+
 
 </main>

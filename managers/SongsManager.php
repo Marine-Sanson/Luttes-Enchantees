@@ -22,7 +22,7 @@ class SongsManager extends AbstractManager
 		return $allSongs;
 	}
 
-	public function getSongTitle($id) : string
+	public function getSongTitle(int $id) : string
 	{
 		$query = $this->db->prepare('SELECT title FROM songs WHERE id = :id');
 		$parameters = [
@@ -36,7 +36,7 @@ class SongsManager extends AbstractManager
 		return $title;
 	}
 
-	public function getSongDetails($id) : array
+	public function getSongDetails(int $id) : array
 	{
 		$query = $this->db->prepare('SELECT * FROM songs WHERE id = :id');
 		$parameters = [
