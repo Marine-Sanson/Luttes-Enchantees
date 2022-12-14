@@ -50,6 +50,18 @@ class SongsManager extends AbstractManager
 		return $song;
 	}
 
+	public function getCurrentSongs() : array
+	{
+		$query = $this->db->prepare('SELECT * FROM songs WHERE current_song = :current_song');
+		$parameters = [
+			'current_song' => 1
+			];
+		$query->execute($parameters);
+		$songs = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		return $songs;
+	}
+
 	public function updateUrlVideo(int $songId, string $urlVideo)
 	{
 		$query = $this->db->prepare('UPDATE songs SET url_video = :urlVideo WHERE id = :id');

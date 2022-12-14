@@ -64,6 +64,18 @@ class EventManager extends AbstractManager
 		return $event;
 	}
 
+	public function getPublicEvents() : array
+	{
+		$query = $this->db->prepare('SELECT * FROM events WHERE status = :status');
+		$parameters = [
+			'status' => 0
+			];
+		$query->execute($parameters);
+		$events = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		return $events;
+	}
+
 	public function updatedEvent(Event $event) : void
 	{
 		var_dump($event);

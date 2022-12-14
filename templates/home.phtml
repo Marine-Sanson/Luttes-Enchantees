@@ -1,8 +1,72 @@
 <main id="home">
 
-    <h1>Bienvenue sur le site des Luttes Enchantées</h1>
+	<h1>Bienvenue sur le site des Luttes Enchantées</h1>
 
-    <p>Luttes enchantées, c'est une chorale de femmes, féministes</p>
-    
+	<p>Luttes enchantées, c'est une chorale de femmes, féministes</p>
+
+	<section>
+		<h2>Qui sommes nous ?</h2>
+
+		<figure>
+			<img src="./assets/img/230922.jpg"
+				 alt="Photo de la chorale en concert - septembre 2022">
+			<figcaption>Photo de la chorale en concert - septembre 2022</figcaption>
+		</figure>
+
+		<p>A venir : texte de présentation</p>
+
+		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sed reprehenderit quia! Ullam cupiditate inventore ex vel dolorum veritatis omnis! Cupiditate sed possimus, odio harum suscipit qui illo? Quae vel ad voluptas tempore, asperiores hic animi corrupti voluptatem laudantium nesciunt iure fuga voluptates impedit pariatur veniam provident tenetur sed unde facilis? Voluptatum aliquam, porro ex quae sequi ducimus optio, odit voluptatem sunt culpa adipisci modi? Placeat est magni laboriosam et delectus nisi fugit quod, error minima vel quia, magnam velit explicabo eaque labore voluptatibus illo ratione nihil aliquam quidem quo optio! Aliquid, perferendis fuga eum sunt nobis ipsum doloremque nulla et esse voluptates eveniet minus numquam distinctio, ad tenetur odit excepturi vero, quo doloribus porro ipsa voluptatibus! Consectetur vero quisquam voluptatum sed illo aliquam fugit quod explicabo, dolorem eius repellendus laudantium earum corrupti blanditiis eum iste distinctio, eligendi id tenetur unde odit similique! Numquam architecto tempora hic nobis mollitia harum.</p>
+	</section>
+	
+	<section>
+		<h2>Prochaines dates :</h2>
+
+		<?php
+            foreach ($data["events"] as $key => $event)
+		{
+            ?>
+			<article>
+				<h3><?= $event["cat"]; ?> du <?= $event["date"]; ?></h3>
+				<p><?= $event["public_details"]; ?></p>
+			</article>
+		<?php
+            }
+		?>
+	</section>
+
+	<section>
+		<h2>Chants</h2>
+
+		<p>Notre répértoire est composé de chants féministes et de chants de femmes. Voici quelques exemples de chants que nous travaillons actuellement</p>
+
+		<?php
+            foreach ($data["songs"] as $key => $song)
+		{
+            ?>
+			<article>
+				<h3><?= $song["title"]; ?></h3>
+				
+				<?php
+				if(isset($song["description"]) && $song["description"] !== "")
+				{
+				?>
+					<p><?= $song["description"]; ?></p>
+				<?php
+				}
+				?>
+				
+				<?php
+				if(isset($song["urlVideo"]) && $song["urlVideo"] !== "")
+				{
+				?>
+					<?= $song["urlVideo"]; ?>
+				<?php
+				}
+				?>
+			</article>
+		<?php
+            }
+		?>
+
 </main>
-    
+	
