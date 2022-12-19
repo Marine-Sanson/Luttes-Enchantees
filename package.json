@@ -1,5 +1,26 @@
 {
   "dependencies": {
     "sass": "^1.56.1"
-  }
+  },
+  "name": "luttes-enchantees",
+  "description": "This site is for a feminist chorus\r Just a few public pages to introduce the chorus and privates pages for the members to work on the songs and more...",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "sass --watch ./assets/sass/style.scss:./assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marine-Sanson/Luttes-Enchantees.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marine-Sanson/Luttes-Enchantees/issues"
+  },
+  "homepage": "https://github.com/Marine-Sanson/Luttes-Enchantees#readme"
 }

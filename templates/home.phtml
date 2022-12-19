@@ -2,48 +2,64 @@
 
 	<h1>Bienvenue sur le site des Luttes Enchantées</h1>
 
-	<p>Luttes enchantées, c'est une chorale de femmes, féministes</p>
+	<p id="homeFirstP">Luttes enchantées, c'est une chorale de femmes, féministes</p>
 
-	<section>
-		<h2>Qui sommes nous ?</h2>
+	<section id="homePresentation">
+		
+			<h2>Qui sommes nous ?</h2>
 
-		<figure>
-			<img src="./assets/img/230922.jpg"
-				 alt="Photo de la chorale en concert - septembre 2022">
-			<figcaption>Photo de la chorale en concert - septembre 2022</figcaption>
-		</figure>
+			<figure>
+				<img src="./assets/img/230922.jpg"
+				alt="Photo de la chorale en concert - septembre 2022">
+				<figcaption>Photo de concert - septembre 2022</figcaption>
+			</figure>
 
-		<p>A venir : texte de présentation</p>
+			<section>
+				<p>Les Luttes Enchantées existent depuis le 15 décembre 2018.</p>
 
-		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sed reprehenderit quia! Ullam cupiditate inventore ex vel dolorum veritatis omnis! Cupiditate sed possimus, odio harum suscipit qui illo? Quae vel ad voluptas tempore, asperiores hic animi corrupti voluptatem laudantium nesciunt iure fuga voluptates impedit pariatur veniam provident tenetur sed unde facilis? Voluptatum aliquam, porro ex quae sequi ducimus optio, odit voluptatem sunt culpa adipisci modi? Placeat est magni laboriosam et delectus nisi fugit quod, error minima vel quia, magnam velit explicabo eaque labore voluptatibus illo ratione nihil aliquam quidem quo optio! Aliquid, perferendis fuga eum sunt nobis ipsum doloremque nulla et esse voluptates eveniet minus numquam distinctio, ad tenetur odit excepturi vero, quo doloribus porro ipsa voluptatibus! Consectetur vero quisquam voluptatum sed illo aliquam fugit quod explicabo, dolorem eius repellendus laudantium earum corrupti blanditiis eum iste distinctio, eligendi id tenetur unde odit similique! Numquam architecto tempora hic nobis mollitia harum.</p>
+				<p>Nous sommes une chorale rennaise, composée d’une trentaine de femmes de tout âge, qui aimons nous retrouver autour d’un répertoire féministe.</p>
+
+				<p>Le but est de se faire plaisir tout en travaillant nos voix et en apprenant des chants dynamiques pouvant être chantés en manifs ou en concert, avec ou sans cheffe de chœur.</p>
+
+				<p>Notre chorale est aussi un lieu de partages et d’informations, nous aimons nous retrouver autour des luttes des femmes avec un répertoire commun à plusieurs chorales féministes sur la ville, comme <a href="https://www.lako-compagnie.com/colectiva" target="_blank" title="lien vers le
+				site de la Ko-compagnie">! Colectiva !</a> ou la <a href="https://latetealest.wixsite.com/latetealest" target="_blank" title="lien vers le
+				site de la Tête à l'Est"> Tête à l'Est</a></p>
+
+				<p>Nous aimons chanter en manifs, et lors d’évènements auxquels nous invitent des associations, groupes, chorales alliées. En 2022, par exemple, nous avons chanté au festival de <a href="https://www.facebook.com/NousToutes35/" target="_blank" title="lien vers le site de Nous Toutes 35">Nous Toutes 35</a>, pour les 10 ans de l'association <a href="http://histoire-feminisme-rennes.blogspot.com/" target="_blank" title="lien vers le site d'HFR">Histoire du Féminisme à Rennes</a>, pendant l'académie d'été du DIU "Etudes sur le genre" à Rennes 2, et dans différentes manifs comme le 25 novembre lors de la <a href="https://www.facebook.com/events/389434949944187/?ref=newsfeed" target="blank" title="lien vers l'évenement de Nous Toutes 35">marche contre les violences faites aux femmes</a> avec ! Colectiva !, et lors de bien d'autres évenements !</p>
+
+			</section>
+
 	</section>
 	
-	<section>
-		<h2>Prochaines dates :</h2>
+	<section id="homeActu">
+		<h2>Actualités :</h2>
 
-		<?php
-            foreach ($data["events"] as $key => $event)
-		{
-            ?>
-			<article>
-				<h3><?= $event["cat"]; ?> du <?= $event["date"]; ?></h3>
-				<p><?= $event["public_details"]; ?></p>
-			</article>
-		<?php
-            }
-		?>
+		<ul>
+			<?php
+			foreach ($data["events"] as $key => $event)
+			{
+			?>
+				<li>
+					<h3 class="homeActuH3"><?= $event["cat"]; ?> du <?= $event["date"]; ?> :</h3>
+					<p><?= $event["public_details"]; ?></p>
+				</li>
+			<?php
+			}
+			?>
+		</ul>
 	</section>
 
-	<section>
+	<section id="homeChants">
 		<h2>Chants</h2>
 
-		<p>Notre répértoire est composé de chants féministes et de chants de femmes. Voici quelques exemples de chants que nous travaillons actuellement</p>
+		<p>Notre répértoire est composé de chants féministes et de chants de femmes.</p>
+		<p>Voici quelques exemples de chants que nous travaillons actuellement</p>
 
 		<?php
             foreach ($data["songs"] as $key => $song)
 		{
             ?>
-			<article>
+			<article class="homeChantsArticle">
 				<h3><?= $song["title"]; ?></h3>
 				
 				<?php
@@ -59,7 +75,7 @@
 				if(isset($song["urlVideo"]) && $song["urlVideo"] !== "")
 				{
 				?>
-					<?= $song["urlVideo"]; ?>
+					<figure class="homeUrlVideo"><?= $song["urlVideo"]; ?></figure>
 				<?php
 				}
 				?>

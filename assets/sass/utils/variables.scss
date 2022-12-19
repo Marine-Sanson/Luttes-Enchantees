@@ -1,0 +1,28 @@
+/* ********** Variables ********** */
+
+/* *** COLORS *** */
+$blue: rgba(19,45,212,1);
+$lightBlue: rgba(19,45,212,0.8);
+$lighterBlue: rgba(19,45,212,0.6);
+
+$white: rgba(255,255,255,1);
+
+/* ****** FONTS ****** */
+$fontDefault: "Kalam", cursive;
+$fontTitles: "Kalam", cursive;
+$fontSizeDefault: 1.2rem;
+$fontSizeh1: 2.4rem;
+$fontSizeh2: 2rem;
+$fontSizeh3: 1.4rem;
+
+/* ****** line height ****** */
+
+$lineHeight: 2.0rem;
+
+/* ****** Width ****** */
+
+$maxWidth: 1140px;
+
+
+/* ****** Grid ****** */
+$gridTempCol: repeat(12, 1fr);

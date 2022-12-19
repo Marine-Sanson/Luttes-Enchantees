@@ -1,0 +1,229 @@
+/* ********** Home ********** */
+
+#homeFirstP{
+      text-align: center;
+}
+
+#home section p a{
+      font-weight: 700;
+      color: $blue;
+}
+
+#home section p a:hover{
+      text-decoration: underline;
+}
+
+/* *** #homePresentation *** */
+
+#homePresentation figure{
+      margin: auto;
+}
+
+#homePresentation section{
+      text-align: justify;
+}
+
+/* *** #homeActu *** */
+
+#homeActu{
+      background-color: $blue;
+      color: $white;
+      margin: auto;
+}
+
+#homeActu li{
+      display: grid;
+      grid-template-columns: $gridTempCol;
+      grid-template-rows: auto;
+}
+
+.homeActuH3{
+      font-size: $fontSizeDefault;
+	line-height: $lineHeight;
+      grid-column: 1/5;
+      text-align: right;
+}
+
+#homeActu ul li p{
+      grid-column: 5/13;
+      text-align: left;
+}
+
+/* *** #homeChants *** */
+
+#homeChants p{
+      margin: 0 0.5rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #homeFirstP{
+            margin-bottom: 0.8rem;
+      }
+
+      /* *** #homePresentation *** */
+
+      #homePresentation{
+            display: grid;
+            grid-template-columns: $gridTempCol;
+            grid-template-rows: 1fr, auto, auto;
+      }
+
+      #homePresentation h2{
+            grid-row: 1;
+            grid-column: 1/13;
+      }
+
+      #homePresentation figure{
+            grid-column: 1/13;
+            grid-row: 2;
+      }
+
+      #homePresentation section{
+            grid-column: 1/13;
+            grid-row: 3;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+      }
+
+      #homePresentation figure img{
+            max-width: 60vw;
+      }
+
+      /* *** #homeActu *** */
+
+      #homeActu{
+            max-width: 95vw;
+      }
+
+      #homeActu h2{
+            padding: 0.4rem;
+      }
+
+      .homeActuH3{
+            padding: 0.5rem;
+            margin: 0.5rem 0.5rem 0.5rem auto;
+      }
+      
+      #homeActu ul li p{
+            padding: 0.5rem;
+            margin: 0.5rem auto 0.5rem 0.5rem;
+      }
+      
+      /* *** #homeChants *** */
+
+      .homeChantsArticle{
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: $gridTempCol;
+            grid-template-rows: 1fr, auto, auto;
+      }
+
+      .homeChantsArticle h3{
+            grid-row: 1;
+            grid-column: 1/13;
+      }
+
+      .homeChantsArticle figure{
+            grid-row: 3;
+            grid-column: 1/13;
+            margin: auto;
+      }
+
+      .homeChantsArticle p{
+            grid-row: 2;
+            grid-column: 1/13;
+            padding: 0.5rem;
+      }
+
+      .homeChantsArticle .homeUrlVideo iframe{
+            max-width: 80vw;
+      }
+
+}
+
+@media(min-width: 792px)
+{
+      #homeFirstP{
+            margin-bottom: 2rem;
+      }
+
+      /* *** #homePresentation *** */
+
+      #homePresentation{
+            display: grid;
+            grid-template-columns: $gridTempCol;
+            grid-template-rows: 1fr, auto;
+      }
+
+      #homePresentation h2{
+            grid-row: 1;
+            grid-column: 1/13;
+      }
+
+      #homePresentation figure{
+            grid-column: 9/13;
+            grid-row: 2;
+      }
+
+      #homePresentation section{
+            grid-column: 1/9;
+            grid-row: 2;
+            padding: 0.5rem 1rem;
+      }
+
+      #homePresentation figure img{
+            max-width: 28vw;
+      }
+
+      /* *** #homeActu *** */
+
+      #homeActu{
+            max-width: 90vw;
+      }
+
+      #homeActu h2{
+            padding: 1rem;
+      }
+
+      .homeActuH3{
+            padding: 1rem;
+            margin: 1rem 1rem 1rem auto;
+      }
+      
+      #homeActu ul li p{
+            padding: 1rem;
+            margin: 1rem auto 1rem 1rem;
+      }
+      
+      /* *** #homeChants *** */
+
+      .homeChantsArticle{
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: $gridTempCol;
+            grid-template-rows: 1fr, auto;
+      }
+
+      .homeChantsArticle h3{
+            grid-row: 1;
+            grid-column: 1/13;
+      }
+
+      .homeChantsArticle figure{
+            grid-row: 2;
+            grid-column: 1/9;
+            margin: auto;
+      }
+
+      .homeChantsArticle p{
+            grid-row: 2;
+            grid-column: 9/13;
+            padding: 1rem;
+      }
+
+      .homeChantsArticle .homeUrlVideo iframe{
+            max-width: 60vw;
+      }
+
+}

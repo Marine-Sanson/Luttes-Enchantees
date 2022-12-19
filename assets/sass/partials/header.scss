@@ -1,0 +1,28 @@
+/* ********** Header ********** */
+
+#publicNav{
+      background-color: $blue;
+}
+
+#membersNav{
+      background-color: $lightBlue;
+}
+
+#adminNav{
+      background-color: $lighterBlue;
+}
+
+header nav{
+      text-align: center;
+      line-height: 3rem;
+}
+
+header nav a{
+      color: $white;
+      font-weight: 700;
+      margin: 2.5rem;
+}
+
+header nav a:hover{
+      text-decoration: underline;
+}

@@ -25,11 +25,10 @@ Class MembersHomeController extends AbstractController
 					"part" => $part,
 					"private_details" => $event["private_details"]
 				];
-
-				$template = "membersHome";
-
-				$this->render($template, ["events" => $events]);
 			}
+			$template = "membersHome";
+
+			$this->render($template, ["events" => $events]);
 		}
 		else
 		{
