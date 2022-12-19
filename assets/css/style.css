@@ -87,13 +87,29 @@ header nav {
 header nav a {
   color: rgb(255, 255, 255);
   font-weight: 700;
-  margin: 2.5rem;
+  margin: 1rem;
 }
 
 header nav a:hover {
   text-decoration: underline;
 }
 
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #publicNav a {
+    margin: 0.5rem;
+  }
+  #adminNav a {
+    margin: 0.5rem;
+  }
+}
+@media (min-width: 792px) {
+  #publicNav a {
+    margin: 2.5rem;
+  }
+  #adminNav a {
+    margin: 2.5rem;
+  }
+}
 /* ********** Home ********** */
 #homeFirstP {
   text-align: center;
@@ -135,11 +151,19 @@ header nav a:hover {
   line-height: 2rem;
   grid-column: 1/5;
   text-align: right;
+  padding: 0.5rem;
+  margin: 0 0.5rem 0 auto;
 }
 
 #homeActu ul li p {
   grid-column: 5/13;
   text-align: left;
+  padding: 0.5rem;
+  margin: 0 auto 0 0.5rem;
+}
+
+#homeActu h2 {
+  padding-top: 0.5rem;
 }
 
 /* *** #homeChants *** */
@@ -166,7 +190,7 @@ header nav a:hover {
     grid-row: 2;
   }
   #homePresentation section {
-    grid-column: 1/13;
+    grid-column: 2/12;
     grid-row: 3;
     padding: 0.5rem 1rem;
     margin-top: 1rem;
@@ -177,17 +201,6 @@ header nav a:hover {
   /* *** #homeActu *** */
   #homeActu {
     max-width: 95vw;
-  }
-  #homeActu h2 {
-    padding: 0.4rem;
-  }
-  .homeActuH3 {
-    padding: 0.5rem;
-    margin: 0.5rem 0.5rem 0.5rem auto;
-  }
-  #homeActu ul li p {
-    padding: 0.5rem;
-    margin: 0.5rem auto 0.5rem 0.5rem;
   }
   /* *** #homeChants *** */
   .homeChantsArticle {
@@ -244,17 +257,6 @@ header nav a:hover {
   #homeActu {
     max-width: 90vw;
   }
-  #homeActu h2 {
-    padding: 1rem;
-  }
-  .homeActuH3 {
-    padding: 1rem;
-    margin: 1rem 1rem 1rem auto;
-  }
-  #homeActu ul li p {
-    padding: 1rem;
-    margin: 1rem auto 1rem 1rem;
-  }
   /* *** #homeChants *** */
   .homeChantsArticle {
     margin-top: 2rem;
@@ -278,6 +280,193 @@ header nav a:hover {
   }
   .homeChantsArticle .homeUrlVideo iframe {
     max-width: 60vw;
+  }
+}
+/* ********** Contact ********** */
+#contact p {
+  margin: 0 1rem 1rem 1rem;
+}
+
+#contactForm {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+#contactForm input,
+#contactForm textarea {
+  margin: 0.5rem;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #contactForm {
+    grid-template-rows: repeat(5, 1fr), auto, 1fr;
+  }
+  #contactForm label {
+    margin: 0.6rem auto 0rem 0.5rem;
+  }
+  #mailAdressLabel {
+    grid-row: 1;
+    grid-column: 2/11;
+  }
+  #mailAdress {
+    grid-row: 2;
+    grid-column: 2/11;
+    width: 80vw;
+    height: 1.6rem;
+  }
+  #mailObjectLabel {
+    grid-row: 3;
+    grid-column: 2/11;
+  }
+  #mailObject {
+    grid-row: 4;
+    grid-column: 2/11;
+    width: 80vw;
+    height: 1.6rem;
+  }
+  #mailContentLabel {
+    grid-row: 5;
+    grid-column: 2/11;
+  }
+  #mailContent {
+    grid-row: 6;
+    grid-column: 2/11;
+    width: 80vw;
+    height: 5rem;
+  }
+  #contactFormSubmit {
+    grid-row: 7;
+    grid-column: 6;
+  }
+}
+@media (min-width: 792px) {
+  #contactForm {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+  #contactForm input,
+  #contactForm textarea {
+    margin: 0.5rem;
+  }
+  #contactForm label {
+    margin: 0.5rem 0.5rem 0.5rem auto;
+  }
+  #contactForm label {
+    margin: 0.5rem 0.5rem 0.5rem auto;
+  }
+  #mailAdressLabel {
+    grid-row: 1;
+    grid-column: 2/5;
+  }
+  #mailAdress {
+    grid-row: 1;
+    grid-column: 5/11;
+    max-width: 100%;
+    height: 1.6rem;
+  }
+  #mailObjectLabel {
+    grid-row: 2;
+    grid-column: 2/5;
+  }
+  #mailObject {
+    grid-row: 2;
+    grid-column: 5/11;
+    max-width: 100%;
+    height: 1.6rem;
+  }
+  #mailContentLabel {
+    grid-row: 3;
+    grid-column: 2/5;
+  }
+  #mailContent {
+    grid-row: 3;
+    grid-column: 5/11;
+    max-width: 100%;
+    height: 5rem;
+  }
+  #contactFormSubmit {
+    grid-row: 4;
+    grid-column: 5;
+  }
+}
+/* ********** Home ********** */
+#connect p {
+  margin: 1rem;
+  text-align: center;
+}
+
+#connectUser {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#connectUser input {
+  margin: 0.5rem;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #connectUser {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 2.5rem);
+  }
+  #emailForConnectionLabel {
+    grid-row: 1;
+    grid-column: 2/11;
+  }
+  #emailForConnection {
+    grid-row: 2;
+    grid-column: 2/11;
+    margin: 0.5rem;
+  }
+  #pwForConnectionLabel {
+    grid-row: 3;
+    grid-column: 2/11;
+  }
+  #pwForConnection {
+    grid-row: 4;
+    grid-column: 2/11;
+  }
+  #connectUserSubmit {
+    grid-row: 5;
+    grid-column: 6/8;
+  }
+  #connectUser label {
+    margin: 0.6rem auto 0.5rem 0.5rem;
+  }
+}
+@media (min-width: 792px) {
+  #connectUser {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 2.5rem);
+  }
+  #emailForConnectionLabel {
+    grid-row: 1;
+    grid-column: 2/5;
+  }
+  #emailForConnection {
+    grid-row: 1;
+    grid-column: 5/11;
+    margin: 0.5rem;
+  }
+  #pwForConnectionLabel {
+    grid-row: 2;
+    grid-column: 2/5;
+  }
+  #pwForConnection {
+    grid-row: 2;
+    grid-column: 5/11;
+  }
+  #connectUserSubmit {
+    grid-row: 3;
+    grid-column: 6/8;
+  }
+  #connectUser label {
+    margin: 0.6rem 0.2rem 0.5rem auto;
   }
 }
 

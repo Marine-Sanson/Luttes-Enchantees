@@ -1,0 +1,95 @@
+/* ********** Home ********** */
+
+#connect p{
+	margin: 1rem;
+	text-align: center;
+}
+
+#connectUser{
+	margin-top: 2rem;
+	text-align: center;
+}
+
+#connectUser input{
+      margin: 0.5rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px){
+	#connectUser{
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: $gridTempCol;
+		grid-template-rows: repeat(5, 2.5rem);
+	}
+
+	#emailForConnectionLabel{
+		grid-row: 1;
+		grid-column: 2/11;
+	}
+
+	#emailForConnection{
+		grid-row: 2;
+		grid-column: 2/11;
+		margin: 0.5rem;
+	}
+
+	#pwForConnectionLabel{
+		grid-row: 3;
+		grid-column: 2/11;
+	}
+
+	#pwForConnection{
+		grid-row: 4;
+		grid-column: 2/11;
+	}
+
+	#connectUserSubmit{
+		grid-row: 5;
+		grid-column: 6/8;
+	}
+
+	#connectUser label{
+		margin: 0.6rem auto 0.5rem 0.5rem;
+	}
+}
+
+@media(min-width: 792px){
+	#connectUser{
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: $gridTempCol;
+		grid-template-rows: repeat(3, 2.5rem);
+	}
+
+	#emailForConnectionLabel{
+		grid-row: 1;
+		grid-column: 2/5;
+	}
+
+	#emailForConnection{
+		grid-row: 1;
+		grid-column: 5/11;
+		margin: 0.5rem;
+	}
+
+	#pwForConnectionLabel{
+		grid-row: 2;
+		grid-column: 2/5;
+	}
+
+	#pwForConnection{
+		grid-row: 2;
+		grid-column: 5/11;
+	}
+
+	#connectUserSubmit{
+		grid-row: 3;
+		grid-column: 6/8;
+	}
+
+	#connectUser label{
+		margin: 0.6rem 0.2rem 0.5rem auto;
+	}
+}
+
+

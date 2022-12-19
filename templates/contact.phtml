@@ -13,28 +13,24 @@
 			 name="action"
 			 value="newMail">
 
-		<label for="mailObject">Votre adresse mail : </label>
+		<label id="mailAdressLabel" for="mailObject">Votre adresse mail : </label>
 		<input type="mail" name="mailAdress" id="mailAdress">
 			
-		<label for="mailObject">Objet : </label>
+		<label id="mailObjectLabel" for="mailObject">Objet : </label>
 		<textarea
 			name="mailObject"
 			id="mailObject"
-			rows="1" cols="80"
 			maxlength="155"></textarea>
 
-		<label for="mailContent">Contenu : </label>
+		<label id="mailContentLabel" for="mailContent">Contenu : </label>
 		<textarea
 			name="mailContent"
 			id="mailContent"
-			rows="10" cols="80"
 			maxlength="1024"></textarea>
 				
-		<input class="button"
+		<input id="contactFormSubmit"
+			 class="button"
 			 type="submit"
 			 value="Envoyer">
-
-	</form> 
-
-
+	</form>
 </main>

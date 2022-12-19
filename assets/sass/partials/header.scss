@@ -20,9 +20,34 @@ header nav{
 header nav a{
       color: $white;
       font-weight: 700;
-      margin: 2.5rem;
+      margin: 1rem;
 }
 
 header nav a:hover{
       text-decoration: underline;
 }
+
+@media(min-width: 0px) and (max-width: 791.99px){
+      #publicNav a{
+            margin: 0.5rem;
+      }
+      
+      #adminNav a{
+            margin: 0.5rem;
+      }
+}
+
+
+@media(min-width: 792px){
+      #publicNav a{
+            margin: 2.5rem;
+      }
+      
+      #adminNav a{
+            margin: 2.5rem;
+      }
+}
+
+
+
+
