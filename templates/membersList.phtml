@@ -8,19 +8,19 @@
 			foreach($data["users"] as $key => $user)
 			{
 			?>
-				<li>
-					<p><?= $user["name"]; ?></p>
+				<li class="membersListItem">
+					<p class="membersListName"><?= $user["name"]; ?></p>
 					<?php
 					if(intval($user["agreement"]) === 1)
 					{
 					?>
-						<p><?= $user["email"]; ?></p>
+						<p class="membersListEmail"><?= $user["email"]; ?></p>
 					<?php
 					} else if(intval($user["agreement"]) === 2)
 					{
 					?>
-						<p><?= $user["email"]; ?></p>
-						<p><?= $user["tel"]; ?></p>
+						<p class="membersListEmail"><?= $user["email"]; ?></p>
+						<p class="membersListTel"><?= $user["tel"]; ?></p>
 					<?php
 					}
 					?>

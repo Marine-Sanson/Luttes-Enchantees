@@ -36,7 +36,7 @@ Class MembersEventsController extends AbstractController
 	public function eventDetail(): void
 	{
 		if ($_SESSION["connectUser"]) {
-			if (isset($_POST) && $_POST["action"] === "eventDetail") {
+			if (isset($_POST) && $_POST["action"] === "membersEventDetail") {
 				$id = intval($_POST["eventId"]);
 				$event = $this->em->getEventById($id);
 				$catId = $event->getEventCatId();
@@ -56,7 +56,7 @@ Class MembersEventsController extends AbstractController
 
 				$cat = $this->em->getCatById($catId);
 
-				$template = "eventDetail";
+				$template = "membersEventDetail";
 				$this->render($template, ["event" => $event, "parts" => $parts, "count" => $count, "cat" => $cat]);
 			} else {
 				$events = $this->em->getEvents();

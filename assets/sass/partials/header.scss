@@ -9,7 +9,11 @@
 }
 
 #adminNav{
-      background-color: $lighterBlue;
+      background-color: $lightBlue2;
+}
+
+#adminNav a{
+      color: $blue;
 }
 
 header nav{
@@ -18,7 +22,7 @@ header nav{
 }
 
 header nav a{
-      color: $white;
+      color: $lighterBlue;
       font-weight: 700;
       margin: 1rem;
 }
@@ -36,7 +40,6 @@ header nav a:hover{
             margin: 0.5rem;
       }
 }
-
 
 @media(min-width: 792px){
       #publicNav a{

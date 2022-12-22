@@ -1,6 +1,10 @@
 <main>
 	<h1>Echanges catégorie <?= $data["catName"]; ?></h1>
 
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
 	<p>Si tu veux changer de catégorie, pas de problème ! Choisis en dessous :</p>
 
 	<ul>
@@ -25,10 +29,6 @@
 			}
 		?>
 	</ul>
-
-	<?php
-	require "./templates/_messages.phtml";
-	?>
 
 	<section>
 		<ul>

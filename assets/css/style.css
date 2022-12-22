@@ -19,12 +19,12 @@ body {
   font-family: "Kalam", cursive;
   font-size: 1.2rem;
   line-height: 2rem;
-  background-color: rgb(255, 255, 255);
-  color: rgb(19, 45, 212);
+  background-color: rgb(211, 239, 240);
+  color: rgb(39, 19, 212);
 }
 
 body > main {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(211, 239, 240);
   max-width: 1140px;
   justify-content: center;
   margin: auto;
@@ -66,17 +66,65 @@ a {
   text-decoration: none;
 }
 
+fieldset {
+  border: none;
+}
+
+input[type=radio]:hover {
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: rgb(114, 0, 214);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.button {
+  font-family: "Kalam", cursive;
+  font-weight: 700;
+  border: none;
+  background-color: rgb(39, 19, 212);
+  color: rgb(211, 239, 240);
+  padding: 0.3rem;
+  margin: 0.5rem;
+  border: 2px solid rgb(39, 19, 212);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border: none;
+  background-color: rgb(211, 239, 240);
+  color: rgb(39, 19, 212);
+  border: 2px solid rgb(39, 19, 212);
+}
+
+textarea,
+input[type=date],
+input[type=text],
+input[type=mail] {
+  background-color: rgb(211, 239, 240);
+  color: rgb(39, 19, 212);
+  border: 2px solid rgb(39, 19, 212);
+  font-family: "Kalam", cursive;
+}
+
 /* ********** Header ********** */
 #publicNav {
-  background-color: rgb(19, 45, 212);
+  background-color: rgb(39, 19, 212);
 }
 
 #membersNav {
-  background-color: rgba(19, 45, 212, 0.8);
+  background-color: rgb(34, 69, 245);
 }
 
 #adminNav {
-  background-color: rgba(19, 45, 212, 0.6);
+  background-color: rgb(66, 191, 245);
+}
+
+#adminNav a {
+  color: rgb(39, 19, 212);
 }
 
 header nav {
@@ -85,7 +133,7 @@ header nav {
 }
 
 header nav a {
-  color: rgb(255, 255, 255);
+  color: rgb(211, 239, 240);
   font-weight: 700;
   margin: 1rem;
 }
@@ -117,7 +165,7 @@ header nav a:hover {
 
 #home section p a {
   font-weight: 700;
-  color: rgb(19, 45, 212);
+  color: rgb(39, 19, 212);
 }
 
 #home section p a:hover {
@@ -135,8 +183,8 @@ header nav a:hover {
 
 /* *** #homeActu *** */
 #homeActu {
-  background-color: rgb(19, 45, 212);
-  color: rgb(255, 255, 255);
+  background-color: rgb(39, 19, 212);
+  color: rgb(211, 239, 240);
   margin: auto;
 }
 
@@ -468,6 +516,71 @@ header nav a:hover {
   #connectUser label {
     margin: 0.6rem 0.2rem 0.5rem auto;
   }
+}
+#membersHome h1 {
+  max-width: 60vw;
+}
+
+#disconnect {
+  text-align: right;
+  margin-right: 2rem;
+}
+
+.membersHomeEvent {
+  margin: 2rem;
+}
+
+.membersHomeEvent h3 {
+  text-align: left;
+}
+
+.membersHomeEvent p {
+  text-align: justify;
+}
+
+.setParticipationForm {
+  margin-bottom: 2rem;
+}
+
+.setParticipationFieldset {
+  padding-left: 3rem;
+}
+
+.setParticipationForm .button {
+  margin-left: 4.5rem;
+}
+
+#membersList ul {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+}
+
+.membersListItem {
+  display: grid;
+  grid-template-columns: 15vw 30vw 20vw;
+  grid-template-rows: auto;
+}
+
+.membersListItem p {
+  padding: 1rem;
+}
+
+#membersSongs ul {
+  display: grid;
+  grid-template-columns: repeat(5, 18vw);
+  grid-template-rows: auto;
+  justify-content: center;
+}
+
+.songsForDetail {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+}
+
+.songsForDetail .button {
+  margin: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -150,8 +150,6 @@
 
 			<?php
 			$id = intval($event["id"]);
-			var_dump($id);
-
 			?>
 
 			<form  id="displayUpdateEventForm"
@@ -162,6 +160,9 @@
 					id="displayUpdateEvent"
 					name="action"
 					value="displayUpdateEvent">
+				<input type="hidden"
+					name="route"
+					value="param">
 				<input type="hidden"
 					 id="eventId"
 					 name="eventId"

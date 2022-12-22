@@ -27,7 +27,7 @@ Class UserManager extends AbstractManager
 
 	public function getAllUsers() : array
 	{
-		$query = $this->db->prepare('SELECT * FROM users');
+		$query = $this->db->prepare('SELECT * FROM users ORDER BY name');
 		$query->execute();
 		$users = $query->fetchAll(PDO::FETCH_ASSOC);
 

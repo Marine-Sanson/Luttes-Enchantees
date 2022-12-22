@@ -14,12 +14,12 @@ body{
 	font-family: $fontDefault;
 	font-size: $fontSizeDefault;
 	line-height: $lineHeight;
-	background-color: $white;
+	background-color: $lighterBlue;
 	color: $blue;
 }
 
 body > main{
-	background-color:$white;
+	background-color:$lighterBlue;
 	max-width: $maxWidth;
 	justify-content:center;
 	margin: auto;
@@ -60,4 +60,49 @@ figcaption{
 
 a{
 	text-decoration: none;
+}
+
+fieldset{
+	border: none;
+}
+
+input[type=radio]:hover{
+	cursor: pointer;
+}
+
+input:checked + label {
+	color: rgba(114,0,214,1);
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.button{
+	font-family: $fontDefault;
+	font-weight: 700;
+	border: none;
+	background-color: $blue;
+	color: $lighterBlue;
+	padding: 0.3rem;
+	margin: 0.5rem;
+	border: 2px solid $blue;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.button:hover{
+
+	border: none;
+	background-color: $lighterBlue;
+	color: $blue;
+	border: 2px solid $blue;
+}
+
+textarea,
+input[type="date"],
+input[type="text"],
+input[type="mail"]{
+	background-color: $lighterBlue;
+	color: $blue;
+	border: 2px solid $blue;
+	font-family: $fontDefault;
 }

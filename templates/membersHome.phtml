@@ -6,11 +6,10 @@
 		action="/Luttes-Enchantees/deconnexion"
 		method="post">
 
-		<input class="button" type="submit" value="Me déconnecter">
+		<input id="disconnect" class="button" type="submit" value="Me déconnecter">
 	</form>
 
 	<section>
-
 		<h2>Prochaines dates</h2>
 
 		<?php
@@ -18,7 +17,7 @@
 		foreach($data["events"] as $key => $event)
 		{
 		?>
-			<section>
+			<section class="membersHomeEvent">
 				<h3><?= $event["cat"]; ?> du <?= $event["date"]; ?></h3>
 				<p><?= $event["private_details"]; ?></p>
 
@@ -26,7 +25,7 @@
 
 				?>
 
-				<form id="setParticipationForm"
+				<form class="setParticipationForm"
 					action="/Luttes-Enchantees/accueil-membres"
 					method="post">
 
@@ -34,56 +33,59 @@
 					<input type="hidden" id="participationUserId" name="userId" value="<?= $_SESSION["user"]["id"]; ?>">
 					<input type="hidden" id="participationEventId" name="eventId" value="<?= $event["id"]; ?>">
 
-					<fieldset>
-						<legend>Je serais présente à cette date :</legend>
+					<fieldset class="setParticipationFieldset">
+						<legend class="setPartLegend">Je serais présente à cette date :</legend>
 
-						<input type="radio" id="oui" name="participation" value="Oui"
-						<?php
-							if($event["part"] === "Oui")
-							{
-							?>
-								checked
+						<span class="setPartRadio">
+							<input type="radio" id="oui" name="participation" value="Oui"
 							<?php
-							}
-						?>
-						>
-						<label for="oui">Oui</label>
+								if($event["part"] === "Oui")
+								{
+								?>
+									checked
+								<?php
+								}
+							?>
+							>
+							<label for="oui">Oui</label>
 
-						<input type="radio" id="non" name="participation" value="Non"
-						<?php
-							if($event["part"] === "Non")
-							{
-							?>
-								checked
+							<input type="radio" id="non" name="participation" value="Non"
 							<?php
-							}
-						?>
-						>
-						<label for="non">Non</label>
+								if($event["part"] === "Non")
+								{
+								?>
+									checked
+								<?php
+								}
+							?>
+							>
+							<label for="non">Non</label>
 
-						<input type="radio" id="jnsp" name="participation" value="Je ne sais pas"
-						<?php
-							if($event["part"] === "Je ne sais pas")
-							{
-							?>
-								checked
+							<input type="radio" id="jnsp" name="participation" value="Je ne sais pas"
 							<?php
-							}
-						?>
-						>
-						<label for="jnsp">Je ne sais pas</label>
+								if($event["part"] === "Je ne sais pas")
+								{
+								?>
+									checked
+								<?php
+								}
+							?>
+							>
+							<label for="jnsp">Je ne sais pas</label>
 
-						<input type="radio" id="nonRepondu" name="participation" value="Non répondu"
-						<?php
-							if($event["part"] === "Non répondu")
-							{
-							?>
-								checked
+							<input type="radio" id="nonRepondu" name="participation" value="Non répondu"
 							<?php
-							}
-						?>
-						>
-						<label for="nonRepondu">Non répondu</label>
+								if($event["part"] === "Non répondu")
+								{
+								?>
+									checked
+								<?php
+								}
+							?>
+							>
+							<label for="nonRepondu">Non répondu</label>
+						</span>
+
 					</fieldset>
 
 					<input class="button" type="submit" value="Valider ma réponse">
