@@ -1,0 +1,47 @@
+/* ********** MembersSongDetail ********** */
+
+#membersSongDetail .songDetailDescr{
+      max-width: 80vw;
+      display: grid;
+      justify-content: center;
+      margin: auto;
+}
+
+#membersSongDetail ul{
+      display: grid;
+      justify-content: center;
+      margin: 2rem auto;
+}
+
+.songDetailFig{
+      display: grid;
+      grid-template-columns: 15vw 45vw;
+      grid-template-rows: 5rem;
+}
+
+.songDetailFigCap{
+      margin: auto;
+}
+
+.songDetailAudio{
+      max-width: 100%;
+      margin: auto;
+}
+
+.songDetailVideo{
+      text-align: center;
+}
+
+.songDetailText{
+      margin: 2rem auto;
+      max-width: 80vw;
+}
+
+.songDetailText iframe{
+      display: grid;
+      justify-content: center;
+      margin: auto;
+      width: 100%;
+      height: 500px;
+}
+
