@@ -1,12 +1,15 @@
 /* ********** MembersSongs ********** */
 
+#membersSongs{
+      margin: 1rem;
+}
+
 #membersSongs ul{
       display: grid;
-      grid-template-columns: repeat(5, 18vw);
       grid-template-rows: auto;
       justify-content: center;
 }
-
+      
 .songsForDetail{
       display: grid;
       justify-content: center;
@@ -15,4 +18,18 @@
 
 .songsForDetail .button{
       margin: 1rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #membersSongs ul{
+            grid-template-columns: repeat(3, 30vw);
+      }
+}
+
+@media(min-width: 792px)
+{
+      #membersSongs ul{
+            grid-template-columns: repeat(5, 18vw);
+      }
 }

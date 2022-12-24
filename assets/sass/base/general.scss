@@ -12,8 +12,6 @@ body{
 	margin:0;
 	box-sizing: border-box;
 	font-family: $fontDefault;
-	font-size: $fontSizeDefault;
-	line-height: $lineHeight;
 	background-color: $lighterBlue;
 	color: $blue;
 }
@@ -30,27 +28,6 @@ h2,
 h3{
     font-family: $fontTitles;
     text-align: center;
-}
-
-h1{
-	font-size: 2.4rem;
-	font-weight: 900;
-	line-height: 3rem;
-	margin: 3rem auto;
-}
-
-h2
-{
-	font-size: 2rem;
-	font-weight: 800;
-	line-height: 2.5rem;
-	margin: 2rem auto;
-}
-
-h3{
-	font-size: 1.4rem;
-	font-weight: 700;
-	margin: 1rem auto;
 }
 
 figcaption{
@@ -105,4 +82,64 @@ input[type="mail"]{
 	color: $blue;
 	border: 2px solid $blue;
 	font-family: $fontDefault;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+	body{
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+
+	h1{
+		font-size: 1.8rem;
+		font-weight: 900;
+		line-height: 2.2rem;
+		margin: 2rem auto;
+	}
+	
+	h2
+	{
+		font-size: 1.6rem;
+		font-weight: 800;
+		line-height: 2rem;
+		margin: 1.7rem auto;
+	}
+	
+	h3{
+		font-size: 1.4rem;
+		font-weight: 700;
+		margin: 1.5rem auto;
+	}
+	
+}
+
+@media(min-width: 792px)
+{
+	body{
+		font-size: $fontSizeDefault;
+		line-height: $lineHeight;
+	}
+
+	h1{
+		font-size: 2.4rem;
+		font-weight: 900;
+		line-height: 3rem;
+		margin: 3rem auto;
+	}
+	
+	h2
+	{
+		font-size: 2rem;
+		font-weight: 800;
+		line-height: 2.5rem;
+		margin: 2rem auto;
+	}
+	
+	h3{
+		font-size: 1.4rem;
+		font-weight: 700;
+		margin: 1rem auto;
+	}
+	
 }
