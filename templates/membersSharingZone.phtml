@@ -13,13 +13,13 @@
 
 		<p>Pour ajouter un échange, clique sur la catégorie concernée :</p>
 
-		<ul>
+		<ul class="sharingMessageForm">
 			<?php
 				foreach($data["allCats"] as $key => $cat)
 				{
 				?>
 					<li>
-						<form  id="newSharingMessageForm"
+						<form id="newSharingMessageForm"
 							action="/Luttes-Enchantees/nouvel-echange"
 							method="post">
 
@@ -27,7 +27,7 @@
 							<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
 							<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
 
-							<input class="button"
+							<input class="button newSharingMessageButton"
 								type="submit" value="<?= $cat["name"]; ?>">
 						</form>
 					</li>
@@ -43,13 +43,13 @@
 
 		<p>Voici l'ensemble des échanges, si tu veux voir uniquement ceux d'une catégorie, clique sur la catégorie concernée</p>
 
-		<ul>
+		<ul class="sharingMessageForm">
 			<?php
 				foreach($data["allCats"] as $key => $cat)
 				{
 				?>
 					<li>
-						<form  id="displaySharingMessagesForm"
+						<form id="displaySharingMessagesForm"
 							action="/Luttes-Enchantees/echanges-par-categorie"
 							method="post">
 
@@ -57,7 +57,7 @@
 							<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
 							<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
 
-							<input class="button"
+							<input class="button newSharingMessageButton"
 								 type="submit" value="<?= $cat["name"]; ?>">
 						</form>
 					</li>
@@ -67,20 +67,20 @@
 		</ul>
 	</section>
 
-	<section>
+	<section class="displayAllShares">
 		<ul>
 			<?php
 			foreach($data["allShares"] as $key => $share)
 			{
 			?>
 				<li>
-					<h3>Catégorie : <?= $share["catName"]; ?></h3>
+					<h3 class="displayAllSharesCat">Catégorie : <?= $share["catName"]; ?></h3>
 
-					<h2><?= $share["title"]; ?></h2>
+					<h2 class="displayAllSharesTitle"><?= $share["title"]; ?></h2>
 
-					<p><?= $share["content"]; ?></p>
+					<p class="displayAllSharesMessage"><?= $share["content"]; ?></p>
 
-					<p><?= $share["name"]; ?></p>
+					<p class="displayAllSharesName"><?= $share["name"]; ?></p>
 
 					<?php
 						if(isset($share["answers"]) && $share["answers"] !== [])
@@ -88,14 +88,14 @@
 							foreach($share["answers"] as $key => $answer)
 							{
 							?>
-								<p><?= $answer["content"]; ?></p>
-								<p><?= $answer["name"]; ?></p>
+								<p class="displayAllSharesAwser"><?= $answer["content"]; ?></p>
+								<p class="displayAllSharesAwserName"><?= $answer["name"]; ?></p>
 							<?php
 							}
 						}
 					?>
 
-					<form  id="shareAnswerForm"
+					<form  id="displayAllSharesForm"
 						action="/Luttes-Enchantees/echanges"
 						method="post">
 

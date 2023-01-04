@@ -1,0 +1,49 @@
+.sharingMessageForm{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 0 10rem;
+}
+
+.newSharingMessageButton{
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    margin: 1rem auto;
+}
+
+.displayAllShares{
+    margin-top: 4rem;
+}
+
+.displayAllSharesCat{
+    text-align: left;
+    margin-top: 4rem;
+    margin-left: 2rem;
+}
+
+.displayAllSharesTitle{
+    text-align: left;
+    margin-left: 2rem;
+}
+
+.displayAllSharesMessage{
+    margin-left: 3rem;
+}
+
+.displayAllSharesName{
+    margin-left: 3rem;
+}
+
+.displayAllSharesAwser{
+    margin-top: 2rem;
+    margin-left: 5rem;
+}
+
+.displayAllSharesAwserName{
+    margin-left: 5rem;
+}
+
+#displayAllSharesForm{
+    margin-top: 1rem;
+    margin-left: 7rem;
+}

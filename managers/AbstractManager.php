@@ -10,7 +10,7 @@ abstract class AbstractManager
         $this->db = new PDO(
         'mysql:host=localhost;dbname=luttes_enchantees;charset=utf8',
         'root',
-        'root'
+        ''
         );
     }
     

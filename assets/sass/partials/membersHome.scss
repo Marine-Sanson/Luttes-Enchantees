@@ -12,6 +12,9 @@
 
 .membersHomeEvent{
       margin: 2rem;
+      padding: 1rem;
+      border: 4px solid $blue;
+	border-radius: 8px;
 }
 
 .membersHomeEvent h3{
@@ -20,10 +23,6 @@
 
 .membersHomeEvent p{
       text-align: justify;
-}
-
-.setParticipationForm{
-      margin-bottom: 2rem;
 }
 
 .setParticipationFieldset{

@@ -8,42 +8,45 @@
 
 	<p>Les messages envoyés ici seront visibles par l'ensemble des adhérentes.</p>
 
-	<section>
+	<section id="sendNewChatItem">
 
 		<h2>Envoyer un message</h2>
 
-		<form  id="newChatForm"
+		<form id="newChatForm"
 			action="/Luttes-Enchantees/messages"
 			method="post">
 
 			<input type="hidden" id="newChat" name="action" value="newChat">
 
-			<label for="newChatTitle">Titre :</label>
-			<input type="text" id="newChatTitle" name="title" value="<?php
-			if(isset($_POST["title"]) && $_POST["title"] !== "")
-			{
-				echo $_POST["title"];
-			}
-			?>">
-
-			<label for="newChatContent">Message : </label>
-			<textarea
-				name="content"
-				id="newChatContent"
-				rows="10" cols="80"><?php
-				if(isset($_POST["content"]) && $_POST["content"] !== "")
+			<fieldset class="newChatTitleField">
+				<label for="newChatTitle">Titre :</label>
+				<input type="text" id="newChatTitle" name="title" value="<?php
+				if(isset($_POST["title"]) && $_POST["title"] !== "")
 				{
-				echo $_POST["content"];
+					echo $_POST["title"];
 				}
-				?></textarea>
+				?>">
+			</fieldset>
 
-			<input class="button"
+			<fieldset class="newChatContentField">
+				<label for="newChatContent">Message : </label>
+				<textarea
+					name="content"
+					id="newChatContent"><?php
+					if(isset($_POST["content"]) && $_POST["content"] !== "")
+					{
+					echo $_POST["content"];
+					}
+					?></textarea>
+			</fieldset>
+
+			<input class="button newChatButton"
 				type="submit" value="Envoyer">
 		</form>
 
 	</section>
 
-	<section>
+	<section id="displayAllMessages">
 
 		<h2>Liste des messages</h2>
 		
@@ -53,23 +56,23 @@
 				{
 				?>
 					<li>
-						<h3><?= $chatItem["title"]; ?></h3>
-						<p><?= $chatItem["message"]; ?></p>
-						<p><?= $chatItem["name"]; ?></p>
+						<h3 class="displayAllMessagesTitle"><?= $chatItem["title"]; ?></h3>
+						<p class="displayAllMessagesMessage"><?= $chatItem["message"]; ?></p>
+						<p class="displayAllMessagesName"><?= $chatItem["name"]; ?></p>
 						<?php
 						if(isset($chatItem["answers"]))
 						{
 							foreach($chatItem["answers"] as $key => $answer)
 							{
 							?>
-								<p><?= $answer["content"]; ?></p>
-								<p><?= $answer["name"]; ?></p>
+								<p class="displayAllMessagesAwser"><?= $answer["content"]; ?></p>
+								<p class="displayAllMessagesAwserName"><?= $answer["name"]; ?></p>
 							<?php
 							}
 						}
 						?>
 
-						<form  id="chatAnswerForm"
+						<form id="chatAnswerForm"
 							 action="/Luttes-Enchantees/messages"
 							 method="post">
 
