@@ -821,7 +821,8 @@ header nav a:hover {
   }
 }
 #membersEventDetail {
-  margin: 0.5rem;
+  margin: auto;
+  padding: 0.5rem;
 }
 
 #membersEventDetail h3 {
@@ -934,7 +935,8 @@ header nav a:hover {
   }
 }
 #membersSharingZone {
-  margin: 0.5rem;
+  margin: auto;
+  padding: 0.5rem;
 }
 
 .sharingMessageForm {
