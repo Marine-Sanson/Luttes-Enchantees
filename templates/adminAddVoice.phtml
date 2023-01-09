@@ -50,4 +50,39 @@
 
 	</form>
 
+	<article class="changeSongItemArt">
+
+		<form id="addText"
+			action="/Luttes-Enchantees/admin-texte"
+			method="post">
+
+			<input type="hidden" id="newTextAction" name="action" value="addText">
+			<input type="hidden" id="newTextId" name="songId" value="<?= $_POST["songId"]; ?>">
+
+			<input class="button" type="submit" value="Ajouter un texte">
+		</form>
+
+		<form id="addVideo"
+			action="/Luttes-Enchantees/admin-video"
+			method="post">
+
+			<input type="hidden" id="newVideoAction" name="action" value="addVideo">
+			<input type="hidden" id="newVideoId" name="songId" value="<?= $_POST["songId"]; ?>">
+
+			<input class="button" type="submit" value="Ajouter une video">
+		</form>
+
+		<form id="addCurrent"
+			action="/Luttes-Enchantees/admin-moment"
+			method="post">
+
+			<input type="hidden" id="newCurrentAction" name="action" value="addCurrent">
+			<input type="hidden" id="newCurrentId" name="songId" value="<?= $_POST["songId"]; ?>">
+
+			<input class="button" type="submit" value="Changer le statut">
+		</form>
+
+	</article>
+
+
 </main>

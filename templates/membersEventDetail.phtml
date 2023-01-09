@@ -1,4 +1,4 @@
-<main id="eventDetail">
+<main id="membersEventDetail">
 
       <?php
 	$event = $data["event"];
@@ -27,19 +27,25 @@
 
       <h3>Présentes : <?= $data["count"]["oui"]; ?></h3>
 
+      <ul>
+
       <?php
             foreach($data["parts"] as $key => $part)
             {
-                  if($part["status"] === "oui")
+                  if($part["status"] === "Oui")
                   {
                   ?>
-                        <?= $part["user_name"]; ?>
+                        <li><?= $part["user_name"]; ?></li>
                   <?php
                   }
             }
       ?>
 
+      </ul>
+
       <h3>Absentes : <?= $data["count"]["non"]; ?></h3>
+
+      <ul>
 
       <?php
             foreach($data["parts"] as $key => $part)
@@ -47,13 +53,17 @@
                   if($part["status"] === "Non")
                   {
                   ?>
-                        <?= $part["user_name"]; ?>
+                        <li><?= $part["user_name"]; ?></li>
                   <?php
                   }
             }
       ?>
 
+      </ul>
+
       <h3>Ne savent pas : <?= $data["count"]["nsp"]; ?></h3>
+
+      <ul>
 
       <?php
             foreach($data["parts"] as $key => $part)
@@ -61,13 +71,17 @@
                   if($part["status"] === "Je ne sais pas")
                   {
                   ?>
-                        <?= $part["user_name"]; ?>
+                        <li><?= $part["user_name"]; ?></li>
                   <?php
                   }
             }
       ?>
 
+      </ul>
+
       <h3>Non répondu : <?= $data["count"]["nonrep"]; ?></h3>
+
+      <ul>
 
       <?php
             foreach($data["parts"] as $key => $part)
@@ -75,10 +89,12 @@
                   if($part["status"] === "Non répondu")
                   {
                   ?>
-                        <?= $part["user_name"]; ?>
+                        <li><?= $part["user_name"]; ?></li>
                   <?php
                   }
             }
       ?>
+
+      </ul>
 
 </main>

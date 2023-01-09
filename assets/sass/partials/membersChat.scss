@@ -33,11 +33,6 @@
     margin: 1rem 3rem 1rem auto;
 }
 
-.newChatContentField textarea{
-    width: 60vw;
-    height: 5rem;
-}
-
 .newChatButton{
     grid-column: 1/13;
     grid-row: 4;
@@ -74,4 +69,29 @@
 #chatAnswerForm{
     margin-top: 1rem;
     margin-left: 7rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+    #newChatTitle{
+        width:80vw;
+    }
+
+    #newChatContent{
+        width:80vw;
+        height: 10rem;
+    }
+
+    #chatAnswerMessage{
+        width:60vw;
+        height: 5rem;
+    }
+}
+
+@media(min-width: 792px)
+{    
+    #newChatContent{
+        width: 60vw;
+        height: 5rem;
+    }
 }

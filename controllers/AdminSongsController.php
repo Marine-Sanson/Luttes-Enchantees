@@ -147,8 +147,6 @@ Class AdminSongsController extends AbstractController
 		}
 		else if(isset($_POST["action"]) && $_POST["action"] === "addVoice")
 		{
-			var_dump("post action addVoice");
-
 			$title = $this->sm->getSongTitle($_POST["songId"]);
 
 			$template = "adminAddVoice";

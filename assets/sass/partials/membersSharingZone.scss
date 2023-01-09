@@ -1,49 +1,107 @@
+#membersSharingZone{
+	margin: 0.5rem;
+}
+
 .sharingMessageForm{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin: 0 10rem;
+	display: grid;
+	grid-template-columns: repeat(5, auto);
 }
 
 .newSharingMessageButton{
-    text-align: center;
-    display: grid;
-    justify-content: center;
-    margin: 1rem auto;
-}
-
-.displayAllShares{
-    margin-top: 4rem;
+	text-align: center;
+	display: grid;
+	justify-content: center;
+	margin: 1rem auto;
 }
 
 .displayAllSharesCat{
-    text-align: left;
-    margin-top: 4rem;
-    margin-left: 2rem;
+	text-align: left;
 }
 
 .displayAllSharesTitle{
-    text-align: left;
-    margin-left: 2rem;
+	text-align: left;
 }
 
-.displayAllSharesMessage{
-    margin-left: 3rem;
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+	.displayAllShares{
+		margin-top: 2rem;
+	}
+	
+	.displayAllSharesCat{
+		margin-top: 2rem;
+		margin-left: 1rem;
+	}
+	
+	.displayAllSharesTitle{
+		margin-left: 1rem;
+	}
+	
+	.displayAllSharesMessage{
+		margin-left: 1.5rem;
+	}
+	
+	.displayAllSharesName{
+		margin-left: 1.5rem;
+	}
+	
+	.displayAllSharesAwser{
+		margin-top: 1rem;
+		margin-left: 2.5rem;
+	}
+	
+	.displayAllSharesAwserName{
+		margin-left: 2.5rem;
+	}
+	
+	#displayAllSharesForm{
+		margin-top: 1rem;
+		margin-left: 3.5rem;
+	}
+
+	#shareAnswerContent{
+		max-width:75vw;
+	}
 }
 
-.displayAllSharesName{
-    margin-left: 3rem;
-}
+@media(min-width: 792px)
+{
+	.sharingMessageForm{
+		margin: 1rem 10rem;
+	}
 
-.displayAllSharesAwser{
-    margin-top: 2rem;
-    margin-left: 5rem;
-}
-
-.displayAllSharesAwserName{
-    margin-left: 5rem;
-}
-
-#displayAllSharesForm{
-    margin-top: 1rem;
-    margin-left: 7rem;
+	.displayAllShares{
+		margin-top: 4rem;
+	}
+	
+	.displayAllSharesCat{
+		margin-top: 4rem;
+		margin-left: 2rem;
+	}
+	
+	.displayAllSharesTitle{
+		margin-left: 2rem;
+	}
+	
+	.displayAllSharesMessage{
+		margin-left: 3rem;
+	}
+	
+	.displayAllSharesName{
+		margin-left: 3rem;
+	}
+	
+	.displayAllSharesAwser{
+		margin-top: 2rem;
+		margin-left: 5rem;
+	}
+	
+	.displayAllSharesAwserName{
+		margin-left: 5rem;
+	}
+	
+	#displayAllSharesForm{
+		margin-top: 1rem;
+		margin-left: 7rem;
+	}
 }

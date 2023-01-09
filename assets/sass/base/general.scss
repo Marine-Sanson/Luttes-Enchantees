@@ -12,12 +12,12 @@ body{
 	margin:0;
 	box-sizing: border-box;
 	font-family: $fontDefault;
-	background-color: $lighterBlue;
+	background-color: $white;
 	color: $blue;
 }
 
 body > main{
-	background-color:$lighterBlue;
+	background-color:$white;
 	max-width: $maxWidth;
 	justify-content:center;
 	margin: auto;

@@ -44,7 +44,7 @@ class ParticipationManager extends AbstractManager
 
 	public function getMembersPartByEventId(int $eventId) : array
 	{
-		$query = $this->db->prepare('SELECT participations.user_id, participations.status, users.name as user_name FROM participations JOIN users ON participations.user_id = users.id WHERE event_id = :event_id ORDER BY participations.status');
+		$query = $this->db->prepare('SELECT participations.user_id, participations.status, users.name as user_name FROM participations JOIN users ON participations.user_id = users.id WHERE event_id = :event_id ORDER BY users.name');
 		$parameters = [
                   'event_id' => $eventId
 			];

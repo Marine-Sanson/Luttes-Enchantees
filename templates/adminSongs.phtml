@@ -32,13 +32,13 @@
 	<section>
 		<h2>Choisir un chant existant</h2>
 
-		<ul>
+		<ul id="chooseSong">
 			<?php
 			foreach($data["allSongs"] as $key => $song)
 			{
 			?>
 				<li>
-					<article>
+					<article class="chooseSongArt">
 
 						<h3><?=$song["title"]; ?></h3>
 

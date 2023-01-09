@@ -17,12 +17,12 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: "Kalam", cursive;
-  background-color: rgb(211, 239, 240);
+  background-color: rgb(255, 255, 255);
   color: rgb(39, 19, 212);
 }
 
 body > main {
-  background-color: rgb(211, 239, 240);
+  background-color: rgb(255, 255, 255);
   max-width: 1140px;
   justify-content: center;
   margin: auto;
@@ -503,7 +503,7 @@ header nav a:hover {
   }
   #connectUserSubmit {
     grid-row: 5;
-    grid-column: 6/8;
+    grid-column: 5/7;
   }
   #connectUser label {
     margin: 0.6rem auto 0.5rem 0.5rem;
@@ -666,11 +666,6 @@ header nav a:hover {
   max-width: 80vw;
 }
 
-.songDetailText iframe {
-  width: 100%;
-  height: 500px;
-}
-
 @media (min-width: 0px) and (max-width: 791.99px) {
   #membersSongDetail .songDetailDescr {
     max-width: 95vw;
@@ -682,9 +677,16 @@ header nav a:hover {
   .songDetailFig {
     grid-template-columns: 30vw 60vw;
   }
+  .songDetailText {
+    max-width: 95vw;
+  }
+  .songDetailText iframe {
+    width: 100%;
+    height: auto;
+  }
   .songDetailVideo iframe {
     max-width: 95vw;
-    margin: 1.5rem;
+    margin: 1.5rem auto;
   }
 }
 @media (min-width: 792px) {
@@ -694,70 +696,152 @@ header nav a:hover {
   .songDetailFig {
     grid-template-columns: 15vw 45vw;
   }
+  .songDetailText iframe {
+    width: 100%;
+    height: 500px;
+  }
 }
 /* ********** MembersEvents ********** */
 .membersEventsItem {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, auto);
-  margin-top: 2rem;
   border: 4px solid rgb(39, 19, 212);
   border-radius: 8px;
 }
 
-.membEvDate {
-  grid-column: 1/3;
-  grid-row: 1;
-  margin: auto;
-}
-
-.membEvCatName {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 1.5rem auto 1.5rem 0;
-  grid-column: 3/5;
-  grid-row: 1;
-}
-
-.membEvStat {
-  grid-column: 10/12;
-  grid-row: 1;
-  margin: auto;
-}
-
-.membEvPres {
-  grid-column: 2/4;
-  grid-row: 2;
-}
-
-.membEvAbs {
-  grid-column: 4/6;
-  grid-row: 2;
-}
-
-.membEvNSP {
-  grid-column: 6/8;
-  grid-row: 2;
-}
-
-.membEvNRep {
-  grid-column: 9/11;
-  grid-row: 2;
-}
-
 .membEvPrivDet {
-  grid-column: 2/12;
-  grid-row: 3;
-  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
   text-align: justify;
 }
 
 .displayUpdateEventForm {
-  grid-column: 6/8;
-  grid-row: 4;
   text-align: center;
 }
 
+@media (min-width: 0px) and (max-width: 791.99px) {
+  .membersEventsItem {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, auto);
+    margin: 1rem 0.3rem;
+    padding: 0.5rem;
+  }
+  .membEvDate {
+    grid-column: 1/6;
+    grid-row: 1;
+    margin: auto;
+  }
+  .membEvCatName {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 1.5rem auto 1.5rem 0;
+    grid-column: 6/13;
+    grid-row: 1;
+  }
+  .membEvStat {
+    grid-column: 6/12;
+    grid-row: 2;
+    text-align: right;
+    margin: auto 0.5rem auto auto;
+  }
+  .membEvPres {
+    grid-column: 2/13;
+    grid-row: 3;
+  }
+  .membEvAbs {
+    grid-column: 2/13;
+    grid-row: 4;
+  }
+  .membEvNSP {
+    grid-column: 2/13;
+    grid-row: 5;
+  }
+  .membEvNRep {
+    grid-column: 2/13;
+    grid-row: 6;
+  }
+  .membEvPrivDet {
+    grid-column: 2/12;
+    grid-row: 7;
+    padding: 0.5rem 0;
+  }
+  .displayUpdateEventForm {
+    grid-column: 1/13;
+    grid-row: 8;
+    margin: auto;
+  }
+}
+@media (min-width: 792px) {
+  .membersEventsItem {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto);
+    margin-top: 2rem;
+    border: 4px solid rgb(39, 19, 212);
+    border-radius: 8px;
+  }
+  .membEvDate {
+    grid-column: 1/3;
+    grid-row: 1;
+    margin: auto;
+  }
+  .membEvCatName {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 1.5rem auto 1.5rem 0;
+    grid-column: 3/5;
+    grid-row: 1;
+  }
+  .membEvStat {
+    grid-column: 10/12;
+    grid-row: 1;
+    margin: auto;
+  }
+  .membEvPres {
+    grid-column: 2/4;
+    grid-row: 2;
+  }
+  .membEvAbs {
+    grid-column: 4/6;
+    grid-row: 2;
+  }
+  .membEvNSP {
+    grid-column: 6/8;
+    grid-row: 2;
+  }
+  .membEvNRep {
+    grid-column: 9/11;
+    grid-row: 2;
+  }
+  .membEvPrivDet {
+    grid-column: 2/12;
+    grid-row: 3;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  }
+  .displayUpdateEventForm {
+    grid-column: 6/8;
+    grid-row: 4;
+  }
+}
+#membersEventDetail {
+  margin: 0.5rem;
+}
+
+#membersEventDetail h3 {
+  text-align: left;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #membersEventDetail ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1rem;
+  }
+}
+@media (min-width: 792px) {
+  #membersEventDetail ul {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin: 2rem;
+  }
+}
 #sendNewChatItem {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -791,11 +875,6 @@ header nav a:hover {
   grid-column: 2/12;
   grid-row: 3;
   margin: 1rem 3rem 1rem auto;
-}
-
-.newChatContentField textarea {
-  width: 60vw;
-  height: 5rem;
 }
 
 .newChatButton {
@@ -835,10 +914,32 @@ header nav a:hover {
   margin-left: 7rem;
 }
 
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #newChatTitle {
+    width: 80vw;
+  }
+  #newChatContent {
+    width: 80vw;
+    height: 10rem;
+  }
+  #chatAnswerMessage {
+    width: 60vw;
+    height: 5rem;
+  }
+}
+@media (min-width: 792px) {
+  #newChatContent {
+    width: 60vw;
+    height: 5rem;
+  }
+}
+#membersSharingZone {
+  margin: 0.5rem;
+}
+
 .sharingMessageForm {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin: 0 10rem;
+  grid-template-columns: repeat(5, auto);
 }
 
 .newSharingMessageButton {
@@ -848,41 +949,173 @@ header nav a:hover {
   margin: 1rem auto;
 }
 
-.displayAllShares {
-  margin-top: 4rem;
-}
-
 .displayAllSharesCat {
   text-align: left;
-  margin-top: 4rem;
-  margin-left: 2rem;
 }
 
 .displayAllSharesTitle {
   text-align: left;
-  margin-left: 2rem;
 }
 
-.displayAllSharesMessage {
-  margin-left: 3rem;
+@media (min-width: 0px) and (max-width: 791.99px) {
+  .displayAllShares {
+    margin-top: 2rem;
+  }
+  .displayAllSharesCat {
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+  .displayAllSharesTitle {
+    margin-left: 1rem;
+  }
+  .displayAllSharesMessage {
+    margin-left: 1.5rem;
+  }
+  .displayAllSharesName {
+    margin-left: 1.5rem;
+  }
+  .displayAllSharesAwser {
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+  }
+  .displayAllSharesAwserName {
+    margin-left: 2.5rem;
+  }
+  #displayAllSharesForm {
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+  }
+  #shareAnswerContent {
+    max-width: 75vw;
+  }
+}
+@media (min-width: 792px) {
+  .sharingMessageForm {
+    margin: 1rem 10rem;
+  }
+  .displayAllShares {
+    margin-top: 4rem;
+  }
+  .displayAllSharesCat {
+    margin-top: 4rem;
+    margin-left: 2rem;
+  }
+  .displayAllSharesTitle {
+    margin-left: 2rem;
+  }
+  .displayAllSharesMessage {
+    margin-left: 3rem;
+  }
+  .displayAllSharesName {
+    margin-left: 3rem;
+  }
+  .displayAllSharesAwser {
+    margin-top: 2rem;
+    margin-left: 5rem;
+  }
+  .displayAllSharesAwserName {
+    margin-left: 5rem;
+  }
+  #displayAllSharesForm {
+    margin-top: 1rem;
+    margin-left: 7rem;
+  }
+}
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #newShare {
+    margin: 0.5rem;
+  }
+  #newShare ul {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+  }
+}
+@media (min-width: 792px) {
+  #newShare {
+    padding: 0.5rem;
+  }
+  #newShare ul {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    margin: 0.5rem 10rem;
+  }
+  #newShare ul li {
+    margin: auto;
+  }
+  #newShareForm {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+  }
+  #newShareTitleLabel {
+    grid-row: 1;
+    margin: auto;
+  }
+  #newShareTitle {
+    grid-row: 1;
+    margin: 0.5rem;
+  }
+  #newShareContentLabel {
+    grid-row: 2;
+    margin: 0.5rem auto;
+  }
+  #newShareContent {
+    grid-row: 2;
+    margin: 0.5rem;
+  }
+  #newShareForm .button {
+    grid-column: 1/3;
+    grid-row: 3;
+    margin: 0.5rem auto;
+  }
+}
+#membersVideos p {
+  padding: 0.5rem;
 }
 
-.displayAllSharesName {
-  margin-left: 3rem;
+.membersVideosArt {
+  display: grid;
+  justify-content: center;
+  margin: 2rem auto;
+  padding: 0.5rem;
 }
 
-.displayAllSharesAwser {
-  margin-top: 2rem;
-  margin-left: 5rem;
+#chooseSong li {
+  margin: auto 4rem;
 }
 
-.displayAllSharesAwserName {
-  margin-left: 5rem;
+#chooseSong li:nth-child(odd) {
+  background-color: rgb(211, 239, 240);
+  border: 1px solid rgb(39, 19, 212);
+  border-radius: 8px;
 }
 
-#displayAllSharesForm {
-  margin-top: 1rem;
-  margin-left: 7rem;
+.chooseSongArt {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+}
+
+.chooseSongArt article {
+  text-align: right;
+  padding: 0.5rem;
+}
+
+.chooseSongArt form {
+  text-align: center;
+  padding: 0.5rem;
+  margin: auto;
+}
+
+.changeSongItemArt {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: column;
+  margin: 2rem 10rem;
+}
+
+.changeSongItemArt form {
+  margin: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

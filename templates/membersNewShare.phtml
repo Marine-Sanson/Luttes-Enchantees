@@ -33,10 +33,6 @@
 
 	<p>Sinon tu peux écrire ton message :</p>
 
-	<?php
-	require "./templates/_messages.phtml";
-	?>
-
 	<form  id="newShareForm"
 		action="/Luttes-Enchantees/nouvel-echange"
 		method="post">
@@ -45,7 +41,7 @@
 		<input type="hidden" id="catId" name="catId" value= "<?= $_POST["catId"]; ?>">
 		<input type="hidden" id="catName" name="catName" value= "<?= $_POST["catName"]; ?>">
 
-		<label for="newShareTitle">Titre :</label>
+		<label id="newShareTitleLabel" for="newShareTitle">Titre :</label>
 		<input type="text" id="newShareTitle" name="title" value="<?php
 		if(isset($_POST["title"]) && $_POST["title"] !== "")
 		{
@@ -53,11 +49,11 @@
 		}
 		?>">
 
-		<label for="newShareContent">Message : </label>
+		<label id="newShareContentLabel" for="newShareContent">Message : </label>
 		<textarea
 			name="content"
 			id="newShareContent"
-			rows="10" cols="80"><?php
+			rows="5" cols="80"><?php
 			if(isset($_POST["content"]) && $_POST["content"] !== "")
 			{
 			echo $_POST["content"];

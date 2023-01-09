@@ -1,0 +1,65 @@
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #newShare{
+            margin: 0.5rem;
+      }
+
+	#newShare ul{
+		display: grid;
+		grid-template-columns: repeat(5, auto);
+	}
+
+      #newShareForm{
+
+      }
+}
+
+@media(min-width: 792px)
+{
+      #newShare{
+            padding: 0.5rem;
+      }
+
+	#newShare ul{
+		display: grid;
+		grid-template-columns: repeat(5, auto);
+		margin: 0.5rem 10rem;
+	}
+
+	#newShare ul li{
+            margin: auto;
+      }
+
+      #newShareForm{
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(3, auto);
+      }
+
+      #newShareTitleLabel{
+            grid-row: 1;
+            margin: auto;
+      }
+
+      #newShareTitle{
+            grid-row: 1;
+            margin: 0.5rem;
+      }
+
+      #newShareContentLabel{
+            grid-row: 2;
+            margin: 0.5rem auto;
+      }
+
+      #newShareContent{
+            grid-row: 2;
+            margin: 0.5rem;
+      }
+
+      #newShareForm .button{
+            grid-column: 1/3;
+            grid-row: 3;
+            margin: 0.5rem auto;
+      }
+
+}

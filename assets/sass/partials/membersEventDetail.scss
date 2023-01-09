@@ -1,0 +1,25 @@
+#membersEventDetail{
+      margin: 0.5rem;
+}
+
+#membersEventDetail h3{
+      text-align: left;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #membersEventDetail ul{
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 1rem;
+      }
+}
+
+@media(min-width: 792px)
+{
+      #membersEventDetail ul{
+            display:grid;
+            grid-template-columns: repeat(6, 1fr);
+            margin: 2rem;
+      }
+}

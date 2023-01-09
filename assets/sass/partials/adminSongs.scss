@@ -1,0 +1,26 @@
+#chooseSong li{
+      margin: auto 4rem;
+}
+
+#chooseSong li:nth-child(odd){
+      background-color: $lighterBlue;
+      border: 1px solid $blue;
+      border-radius: 8px;
+}
+
+.chooseSongArt{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-flow: column;
+}
+
+.chooseSongArt article{
+      text-align: right;
+      padding: 0.5rem;
+}
+
+.chooseSongArt form{
+      text-align: center;
+      padding: 0.5rem;
+      margin: auto;
+}
