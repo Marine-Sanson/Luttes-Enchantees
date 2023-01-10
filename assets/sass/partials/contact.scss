@@ -1,6 +1,6 @@
 /* ********** Contact ********** */
 #contact p{
-      margin: 0 1rem 1rem 1rem;
+      text-align: center;
 }
 
 #contactForm{
@@ -15,6 +15,10 @@
 
 @media(min-width: 0px) and (max-width: 791.99px)
 {
+      #contact p{
+            margin: 2rem 0 0.5rem 2rem;
+      }
+
       #contactForm{
             grid-template-rows: repeat(5, 1fr), auto, 1fr;
       }
@@ -67,6 +71,11 @@
 }
 
 @media(min-width: 792px){
+
+      #contact p{
+            margin: 12rem 0 0.5rem 2rem;
+      }
+      
       #contactForm{
             display: grid;
             grid-template-columns: $gridTempCol;

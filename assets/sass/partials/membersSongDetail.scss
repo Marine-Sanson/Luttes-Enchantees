@@ -62,7 +62,12 @@
 
 @media(min-width: 792px)
 {
+      .songDetailFigCap{
+            font-size: 1.2rem;
+      }
+
       #membersSongDetail .songDetailDescr{
+            margin-top: 10rem;
             max-width: 80vw;
       }
 
@@ -76,6 +81,6 @@
       }
 
       .songDetailVideo{
-
+            margin-top: 2rem;
       }
 }

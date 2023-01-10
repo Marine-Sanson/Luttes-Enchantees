@@ -1,13 +1,14 @@
 /* ********** MembersSongs ********** */
 
 #membersSongs p{
-      margin: 1rem auto;
+      text-align: center;
 }
 
 #membersSongs ul{
       display: grid;
       grid-template-rows: auto;
       justify-content: center;
+      margin-bottom: 3rem;
 }
       
 .songsForDetail{
@@ -22,6 +23,10 @@
 
 @media(min-width: 0px) and (max-width: 791.99px)
 {
+      #membersSongs p{
+            margin: 2rem auto 2rem auto;
+      }
+
       #membersSongs ul{
             grid-template-columns: repeat(3, 30vw);
       }
@@ -29,6 +34,10 @@
 
 @media(min-width: 792px)
 {
+      #membersSongs p{
+            margin: 10rem auto 2rem auto;
+      }
+
       #membersSongs ul{
             grid-template-columns: repeat(5, 18vw);
       }

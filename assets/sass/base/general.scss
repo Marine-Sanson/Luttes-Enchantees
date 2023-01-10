@@ -84,6 +84,13 @@ input[type="mail"]{
 	font-family: $fontDefault;
 }
 
+.logo{
+	width: 12vw;
+	height: auto;
+	position: absolute;
+	margin: 0.5rem;
+}
+
 @media(min-width: 0px) and (max-width: 791.99px)
 {
 	body{
