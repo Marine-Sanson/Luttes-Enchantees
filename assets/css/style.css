@@ -878,6 +878,10 @@ header nav a:hover {
     margin: 2rem;
   }
 }
+#membersChat p {
+  text-align: center;
+}
+
 #sendNewChatItem {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -1066,9 +1070,19 @@ header nav a:hover {
     margin-left: 7rem;
   }
 }
+#membersShareByCatP {
+  text-align: center;
+}
+
 @media (min-width: 0px) and (max-width: 791.99px) {
   #newShare {
     margin: 0.5rem;
+  }
+  #newShare h1 {
+    max-width: 60vw;
+  }
+  #newShare p {
+    text-align: center;
   }
   #newShare ul {
     display: grid;
@@ -1078,6 +1092,12 @@ header nav a:hover {
 @media (min-width: 792px) {
   #newShare {
     padding: 0.5rem;
+  }
+  #newShare h1 {
+    max-width: 60vw;
+  }
+  #newShare p {
+    text-align: center;
   }
   #newShare ul {
     display: grid;
@@ -1115,7 +1135,7 @@ header nav a:hover {
   }
 }
 #membersVideos p {
-  padding: 0.5rem;
+  text-align: center;
 }
 
 .membersVideosArt {
@@ -1123,6 +1143,10 @@ header nav a:hover {
   justify-content: center;
   margin: 2rem auto;
   padding: 0.5rem;
+}
+
+#adminSongs p {
+  text-align: center;
 }
 
 #chooseSong li {

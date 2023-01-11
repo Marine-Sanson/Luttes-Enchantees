@@ -4,6 +4,14 @@
             margin: 0.5rem;
       }
 
+      #newShare h1{
+            max-width: 60vw;
+      }
+
+      #newShare p{
+            text-align: center;
+      }
+
 	#newShare ul{
 		display: grid;
 		grid-template-columns: repeat(5, auto);
@@ -18,6 +26,14 @@
 {
       #newShare{
             padding: 0.5rem;
+      }
+
+      #newShare h1{
+            max-width: 60vw;
+      }
+
+      #newShare p{
+            text-align: center;
       }
 
 	#newShare ul{

@@ -1,5 +1,9 @@
 <main id="adminEvents">
 
+	<figure>
+		<img class="logo" src="./assets/img/1.png" alt="Logo des Luttes Enchantées">
+	</figure>
+
        <h1>Gérer les dates</h1>
 
 	 <?php
@@ -8,7 +12,7 @@
 	<section>
 		<h2>Créer une nouvelle date</h2>
 
-		<form  id="newEventForm"
+		<form id="newEventForm"
 			action="/Luttes-Enchantees/admin-dates"
 			method="post">
 
@@ -16,7 +20,8 @@
 			id="newEvent"
 			name="action"
 			value="newEvent">
-			
+		
+		<label for="date">Choisir une date :</label>
 		<input type="date"
 			name="eventDate"
 			id="eventDate"
