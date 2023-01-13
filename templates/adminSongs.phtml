@@ -12,7 +12,7 @@
 
 	<p>Permet d'ajouter un nouveau chant ou de télécharger des fichiers en lien avec un chant existant</p>
 
-	<section>
+	<section id="addNewSong">
 
 		<h2>Ajouter un nouveau chant</h2>
 
@@ -22,18 +22,22 @@
 
 			<input type="hidden" id="newSongAction" name="action" value="addSong">
 
-			<label for="newSongTitle">Titre :</label>
-			<input type="text" id="newSongTitle" name="title">
+			<fieldset id="newSongTitleFieldset">
+				<label id="newSongTitleLabel" for="newSongTitle">Titre :</label>
+				<input type="text" id="newSongTitle" name="title">
+			</fieldset>
 
-			<label for="newSongDescription">Description :</label>
-			<input type="text" id="newSongDescription" name="description">
+			<fieldset id="newSongDescriptionFieldset">
+				<label id="newSongDescriptionLabel" for="newSongDescription">Description :</label>
+				<textarea id="newSongDescription" name="description" rows="5" cols="80" maxlength="1024"></textarea>
+			</fieldset>
 
 			<input class="button" type="submit" value="Créer">
 		</form>
 
 	</section>
 
-	<section>
+	<section id="chooseASong">
 		<h2>Choisir un chant existant</h2>
 
 		<ul id="chooseSong">

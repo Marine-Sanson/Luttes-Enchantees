@@ -1,9 +1,32 @@
 #adminSongs p{
       text-align: center;
+      margin: auto;
 }
 
-#chooseSong li{
-      margin: auto 4rem;
+#newSong{
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: repeat(3, auto);
+}
+
+#newSongTitleFieldset{
+      grid-row: 1;
+      margin: 1rem auto;
+}
+
+#newSongDescriptionLabel{
+      vertical-align: top;
+}
+
+#newSongDescriptionFieldset{
+      grid-row: 2;
+      margin: 1rem auto;
+
+}
+
+#newSong .button{
+      grid-row: 3;
+      margin: 1rem auto;
 }
 
 #chooseSong li:nth-child(odd){
@@ -12,19 +35,68 @@
       border-radius: 8px;
 }
 
-.chooseSongArt{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-flow: column;
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #adminSongs p{
+            max-width: 80vw;
+      }
+      
+      #chooseSong li{
+            margin: auto 2rem;
+      }
+
+      #newSongDescription{
+            width: 60vw;
+      }
+      
+      .chooseSongArt{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-flow: column;
+      }
+      
+      .chooseSongArt article{
+            text-align: right;
+            padding: 0.5rem;
+      }
+      
+      .chooseSongArt form{
+            text-align: center;
+            padding: 0.5rem;
+            margin: auto;
+      }
+      
 }
 
-.chooseSongArt article{
-      text-align: right;
-      padding: 0.5rem;
-}
+@media(min-width: 792px)
+{
+      #adminSongs p{
+            max-width: 50vw;
+      }
+                  
+      #adminSongs section{
+            margin-top: 5rem;
+      }
 
-.chooseSongArt form{
-      text-align: center;
-      padding: 0.5rem;
-      margin: auto;
+      #chooseSong li{
+            margin: auto 4rem;
+      }
+
+      .chooseSongArt{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-flow: column;
+      }
+      
+      .chooseSongArt article{
+            text-align: right;
+            padding: 0.5rem;
+      }
+      
+      .chooseSongArt form{
+            text-align: center;
+            padding: 0.5rem;
+            margin: auto;
+      }
+      
 }
