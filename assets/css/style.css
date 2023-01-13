@@ -878,7 +878,7 @@ header nav a:hover {
     margin: 2rem;
   }
 }
-#membersChat p {
+#membersChatP {
   text-align: center;
 }
 
@@ -1240,6 +1240,10 @@ header nav a:hover {
 
 .changeSongItemArt form {
   margin: auto;
+}
+
+#createNewEvent {
+  margin-top: 7rem;
 }
 
 /*# sourceMappingURL=style.css.map */

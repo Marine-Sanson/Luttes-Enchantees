@@ -12,7 +12,7 @@ Class ContactController extends AbstractController
 
 	public function sendMail() : void
 	{
-		if(isset($_POST["action"]) && $_POST["action"] === "sendMail")
+		if(isset($_POST["action"]) && $_POST["action"] === "newMail")
 		{
 			$template = "contact";
 
