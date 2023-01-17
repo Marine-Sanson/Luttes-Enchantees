@@ -91,6 +91,20 @@ input[type="mail"]{
 	margin: 0.5rem;
 }
 
+.errors{
+	text-align: center;
+	font-weight: 700;
+	color: red;
+	margin: 2rem auto;
+}
+
+.validation{
+	text-align: center;
+	font-weight: 700;
+	color: green;
+	margin: 2rem auto;
+}
+
 @media(min-width: 0px) and (max-width: 990.99px)
 {
 	body{
