@@ -6,6 +6,7 @@ Class MembersChatController extends AbstractController
 	{
 		if($_SESSION["connectUser"])
 		{
+			//Si POST action est isset ou vide, va chercher les messages et leurs réponses
 			if(!isset($_POST["action"]) || $_POST["action"] === "")
 			{
 				$template = "membersChat";
@@ -21,6 +22,7 @@ Class MembersChatController extends AbstractController
 			}
 			else if(isset($_POST["action"]) && $_POST["action"] === "newChat")
 			{
+				//Sinon si l'action est "newChat" vérifie que le formulaire est rempli et sinon rempli le tableau d'erreurs
 				if(!isset($_POST["title"]) || $_POST["title"] === "")
 				{
 					$errors[] = "N'oublie pas le titre de ton message";
@@ -31,6 +33,7 @@ Class MembersChatController extends AbstractController
 					$errors[] = "Entre un message";
 				}
 	
+				//Si le tableau d'erreurs est vide crée le nouveau message, puis va chercher les messages et leurs réponses
 				if(!isset($errors) || $errors === [])
 				{
 					$this->cim->createChatItem(intval($_SESSION["user"]["id"]), $_POST["title"], $_POST["content"]);
@@ -50,6 +53,7 @@ Class MembersChatController extends AbstractController
 				}
 				else
 				{
+					//Sinon redirige vers "membersChat"
 					$template = "membersChat";
 					$chats = $this->cim->getAllChatItems();
 					foreach($chats as $key => $chat)
@@ -62,8 +66,10 @@ Class MembersChatController extends AbstractController
 					$this->render($template, ["allChats" => $allChats, "errors" => $errors]);
 				}
 			}
+			//Sinon si l'action est "chatAnswer"
 			else if(isset($_POST["action"]) && $_POST["action"] === "chatAnswer")
 			{
+				//Vérifie le formulaire
 				if(!isset($_POST["chatAnswerMessage"]) || $_POST["chatAnswerMessage"] === "")
 				{
 					$errors[] = "Attention tu essayes d'envoyer une réponse vide";
@@ -78,6 +84,7 @@ Class MembersChatController extends AbstractController
 					}			
 					$this->render($template, ["allChats" => $allChats, "errors" => $errors]);
 				}
+				//Sinon crée la réponse
 				else if(isset($_POST["chatAnswerMessage"]) && $_POST["chatAnswerMessage"] !== "")
 				{
 					$this->cam->createChatAnswer($_POST["chatId"], $_SESSION["user"]["id"], $_POST["chatAnswerMessage"]);

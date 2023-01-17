@@ -2,14 +2,18 @@
 
 Class AdminSongsController extends AbstractController
 {
+
 	public function index() :void
 	{
+		//Si le user est connecté et que son role est admin
 		if($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "admin")
 		{
+			//va chercher les titres de toutes les chansons et appelle le template
 			$template = "adminSongs";
 			$validation = "";
 			$allSongs = $this->sm->getAllSongsTitles();
 	
+			//Si l'action est "addSongs" vérifie que le formulaire est correctement rempli, sinon rempli le tableau d'erreurs
 			if(isset($_POST["action"]) && $_POST["action"] === "addSong")
 			{
 				$errors = [];
@@ -31,14 +35,17 @@ Class AdminSongsController extends AbstractController
 					$this->render($template, ["allSongs" => $allSongs, "validation" => $validation]);
 				}
 			}
+			//Si le POST "action n'est pas set
 			else if(!isset($_POST["action"]))
 			{
+				//Va chercher toutes les chansons et appelle le template
 				$allSongs = $this->sm->getAllSongsTitles();
 				$this->render($template, ["allSongs" => $allSongs]);
 			}	
 		}
 		else
 		{
+			//Sinon redirige vers membersHome, en allant chercher tous les events
 			$allEvents = $this->em->getEvents();
 			$events = [];
 
@@ -63,6 +70,7 @@ Class AdminSongsController extends AbstractController
 
 	public function addVoice() : void
 	{
+		//Si l'action est "uploadVoice" vérifie que le formulaire est correctement rempli, sinon rempli le tableau d'erreurs
 		if(isset($_POST["action"]) && $_POST["action"] === "uploadVoice")
 		{
 			$songId = intval($_POST["songId"]);
@@ -120,9 +128,9 @@ Class AdminSongsController extends AbstractController
 				{
 					$voiceType = "Voix " . $_POST["other"];
 				}
-				else if($_POST["voice"] === "mix")
+				else if($_POST["voice"] === "Tutti")
 				{
-					$voiceType = "mix";
+					$voiceType = "Tutti";
 				}
 				else if($_POST["voice"] === "demo")
 				{
@@ -133,11 +141,14 @@ Class AdminSongsController extends AbstractController
 					$voiceType = "Voix " . $_POST["voice"];
 				}				
 
+				//Remplace " " et "'" par "-" dans le titre
 				$titleForUpload = str_replace([" ", "'"], "-", $title);
 
+				//Upload le fichier son
 				$upload = $this->fu->uploadVoice($file, $songId, $titleForUpload, $voiceType);
 				$voice = $upload["fileToUpload"];
 
+				//Crée la voix dans le manager
 				$this->vm->createVoice($voice);
 
 				$validation = "le fichier à bien été ajouté";
@@ -145,6 +156,7 @@ Class AdminSongsController extends AbstractController
 				$this->render($template, ["title" => $title, "validation" => $validation]);
 			}
 		}
+		//Sinon si l'action est "addVoice" va chercher le titre du chant d'après son id
 		else if(isset($_POST["action"]) && $_POST["action"] === "addVoice")
 		{
 			$title = $this->sm->getSongTitle($_POST["songId"]);
@@ -153,6 +165,7 @@ Class AdminSongsController extends AbstractController
 
 			$this->render($template, ["title" => $title]);
 		}
+		//Sinon si l'action n'est pas set, appelle "adminSongs"
 		else if(!isset($_POST["action"]))
 		{
 			$template = "adminSongs";
@@ -164,6 +177,7 @@ Class AdminSongsController extends AbstractController
 
 	public function addText() : void
 	{
+		//Si l'action est "uploadText" vérifie que le formulaire est correctement rempli, sinon rempli le tableau d'erreurs
 		if(isset($_POST["action"]) && $_POST["action"] === "uploadText")
 		{
 			$songId = intval($_POST["songId"]);
@@ -190,6 +204,7 @@ Class AdminSongsController extends AbstractController
 			{
 				$this->render($template, ["title" => $title, "errors" => $errors]);
 			}
+			//Si la tableau d'erreurs est vide, upload le texte
 			else if($errors === [])
 			{
 				$file = $_FILES;
@@ -206,6 +221,7 @@ Class AdminSongsController extends AbstractController
 				$this->render($template, ["title" => $title, "validation" => $validation]);
 			}
 		}
+		//Sinon si l'action est "addText" va chercher le titre du chant d'après son id
 		else if(isset($_POST["action"]) && $_POST["action"] === "addText")
 		{
 			$title = $this->sm->getSongTitle($_POST["songId"]);
@@ -215,6 +231,7 @@ Class AdminSongsController extends AbstractController
 		}
 		else
 		{
+			//Sinon si l'action n'est pas set, appelle "adminSongs"
 			$template = "adminSongs";
 			$allSongs = $this->sm->getAllSongsTitles();
 
@@ -226,6 +243,7 @@ Class AdminSongsController extends AbstractController
 	{
 		$template = "adminAddVideo";
 
+		//Si l'action est "addVideo" va chercher le titre du chant d'après son id
 		if(isset($_POST["action"]) && $_POST["action"] === "addVideo")
 		{
 			$songId = intval($_POST["songId"]);
@@ -234,6 +252,7 @@ Class AdminSongsController extends AbstractController
 			$this->render($template, ["title" => $title]);
 
 		}
+		//Sinon si l'action est "addVideoLink" vérifie que le formulaire est correctement rempli, sinon rempli le tableau d'erreurs
 		else if(isset($_POST["action"]) && $_POST["action"] === "addVideoLink")
 		{
 			$songId = intval($_POST["songId"]);
@@ -246,6 +265,7 @@ Class AdminSongsController extends AbstractController
 
 			if(!isset($errors) || $errors === [])
 			{
+				//Si le tableau d'erreurs est vide, update le lien vidéo
 				$urlVideo = $_POST["urlVideo"];
 				$this->sm->updateUrlVideo($songId, $urlVideo);
 				$validation = "Le lien a bien été enregistré";
@@ -260,6 +280,7 @@ Class AdminSongsController extends AbstractController
 			$this->render($template, ["title" => $title]);
 
 		}
+		//Sinon, redirige vers "adminSongs"
 		else if(!isset($_POST["action"]) || $_POST["action"] === "")
 		{
 			$template = "adminSongs";
@@ -273,7 +294,8 @@ Class AdminSongsController extends AbstractController
 	public function addCurrent() : void
 	{
 		$template = "adminCurrent";
-
+		
+		//Si l'action est "addCurrent" va chercher le titre du chant d'après son id
 		if(isset($_POST["action"]) && $_POST["action"] === "addCurrent")
 		{
 			$songId = intval($_POST["songId"]);
@@ -282,6 +304,7 @@ Class AdminSongsController extends AbstractController
 			$this->render($template, ["title" => $title]);
 
 		}
+		//Sinon si l'action est "updateStatus" vérifie que quelque chose est coché, sinon rempli le tableau d'erreurs
 		else if(isset($_POST["action"]) && $_POST["action"] === "updateStatus")
 		{
 			$songId = intval($_POST["songId"]);
@@ -292,6 +315,7 @@ Class AdminSongsController extends AbstractController
 				$errors[] = "veuillez choisir un statut";
 			}
 
+			//Si le tableau d'erreurs est vide, update le status
 			if(!isset($errors) || $errors === [])
 			{
 				$status = $_POST["status"];
@@ -306,6 +330,7 @@ Class AdminSongsController extends AbstractController
 			}
 			
 		}
+		//Sinon, redirige vers "adminSongs"
 		else if(!isset($_POST["action"]) || $_POST["action"] === "")
 		{
 			$template = "adminSongs";

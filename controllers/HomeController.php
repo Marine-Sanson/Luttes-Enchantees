@@ -4,8 +4,7 @@ Class HomeController extends AbstractController
 {
 	public function index() :void
 	{
-		$template = "home";
-
+		//va chercher les events publics
 		$allEvents = $this->em->getPublicEvents();
 		$events = [];
 
@@ -21,6 +20,7 @@ Class HomeController extends AbstractController
 			];
 		}
 
+		//Va chercher les chants du moment
 		$allSongs = $this->sm->getCurrentSongs();
 		$songs = [];
 
@@ -36,6 +36,7 @@ Class HomeController extends AbstractController
 
 		$template = "home";
 
+		//Renvoie le tout vers la home
 		$this->render($template, ["events" => $events, "songs" => $songs]);
 	}
 }

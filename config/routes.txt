@@ -15,6 +15,7 @@
 /echanges-par-categorie MembersSharingZoneController:shareByCat
 /nouvel-echange MembersSharingZoneController:newShare
 /videos MembersVideosController:index
+/comptes MembersAccountsController:index
 /admin-chants AdminSongsController:index
 /admin-voix AdminSongsController:addVoice
 /admin-texte AdminSongsController:addText

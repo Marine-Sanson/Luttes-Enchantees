@@ -6,6 +6,7 @@ Class MembersListController extends AbstractController
     {
         if($_SESSION["connectUser"])
         {
+            //Va chercher tous les users
             $users = $this->um->getAllUsers();
             $template = "membersList";
 
@@ -13,6 +14,7 @@ Class MembersListController extends AbstractController
         }
         else
 		{
+            //Sinon renvoie vers la connection
 			$template = "connect";
 
 			$this->render($template);

@@ -89,13 +89,27 @@ input[type=mail] {
 }
 
 .logo {
-  width: 10vw;
+  width: 12vw;
   height: auto;
   position: absolute;
   margin: 0.5rem;
 }
 
-@media (min-width: 0px) and (max-width: 990.99px) {
+.errors {
+  text-align: center;
+  font-weight: 700;
+  color: red;
+  margin: 2rem auto;
+}
+
+.validation {
+  text-align: center;
+  font-weight: 700;
+  color: green;
+  margin: 2rem auto;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
   body {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -118,7 +132,7 @@ input[type=mail] {
     margin: 1.5rem auto;
   }
 }
-@media (min-width: 991px) {
+@media (min-width: 792px) {
   body {
     font-size: 1.2rem;
     line-height: 2rem;
@@ -190,10 +204,6 @@ header nav a:hover {
   }
 }
 /* ********** Home ********** */
-#home {
-  justify-content: center;
-}
-
 #homeFirstP {
   text-align: center;
 }
@@ -254,7 +264,7 @@ header nav a:hover {
   margin: 0 0.5rem;
 }
 
-@media (min-width: 0px) and (max-width: 990.99px) {
+@media (min-width: 0px) and (max-width: 791.99px) {
   #homeFirstP {
     margin-bottom: 0.8rem;
   }
@@ -310,7 +320,7 @@ header nav a:hover {
     max-width: 80vw;
   }
 }
-@media (min-width: 991px) {
+@media (min-width: 792px) {
   #homeFirstP {
     margin-bottom: 2rem;
   }
@@ -325,16 +335,16 @@ header nav a:hover {
     grid-column: 1/13;
   }
   #homePresentation figure {
-    grid-column: 8/13;
+    grid-column: 9/13;
     grid-row: 2;
   }
   #homePresentation section {
-    grid-column: 1/8;
+    grid-column: 1/9;
     grid-row: 2;
     padding: 0.5rem 1rem;
   }
   #homePresentation figure img {
-    padding: 0.5rem;
+    max-width: 28vw;
   }
   /* *** #homeActu *** */
   #homeActu {

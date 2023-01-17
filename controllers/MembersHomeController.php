@@ -6,6 +6,7 @@ Class MembersHomeController extends AbstractController
 	{
 		if ($_SESSION["connectUser"] && isset($_SESSION["user"]) && $_SESSION["user"] !== [])
 		{
+			//Si l'action est "setParticipation" update la participation
 			if (isset($_POST["action"]) && $_POST["action"] === "setParticipation")
 			{
 				$this->pm->updateParticipation($_POST["userId"], $_POST["eventId"], $_POST["participation"]);
@@ -32,6 +33,7 @@ Class MembersHomeController extends AbstractController
 		}
 		else
 		{
+			//Sinon renvoie sur la connection
 			$template = "connect";
 
 			$this->render($template);

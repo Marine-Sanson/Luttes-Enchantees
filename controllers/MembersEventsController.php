@@ -4,10 +4,12 @@ Class MembersEventsController extends AbstractController
 {
 	public function index() :void
 	{
+		//Va chercher tous les events
 		$template = "membersEvents";
 
 		$allEvents = $this->em->getEvents();
 		$events = [];
+		//Pour chaque event va chercher le nombre de patricipantes
 		foreach($allEvents as $key => $event)
 		{
 			$oui = $this->pm->countParticipation($event["id"], "Oui");
@@ -36,6 +38,7 @@ Class MembersEventsController extends AbstractController
 	public function eventDetail(): void
 	{
 		if ($_SESSION["connectUser"]) {
+			//Si l'action est "eventDetail" va chercher l'event d'près son id, sa catégorie et la participation
 			if (isset($_POST) && $_POST["action"] === "eventDetail") {
 				$id = intval($_POST["eventId"]);
 				$event = $this->em->getEventById($id);
@@ -59,13 +62,17 @@ Class MembersEventsController extends AbstractController
 				$template = "membersEventDetail";
 				$this->render($template, ["event" => $event, "parts" => $parts, "count" => $count, "cat" => $cat]);
 			} else {
+				//Sinon va chercher tous les events et les catégories
 				$events = $this->em->getEvents();
 				$cats = $this->em->getCats();
 
 				$template = "membersEvents";
 				$this->render($template, ["cats" => $cats, "events" => $events]);
 			}
-		} else {
+		}
+		else
+		{
+			//Sinon renvoie sur la connection
 			$template = "connect";
 
 			$this->render($template);

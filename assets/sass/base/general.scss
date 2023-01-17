@@ -85,7 +85,7 @@ input[type="mail"]{
 }
 
 .logo{
-	width: 10vw;
+	width: 12vw;
 	height: auto;
 	position: absolute;
 	margin: 0.5rem;
@@ -105,7 +105,7 @@ input[type="mail"]{
 	margin: 2rem auto;
 }
 
-@media(min-width: 0px) and (max-width: 990.99px)
+@media(min-width: 0px) and (max-width: 791.99px)
 {
 	body{
 		font-size: 1rem;
@@ -135,7 +135,7 @@ input[type="mail"]{
 	
 }
 
-@media(min-width: 991px)
+@media(min-width: 792px)
 {
 	body{
 		font-size: $fontSizeDefault;
