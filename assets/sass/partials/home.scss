@@ -1,5 +1,9 @@
 /* ********** Home ********** */
 
+#home{
+      justify-content: center;
+}
+
 #homeFirstP{
       text-align: center;
 }
@@ -63,7 +67,7 @@
       margin: 0 0.5rem;
 }
 
-@media(min-width: 0px) and (max-width: 791.99px)
+@media(min-width: 0px) and (max-width: 990.99px)
 {
       #homeFirstP{
             margin-bottom: 0.8rem;
@@ -136,7 +140,7 @@
 
 }
 
-@media(min-width: 792px)
+@media(min-width: 991px)
 {
       #homeFirstP{
             margin-bottom: 2rem;
@@ -156,18 +160,19 @@
       }
 
       #homePresentation figure{
-            grid-column: 9/13;
+            grid-column: 8/13;
             grid-row: 2;
       }
 
       #homePresentation section{
-            grid-column: 1/9;
+            grid-column: 1/8;
             grid-row: 2;
             padding: 0.5rem 1rem;
       }
 
       #homePresentation figure img{
-            max-width: 28vw;
+
+            padding: 0.5rem;
       }
 
       /* *** #homeActu *** */
