@@ -20,6 +20,6 @@
 /admin-voix AdminSongsController:addVoice
 /admin-texte AdminSongsController:addText
 /admin-video AdminSongsController:addVideo
-/admin-moment AdminSongsController:addCurrent
+/admin-modif AdminSongsController:modify
 /admin-dates AdminEventsController:index
 /admin-modif-date/* AdminEventsController:updateEvent

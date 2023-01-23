@@ -8,9 +8,12 @@ Class MembersSongsController extends AbstractController
 		{
 			$template = "membersSongs";
 
-			$allSongs = $this->sm->getAllSongsTitles();
-	
-			$this->render($template, ["allSongs" => $allSongs]);
+			$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+			$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+			$sharedSongs = $this->sm->getSharedSongsTitles();
+			$oldSongs = $this->sm->getOldSongsTitles();
+			
+			$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs]);
 		}
 		else
 		{

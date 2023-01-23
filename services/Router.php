@@ -48,6 +48,7 @@ class Router {
 
 					$um = new UserManager();
 					$sm = new SongsManager();
+					$sgcm = new SongsCategoriesManager();
 					$vm = new VoiceManager();
 					$tm = new TextManager();
 					$em = new EventManager();
@@ -60,7 +61,7 @@ class Router {
 					$fu = new FileUploader();
 
 					$ctrl = new $controller();
-					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $sim, $scm, $sam, $cim, $cam, $fu);
+					$ctrl->init($um, $sm, $sgcm, $vm, $tm, $em, $pm, $sim, $scm, $sam, $cim, $cam, $fu);
 					$ctrl->$method($_POST, $requestData["parameter"]);
 				}
 				else if(!$route["parameter"] && $requestData["parameter"] === null)
@@ -69,6 +70,7 @@ class Router {
 					
 					$um = new UserManager();
 					$sm = new SongsManager();
+					$sgcm = new SongsCategoriesManager();
 					$vm = new VoiceManager();
 					$tm = new TextManager();
 					$em = new EventManager();
@@ -81,7 +83,7 @@ class Router {
 					$fu = new FileUploader();
 
 					$ctrl = new $controller();
-					$ctrl->init($um, $sm, $vm, $tm, $em, $pm, $sim, $scm, $sam, $cim, $cam, $fu);
+					$ctrl->init($um, $sm, $sgcm, $vm, $tm, $em, $pm, $sim, $scm, $sam, $cim, $cam, $fu);
 					$ctrl-> $method($_POST);
 				}
 			}

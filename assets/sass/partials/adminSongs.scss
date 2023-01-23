@@ -29,10 +29,19 @@
       margin: 1rem auto;
 }
 
-#chooseSong li:nth-child(odd){
+#chooseASong ul li:nth-child(even){
       background-color: $lighterBlue;
       border: 1px solid $blue;
       border-radius: 8px;
+}
+
+#chooseASong h3{
+      margin-top: 3rem;
+      text-align: left;
+}
+
+.chooseSongArt h4{
+      margin: auto auto auto 2rem;
 }
 
 @media(min-width: 0px) and (max-width: 791.99px)

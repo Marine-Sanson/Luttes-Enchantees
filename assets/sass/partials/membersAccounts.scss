@@ -1,0 +1,77 @@
+#membersAccounts{
+      margin: auto;
+      padding: 0.5rem;
+}
+
+#membersAccountsFirstP{
+      text-align: center;
+}
+
+#membersAccounts table{
+      border: 4px solid $blue;
+      border-collapse: collapse;
+      margin: 2rem auto;
+}
+
+#membersAccounts th,
+#membersAccounts tr{
+      border: 2px solid $blue;
+      border-collapse: collapse;
+      padding: 0.5rem;
+}
+
+#membersAccounts th{
+      border-bottom: 4px solid $blue;
+}
+
+#membersAccounts td{
+      border: 2px solid $blue;
+      border-collapse: collapse;
+      padding: 0.5rem;
+}
+
+.alignR{
+      text-align: right;
+}
+
+.tableFooter{
+      font-weight: 700;
+}
+
+.total{
+      text-align: center;
+}
+
+#membersAccounts h2{
+      text-align: left;
+}
+
+#membersAccountsCom{
+      margin-top: 4rem;
+}
+
+#membersAccountsCom p{
+      margin-left: 2rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #membersAccountsSect table{
+            font-size: 0.8rem;
+      }
+
+      #membersAccountsFirstP{
+            margin-top: 3rem;
+      }
+}
+
+@media(min-width: 792px)
+{
+      #membersAccountsFirstP{
+            margin-top: 8rem;
+      }
+
+      #membersAccountsSect table{
+            font-size: 1.2rem;
+      }
+}

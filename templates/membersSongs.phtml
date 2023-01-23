@@ -8,22 +8,102 @@
 
 	<p>Pour voir le détail d'un chant (paroles, voix) cliquer dessus</p>
 
-	<ul>
+	<h2>Hors Catégorie</h2>
+
+	<ul class="outOfCatSongs">
 		<?php
-		foreach($data["allSongs"] as $key => $song)
+		foreach($data["outOfCatSongs"] as $key => $outOfCatSong)
 		{
 		?>
 		<li>
 			<form class="songsForDetail"
 				method="POST"
-				action="/Luttes-enchantees/detail-chant/<?= $song["id"]; ?>">
+				action="/Luttes-enchantees/detail-chant/<?= $outOfCatSong["id"]; ?>">
 				
 				<input type="hidden" name="route" value="param">
 				<input type="hidden"
 					name="id"
-					value="<?= $song["id"] ?>">
+					value="<?= $outOfCatSong["id"] ?>">
 					
-				<input class="button" type="submit" value="<?= $song["title"]; ?>">
+				<input class="button" type="submit" value="<?= $outOfCatSong["title"]; ?>">
+				
+            	</form>
+		</li>
+		<?php
+		}
+		?>
+	</ul>
+
+	<h2>Chants année en cours</h2>
+
+	<ul class="currentYearSongs">
+		<?php
+		foreach($data["currentYearSongs"] as $key => $currentYearSong)
+		{
+		?>
+		<li>
+			<form class="songsForDetail"
+				method="POST"
+				action="/Luttes-enchantees/detail-chant/<?= $currentYearSong["id"]; ?>">
+				
+				<input type="hidden" name="route" value="param">
+				<input type="hidden"
+					name="id"
+					value="<?= $currentYearSong["id"] ?>">
+					
+				<input class="button" type="submit" value="<?= $currentYearSong["title"]; ?>">
+				
+			</form>
+		</li>
+		<?php
+		}
+		?>
+	</ul>
+
+	<h2>Chants communs</h2>
+
+	<ul class="sharedSongs">
+		<?php
+		foreach($data["sharedSongs"] as $key => $sharedSong)
+		{
+		?>
+		<li>
+			<form class="songsForDetail"
+				method="POST"
+				action="/Luttes-enchantees/detail-chant/<?= $sharedSong["id"]; ?>">
+				
+				<input type="hidden" name="route" value="param">
+				<input type="hidden"
+					name="id"
+					value="<?= $sharedSong["id"] ?>">
+					
+				<input class="button" type="submit" value="<?= $sharedSong["title"]; ?>">
+				
+            	</form>
+		</li>
+		<?php
+		}
+		?>
+	</ul>
+
+	<h2>Chants années précédentes</h2>
+
+	<ul class="oldSongs">
+		<?php
+		foreach($data["oldSongs"] as $key => $oldSong)
+		{
+		?>
+		<li>
+			<form class="songsForDetail"
+				method="POST"
+				action="/Luttes-enchantees/detail-chant/<?= $oldSong["id"]; ?>">
+				
+				<input type="hidden" name="route" value="param">
+				<input type="hidden"
+					name="id"
+					value="<?= $oldSong["id"] ?>">
+					
+				<input class="button" type="submit" value="<?= $oldSong["title"]; ?>">
 				
             	</form>
 		</li>

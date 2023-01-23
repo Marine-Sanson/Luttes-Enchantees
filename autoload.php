@@ -9,6 +9,7 @@ require "./services/Router.php";
 
 require "./models/User.php";
 require "./models/Song.php";
+require "./models/SongCategory.php";
 require "./models/Voice.php";
 require "./models/Text.php";
 require "./models/Image.php";
@@ -19,6 +20,7 @@ require "./models/Event.php";
 
 require "./managers/UserManager.php";
 require "./managers/SongsManager.php";
+require "./managers/SongsCategoriesManager.php";
 require "./managers/VoiceManager.php";
 require "./managers/TextManager.php";
 require "./managers/EventManager.php";

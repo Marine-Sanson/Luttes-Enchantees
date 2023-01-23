@@ -13,9 +13,36 @@ class SongsManager extends AbstractManager
 		$query->execute($parameters);
 	}
 
-	public function getAllSongsTitles() : array
+	public function getOutOfCatSongsTitles() : array
 	{
-		$query = $this->db->prepare('SELECT id, title FROM songs');
+		$query = $this->db->prepare('SELECT id, title FROM songs WHERE category_id = 0');
+		$query->execute();
+		$allSongs = $query->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $allSongs;
+	}
+
+	public function getCurrentYearSongsTitles() : array
+	{
+		$query = $this->db->prepare('SELECT id, title FROM songs WHERE category_id = 1');
+		$query->execute();
+		$allSongs = $query->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $allSongs;
+	}
+
+	public function getSharedSongsTitles() : array
+	{
+		$query = $this->db->prepare('SELECT id, title FROM songs WHERE category_id = 2');
+		$query->execute();
+		$allSongs = $query->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $allSongs;
+	}
+
+	public function getOldSongsTitles() : array
+	{
+		$query = $this->db->prepare('SELECT id, title FROM songs WHERE category_id = 3');
 		$query->execute();
 		$allSongs = $query->fetchAll(PDO::FETCH_ASSOC);
 		
@@ -62,6 +89,32 @@ class SongsManager extends AbstractManager
 		return $songs;
 	}
 
+	public function getSongStatus($id) : bool
+	{
+		$query = $this->db->prepare('SELECT current_song FROM songs WHERE id = :id');
+		$parameters = [
+			'id' => $id
+			];
+		$query->execute($parameters);
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		$status = $result[0]["current_song"];
+
+		return $status;
+	}
+
+	public function getSongCat($songId) : int
+	{
+		$query = $this->db->prepare('SELECT category_id FROM songs WHERE id = :id');
+		$parameters = [
+			'id' => $songId
+			];
+		$query->execute($parameters);
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		$catId = intval($result[0]["category_id"]);
+
+		return $catId;
+	}
+
 	public function updateUrlVideo(int $songId, string $urlVideo)
 	{
 		$query = $this->db->prepare('UPDATE songs SET url_video = :urlVideo WHERE id = :id');
@@ -78,6 +131,16 @@ class SongsManager extends AbstractManager
 		$parameters = [
 			'id' => $songId,
 			'current_song' => $current
+			];
+		$query->execute($parameters);
+	}
+
+	public function updateSongCat(int $id, int $catId) : void
+	{
+		$query = $this->db->prepare('UPDATE songs SET category_id = :category_id WHERE id = :id');
+		$parameters = [
+			'id' => $id,
+			'category_id' => $catId
 			];
 		$query->execute($parameters);
 	}

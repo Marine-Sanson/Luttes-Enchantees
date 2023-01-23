@@ -40,22 +40,93 @@
 	<section id="chooseASong">
 		<h2>Choisir un chant existant</h2>
 
-		<ul id="chooseSong">
+		<?php
+
+		if(isset($data["outOfCatSongs"]) && $data["outOfCatSongs"] !== [])
+		{
+		?>
+			<h3>Hors catégorie :</h3>
+
+			<ul id="outOfCatSongs">
+				<?php
+				foreach($data["outOfCatSongs"] as $key => $outOfCatSong)
+				{
+				?>
+					<li>
+						<article class="chooseSongArt">
+
+							<h4><?=$outOfCatSong["title"]; ?></h4>
+
+							<form id="addVoice"
+								action="/Luttes-Enchantees/admin-voix"
+								method="post">
+
+								<input type="hidden" id="newVoiceAction" name="action" value="addVoice">
+								<input type="hidden" id="newVoiceId" name="songId" value="<?= $outOfCatSong["id"]; ?>">
+
+								<input class="button" type="submit" value="Ajouter une voix">
+							</form>
+
+							<form id="addText"
+								action="/Luttes-Enchantees/admin-texte"
+								method="post">
+
+								<input type="hidden" id="newTextAction" name="action" value="addText">
+								<input type="hidden" id="newTextId" name="songId" value="<?= $outOfCatSong["id"]; ?>">
+
+								<input class="button" type="submit" value="Ajouter un texte">
+							</form>
+
+							<form id="addVideo"
+								action="/Luttes-Enchantees/admin-video"
+								method="post">
+
+								<input type="hidden" id="newVideoAction" name="action" value="addVideo">
+								<input type="hidden" id="newVideoId" name="songId" value="<?= $outOfCatSong["id"]; ?>">
+
+								<input class="button" type="submit" value="Ajouter une video">
+							</form>
+
+							<form id="modify"
+								action="/Luttes-Enchantees/admin-modif"
+								method="post">
+
+								<input type="hidden" id="newCurrentAction" name="action" value="modify">
+								<input type="hidden" id="newCurrentId" name="songId" value="<?= $outOfCatSong["id"]; ?>">
+
+								<input class="button" type="submit" value="Modifier">
+							</form>
+
+						</article>
+
+					</li>
+				<?php
+				}
+				?>
+			</ul>
+
+		<?php
+		}
+		?>
+
+		<h3>Chants année en cours :</h3>
+
+		<ul id="currentYearSongs">
 			<?php
-			foreach($data["allSongs"] as $key => $song)
+			foreach($data["currentYearSongs"] as $key => $currentYearSong)
 			{
 			?>
 				<li>
 					<article class="chooseSongArt">
 
-						<h3><?=$song["title"]; ?></h3>
+						<h4><?=$currentYearSong["title"]; ?></h4>
 
 						<form id="addVoice"
 							action="/Luttes-Enchantees/admin-voix"
 							method="post">
 
 							<input type="hidden" id="newVoiceAction" name="action" value="addVoice">
-							<input type="hidden" id="newVoiceId" name="songId" value="<?= $song["id"]; ?>">
+							<input type="hidden" id="newVoiceId" name="songId" value="<?= $currentYearSong["id"]; ?>">
 
 							<input class="button" type="submit" value="Ajouter une voix">
 						</form>
@@ -65,7 +136,7 @@
 							method="post">
 
 							<input type="hidden" id="newTextAction" name="action" value="addText">
-							<input type="hidden" id="newTextId" name="songId" value="<?= $song["id"]; ?>">
+							<input type="hidden" id="newTextId" name="songId" value="<?= $currentYearSong["id"]; ?>">
 
 							<input class="button" type="submit" value="Ajouter un texte">
 						</form>
@@ -75,19 +146,78 @@
 							method="post">
 
 							<input type="hidden" id="newVideoAction" name="action" value="addVideo">
-							<input type="hidden" id="newVideoId" name="songId" value="<?= $song["id"]; ?>">
+							<input type="hidden" id="newVideoId" name="songId" value="<?= $currentYearSong["id"]; ?>">
 
 							<input class="button" type="submit" value="Ajouter une video">
 						</form>
 
-						<form id="addCurrent"
-							action="/Luttes-Enchantees/admin-moment"
+						<form id="modify"
+							action="/Luttes-Enchantees/admin-modif"
 							method="post">
 
-							<input type="hidden" id="newCurrentAction" name="action" value="addCurrent">
-							<input type="hidden" id="newCurrentId" name="songId" value="<?= $song["id"]; ?>">
+							<input type="hidden" id="newCurrentAction" name="action" value="modify">
+							<input type="hidden" id="newCurrentId" name="songId" value="<?= $currentYearSong["id"]; ?>">
 
-							<input class="button" type="submit" value="Changer le statut">
+							<input class="button" type="submit" value="Modifier">
+						</form>
+					</article>
+
+				</li>
+			<?php
+			}
+			?>
+		</ul>
+
+		<h3>Chants communs :</h3>
+
+		<ul id="outOfCatSongs">
+			<?php
+			foreach($data["sharedSongs"] as $key => $sharedSong)
+			{
+			?>
+				<li>
+					<article class="chooseSongArt">
+
+						<h4><?=$sharedSong["title"]; ?></h4>
+
+						<form id="addVoice"
+							action="/Luttes-Enchantees/admin-voix"
+							method="post">
+
+							<input type="hidden" id="newVoiceAction" name="action" value="addVoice">
+							<input type="hidden" id="newVoiceId" name="songId" value="<?= $sharedSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter une voix">
+						</form>
+
+						<form id="addText"
+							action="/Luttes-Enchantees/admin-texte"
+							method="post">
+
+							<input type="hidden" id="newTextAction" name="action" value="addText">
+							<input type="hidden" id="newTextId" name="songId" value="<?= $sharedSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter un texte">
+						</form>
+
+						<form id="addVideo"
+							action="/Luttes-Enchantees/admin-video"
+							method="post">
+
+							<input type="hidden" id="newVideoAction" name="action" value="addVideo">
+							<input type="hidden" id="newVideoId" name="songId" value="<?= $sharedSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter une video">
+						</form>
+
+						<form id="modify"
+							action="/Luttes-Enchantees/admin-modif"
+							method="post">
+
+							<input type="hidden" id="newCurrentAction" name="action" value="modify">
+							<input type="hidden" id="newCurrentId" name="songId" value="<?= $sharedSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Modifier">
 						</form>
 
 					</article>
@@ -97,6 +227,67 @@
 			}
 			?>
 		</ul>
+
+		<h3>Chants années précédentes :</h3>
+
+		<ul id="oldSongs">
+			<?php
+			foreach($data["oldSongs"] as $key => $oldSong)
+			{
+			?>
+				<li>
+					<article class="chooseSongArt">
+
+						<h4><?=$oldSong["title"]; ?></h4>
+
+						<form id="addVoice"
+							action="/Luttes-Enchantees/admin-voix"
+							method="post">
+
+							<input type="hidden" id="newVoiceAction" name="action" value="addVoice">
+							<input type="hidden" id="newVoiceId" name="songId" value="<?= $oldSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter une voix">
+						</form>
+
+						<form id="addText"
+							action="/Luttes-Enchantees/admin-texte"
+							method="post">
+
+							<input type="hidden" id="newTextAction" name="action" value="addText">
+							<input type="hidden" id="newTextId" name="songId" value="<?= $oldSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter un texte">
+						</form>
+
+						<form id="addVideo"
+							action="/Luttes-Enchantees/admin-video"
+							method="post">
+
+							<input type="hidden" id="newVideoAction" name="action" value="addVideo">
+							<input type="hidden" id="newVideoId" name="songId" value="<?= $oldSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Ajouter une video">
+						</form>
+
+						<form id="modify"
+							action="/Luttes-Enchantees/admin-modif"
+							method="post">
+
+							<input type="hidden" id="newCurrentAction" name="action" value="modify">
+							<input type="hidden" id="newCurrentId" name="songId" value="<?= $oldSong["id"]; ?>">
+
+							<input class="button" type="submit" value="Modifier">
+						</form>
+
+					</article>
+
+				</li>
+			<?php
+			}
+			?>
+		</ul>
+
 
 	</section>
 

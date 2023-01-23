@@ -1,9 +1,12 @@
 <main id="adminAddText">
 
+
 	<h1>Gestion des fichiers paroles</h3>
 
 	<?php
 	require "./templates/_messages.phtml";
+	var_dump($_POST);
+	var_dump($data);
 	?>
 
 	<h2>Télécharger un fichier paroles pour <?= $data["title"]; ?></h2>
@@ -48,13 +51,13 @@
 		</form>
 
 		<form id="addCurrent"
-			action="/Luttes-Enchantees/admin-moment"
+			action="/Luttes-Enchantees/admin-modif"
 			method="post">
 
-			<input type="hidden" id="newCurrentAction" name="action" value="addCurrent">
+			<input type="hidden" id="newCurrentAction" name="action" value="modify">
 			<input type="hidden" id="newCurrentId" name="songId" value="<?= $_POST["songId"]; ?>">
 
-			<input class="button" type="submit" value="Changer le statut">
+			<input class="button" type="submit" value="Modifier">
 		</form>
 
 	</article>

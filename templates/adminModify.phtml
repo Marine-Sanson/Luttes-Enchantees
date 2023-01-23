@@ -1,0 +1,192 @@
+<main id="adminModify">
+
+	<h1>Gestion du chant "<?= $data["title"]; ?>"</h1>
+
+	<?php
+	require "./templates/_messages.phtml";
+	var_dump($_POST);
+	var_dump($data);
+	?>
+
+	<h2>Changer le statut pour <?= $data["title"]; ?></h2>
+
+	<fieldset>
+		<legend>Mettre <?= $data["title"]; ?> en "chant du moment" ?</legend>
+
+		<form  id="changeStatus"
+			action="/Luttes-Enchantees/admin-modif"
+			method="post">
+
+			<input type="hidden" id="updateStatus" name="action" value="updateStatus">
+			<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
+				
+			<input type="radio" id="modifyStatus1" name ="status" value=1
+			<?php
+				if($data["status"] === true)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifyStatus1">Oui</label>
+			<input type="radio" id="modifyStatus0" name ="status" value=0
+			<?php
+				if($data["status"] === false)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifyStatus0">Non</label>
+
+			<input class="button"
+				type="submit">
+
+		</form>
+	</fieldset>
+
+	<h2>Changer la catégorie pour <?= $data["title"]; ?></h2>
+
+	<fieldset>
+
+		<form  id="changeCat"
+			action="/Luttes-Enchantees/admin-modif"
+			method="post">
+
+			<input type="hidden" id="updateStatus" name="action" value="updateSongCat">
+			<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
+				
+			<input type="radio" id="modifySongCat1" name ="songCat" value=1
+			<?php
+				if($data["songCat"] === 1)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifyStatus1">Année en cours</label>
+			<input type="radio" id="modifySongCat2" name ="songCat" value=2
+			<?php
+				if($data["songCat"] === 2)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifySongCat2">Chants de manif / chants communs</label>
+
+			<input type="radio" id="modifySongCat3" name ="songCat" value=3
+			<?php
+				if($data["songCat"] === 3)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifySongCat3">Chants années précédentes</label>
+
+			<input class="button"
+				type="submit">
+
+		</form>
+	</fieldset>
+
+	<h2>Modifier <?= $data["title"]; ?></h2>
+
+	<fieldset>
+
+		<form  id="updateSong"
+			action="/Luttes-Enchantees/admin-maj"
+			method="post">
+
+			<input type="hidden" id="updateStatus" name="action" value="updateSongCat">
+			<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
+				
+			<input type="radio" id="modifySongCat1" name ="songCat" value=1
+			<?php
+				if($data["songCat"] === 1)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifyStatus1">Année en cours</label>
+			<input type="radio" id="modifySongCat2" name ="status" value=2
+			<?php
+				if($data["songCat"] === 2)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifySongCat2">Chants de manif / chants communs</label>
+
+			<input type="radio" id="modifySongCat3" name ="status" value=3
+			<?php
+				if($data["songCat"] === 3)
+				{
+				?>
+					checked
+				<?php
+				}
+			?>
+			>
+			<label for="modifySongCat3">Chants années précédentes</label>
+
+			<input class="button"
+				type="submit">
+
+		</form>
+	</fieldset>
+
+
+	<h2>Ajouter des fichiers à <?= $data["title"]; ?></h2>
+	<article class="changeSongItemArt">
+
+		<form id="addVoice"
+			action="/Luttes-Enchantees/admin-voix"
+			method="post">
+
+			<input type="hidden" id="newVoiceAction" name="action" value="addVoice">
+			<input type="hidden" id="newVoiceId" name="songId" value="<?= $_POST["songId"]; ?>">
+
+			<input class="button" type="submit" value="Ajouter une voix">
+		</form>
+
+		<form id="addText"
+			action="/Luttes-Enchantees/admin-texte"
+			method="post">
+
+			<input type="hidden" id="newTextAction" name="action" value="addText">
+			<input type="hidden" id="newTextId" name="songId" value="<?= $_POST["songId"]; ?>">
+
+			<input class="button" type="submit" value="Ajouter un texte">
+		</form>
+
+		<form id="addVideo"
+			action="/Luttes-Enchantees/admin-video"
+			method="post">
+
+			<input type="hidden" id="newVideoAction" name="action" value="addVideo">
+			<input type="hidden" id="newVideoId" name="songId" value="<?= $_POST["songId"]; ?>">
+
+			<input class="button" type="submit" value="Ajouter une video">
+		</form>
+
+	</article>
+
+</main>

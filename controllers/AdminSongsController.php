@@ -11,7 +11,10 @@ Class AdminSongsController extends AbstractController
 			//va chercher les titres de toutes les chansons et appelle le template
 			$template = "adminSongs";
 			$validation = "";
-			$allSongs = $this->sm->getAllSongsTitles();
+			$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+			$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+			$sharedSongs = $this->sm->getSharedSongsTitles();
+			$oldSongs = $this->sm->getOldSongsTitles();
 	
 			//Si l'action est "addSongs" vérifie que le formulaire est correctement rempli, sinon rempli le tableau d'erreurs
 			if(isset($_POST["action"]) && $_POST["action"] === "addSong")
@@ -31,16 +34,23 @@ Class AdminSongsController extends AbstractController
 					$this->sm->createSong($_POST["title"], $_POST["description"]);
 					$validation = "Le nouveau chant à bien été créé";
 	
-					$allSongs = $this->sm->getAllSongsTitles();
-					$this->render($template, ["allSongs" => $allSongs, "validation" => $validation]);
+					$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+					$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+					$sharedSongs = $this->sm->getSharedSongsTitles();
+					$oldSongs = $this->sm->getOldSongsTitles();
+					
+					$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs, "validation" => $validation]);
 				}
 			}
-			//Si le POST "action n'est pas set
+			//Si le POST "action" n'est pas set
 			else if(!isset($_POST["action"]))
 			{
 				//Va chercher toutes les chansons et appelle le template
-				$allSongs = $this->sm->getAllSongsTitles();
-				$this->render($template, ["allSongs" => $allSongs]);
+				$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+				$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+				$sharedSongs = $this->sm->getSharedSongsTitles();
+				$oldSongs = $this->sm->getOldSongsTitles();
+				$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs]);
 			}	
 		}
 		else
@@ -159,7 +169,8 @@ Class AdminSongsController extends AbstractController
 		//Sinon si l'action est "addVoice" va chercher le titre du chant d'après son id
 		else if(isset($_POST["action"]) && $_POST["action"] === "addVoice")
 		{
-			$title = $this->sm->getSongTitle($_POST["songId"]);
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
 
 			$template = "adminAddVoice";
 
@@ -169,9 +180,13 @@ Class AdminSongsController extends AbstractController
 		else if(!isset($_POST["action"]))
 		{
 			$template = "adminSongs";
-			$allSongs = $this->sm->getAllSongsTitles();
 
-			$this->render($template, ["allSongs" => $allSongs]);
+			$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+			$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+			$sharedSongs = $this->sm->getSharedSongsTitles();
+			$oldSongs = $this->sm->getOldSongsTitles();
+
+			$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs]);
 		}
 	}
 
@@ -224,7 +239,8 @@ Class AdminSongsController extends AbstractController
 		//Sinon si l'action est "addText" va chercher le titre du chant d'après son id
 		else if(isset($_POST["action"]) && $_POST["action"] === "addText")
 		{
-			$title = $this->sm->getSongTitle($_POST["songId"]);
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
 			$template = "adminAddText";
 
 			$this->render($template, ["title" => $title]);
@@ -233,10 +249,14 @@ Class AdminSongsController extends AbstractController
 		{
 			//Sinon si l'action n'est pas set, appelle "adminSongs"
 			$template = "adminSongs";
-			$allSongs = $this->sm->getAllSongsTitles();
 
-			$this->render($template, ["allSongs" => $allSongs]);
-		}
+			$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+			$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+			$sharedSongs = $this->sm->getSharedSongsTitles();
+			$oldSongs = $this->sm->getOldSongsTitles();
+
+			$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs]);
+	}
 	}
 
 	public function addVideo() : void
@@ -285,23 +305,30 @@ Class AdminSongsController extends AbstractController
 		{
 			$template = "adminSongs";
 
-			$allSongs = $this->sm->getAllSongsTitles();
-
-			$this->render($template, ["allSongs" => $allSongs]);
+			$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+			$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+			$sharedSongs = $this->sm->getSharedSongsTitles();
+			$oldSongs = $this->sm->getOldSongsTitles();
+			
+			$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs]);
 		}
 	}
 
-	public function addCurrent() : void
+	public function modify() : void
 	{
-		$template = "adminCurrent";
+		$template = "adminModify";
 		
-		//Si l'action est "addCurrent" va chercher le titre du chant d'après son id
-		if(isset($_POST["action"]) && $_POST["action"] === "addCurrent")
+		//Si l'action est "modify" va chercher le titre du chant d'après son id
+		if(isset($_POST["action"]) && $_POST["action"] === "modify")
 		{
 			$songId = intval($_POST["songId"]);
 			$title = $this->sm->getSongTitle($songId);
+			$status = $this->sm->getSongStatus($songId);
+			$songCat = $this->sm->getSongCat($songId);
+
+			var_dump($status);
 	
-			$this->render($template, ["title" => $title]);
+			$this->render($template, ["title" => $title, "status" => $status, "songCat" => $songCat]);
 
 		}
 		//Sinon si l'action est "updateStatus" vérifie que quelque chose est coché, sinon rempli le tableau d'erreurs
@@ -321,23 +348,55 @@ Class AdminSongsController extends AbstractController
 				$status = $_POST["status"];
 				$this->sm->updateCurrent($songId, $status);
 				$validation = "Le statut a bien été changé";
+				$status = $this->sm->getSongStatus($songId);
+				$songCat = $this->sm->getSongCat($songId);
 	
-				$this->render($template, ["title" => $title, "validation" => $validation]);
+				$this->render($template, ["title" => $title, "validation" => $validation, "status" => $status, "songCat" => $songCat]);
 			}
 			else
 			{
 				$this->render($template, ["title" => $title, "errors" => $errors]);
-			}
-			
+			}			
 		}
+		//Sinon si l'action est "updateSongCat" vérifie que quelque chose est coché, sinon rempli le tableau d'erreurs
+		else if(isset($_POST["action"]) && $_POST["action"] === "updateSongCat")
+		{
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
+	
+			if(!isset($_POST["songCat"]) || $_POST["songCat"] === "")
+			{
+				$errors[] = "veuillez choisir une catégorie";
+			}
+
+			//Si le tableau d'erreurs est vide, update le status
+			if(!isset($errors) || $errors === [])
+			{
+				$songCat = $_POST["songCat"];
+				$this->sm->updatesongCat($songId, $songCat);
+				$validation = "La catégorie a bien été changé";
+				$status = $this->sm->getSongStatus($songId);
+				$songCat = $this->sm->getSongCat($songId);
+	
+				$this->render($template, ["title" => $title, "validation" => $validation, "status" => $status, "songCat" => $songCat]);
+			}
+			else
+			{
+				$this->render($template, ["title" => $title, "errors" => $errors]);
+			}			
+		}
+		
 		//Sinon, redirige vers "adminSongs"
 		else if(!isset($_POST["action"]) || $_POST["action"] === "")
 		{
 			$template = "adminSongs";
 
-			$allSongs = $this->sm->getAllSongsTitles();
-
-			$this->render($template, ["allSongs" => $allSongs]);
+			$outOfCatSongs = $this->sm->getOutOfCatSongsTitles();
+			$currentYearSongs = $this->sm->getCurrentYearSongsTitles();
+			$sharedSongs = $this->sm->getSharedSongsTitles();
+			$oldSongs = $this->sm->getOldSongsTitles();
+			
+			$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs]);
 		}
 	}
 }
