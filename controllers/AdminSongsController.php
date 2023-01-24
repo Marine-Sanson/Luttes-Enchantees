@@ -27,7 +27,7 @@ Class AdminSongsController extends AbstractController
 	
 				if($errors !== [])
 				{
-					$this->render($template, ["allSongs" => $allSongs, "errors" => $errors]);
+					$this->render($template, ["outOfCatSongs" => $outOfCatSongs, "currentYearSongs" => $currentYearSongs, "sharedSongs" => $sharedSongs, "oldSongs" => $oldSongs, "errors" => $errors]);
 				}
 				else if(!isset($errors) || $errors === [])
 				{
@@ -325,10 +325,9 @@ Class AdminSongsController extends AbstractController
 			$title = $this->sm->getSongTitle($songId);
 			$status = $this->sm->getSongStatus($songId);
 			$songCat = $this->sm->getSongCat($songId);
+			$description = $this->sm->getSongDesc($songId);
 
-			var_dump($status);
-	
-			$this->render($template, ["title" => $title, "status" => $status, "songCat" => $songCat]);
+			$this->render($template, ["title" => $title, "status" => $status, "songCat" => $songCat, "description" => $description]);
 
 		}
 		//Sinon si l'action est "updateStatus" vérifie que quelque chose est coché, sinon rempli le tableau d'erreurs
@@ -359,33 +358,59 @@ Class AdminSongsController extends AbstractController
 			}			
 		}
 		//Sinon si l'action est "updateSongCat" vérifie que quelque chose est coché, sinon rempli le tableau d'erreurs
-		else if(isset($_POST["action"]) && $_POST["action"] === "updateSongCat")
-		{
+		else if (isset($_POST["action"]) && $_POST["action"] === "updateSongCat") {
 			$songId = intval($_POST["songId"]);
 			$title = $this->sm->getSongTitle($songId);
-	
-			if(!isset($_POST["songCat"]) || $_POST["songCat"] === "")
-			{
+
+			if (!isset($_POST["songCat"]) || $_POST["songCat"] === "") {
 				$errors[] = "veuillez choisir une catégorie";
 			}
 
 			//Si le tableau d'erreurs est vide, update le status
-			if(!isset($errors) || $errors === [])
-			{
+			if (!isset($errors) || $errors === []) {
 				$songCat = $_POST["songCat"];
 				$this->sm->updatesongCat($songId, $songCat);
 				$validation = "La catégorie a bien été changé";
 				$status = $this->sm->getSongStatus($songId);
 				$songCat = $this->sm->getSongCat($songId);
-	
+
 				$this->render($template, ["title" => $title, "validation" => $validation, "status" => $status, "songCat" => $songCat]);
 			}
 			else
 			{
 				$this->render($template, ["title" => $title, "errors" => $errors]);
-			}			
+			}
 		}
-		
+		//Sinon si l'action est "updateSong" vérifie que quelque chose est coché, sinon rempli le tableau d'erreurs
+		else if (isset($_POST["action"]) && $_POST["action"] === "updateSong") {
+			$template = "adminModify";
+
+			$songId = intval($_POST["songId"]);
+			$title = $this->sm->getSongTitle($songId);
+
+			if (!isset($_POST["title"]) || $_POST["title"] === "")
+			{
+				$errors[] = "veuillez renseigner au moins le titre";
+			}
+
+			//Si le tableau d'erreurs est vide, update le chant
+			if (!isset($errors) || $errors === []) {
+				$title = $_POST["title"];
+				$description = $_POST["description"];
+				$this->sm->updatesong($songId, $title, $description);
+				$validation = "Le chant a bien été modifié";
+				$status = $this->sm->getSongStatus($songId);
+				$songCat = $this->sm->getSongCat($songId);
+				$title = $this->sm->getSongTitle($songId);
+				$description = $this->sm->getSongDesc($songId);
+
+				$this->render($template, ["title" => $title, "validation" => $validation, "status" => $status, "songCat" => $songCat, "title" => $title, "description" => $description]);
+			}
+			else
+			{
+				$this->render($template, ["title" => $title, "errors" => $errors]);
+			}
+		}
 		//Sinon, redirige vers "adminSongs"
 		else if(!isset($_POST["action"]) || $_POST["action"] === "")
 		{

@@ -106,46 +106,25 @@
 	<fieldset>
 
 		<form  id="updateSong"
-			action="/Luttes-Enchantees/admin-maj"
+			action="/Luttes-Enchantees/admin-modif"
 			method="post">
 
-			<input type="hidden" id="updateStatus" name="action" value="updateSongCat">
+			<input type="hidden" id="updateStatus" name="action" value="updateSong">
 			<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
 				
-			<input type="radio" id="modifySongCat1" name ="songCat" value=1
-			<?php
-				if($data["songCat"] === 1)
-				{
-				?>
-					checked
-				<?php
-				}
-			?>
-			>
-			<label for="modifyStatus1">Année en cours</label>
-			<input type="radio" id="modifySongCat2" name ="status" value=2
-			<?php
-				if($data["songCat"] === 2)
-				{
-				?>
-					checked
-				<?php
-				}
-			?>
-			>
-			<label for="modifySongCat2">Chants de manif / chants communs</label>
+			<label for="title">Titre</label>
+			<input type="text" id="songTitle" name="title" value="<?php
+			if(isset($data["title"]))
+			{
+			?><?= $data["title"]; ?><?php
+			}?>">
 
-			<input type="radio" id="modifySongCat3" name ="status" value=3
-			<?php
-				if($data["songCat"] === 3)
-				{
-				?>
-					checked
-				<?php
-				}
-			?>
-			>
-			<label for="modifySongCat3">Chants années précédentes</label>
+			<label for="title">Description</label>
+			<textarea id="songDesc" name="description" rows="5" cols="80" maxlength="1024"><?php
+			if(isset($data["description"]))
+			{
+			?><?= $data["description"]; ?><?php
+			}?></textarea>
 
 			<input class="button"
 				type="submit">
