@@ -404,7 +404,7 @@ Class AdminSongsController extends AbstractController
 				$title = $this->sm->getSongTitle($songId);
 				$description = $this->sm->getSongDesc($songId);
 
-				$this->render($template, ["title" => $title, "validation" => $validation, "status" => $status, "songCat" => $songCat, "title" => $title, "description" => $description]);
+				$this->render($template, ["title" => $title, "validation" => $validation, "status" => $status, "songCat" => $songCat, "description" => $description]);
 			}
 			else
 			{

@@ -27,10 +27,6 @@ header nav a{
       margin: 1rem;
 }
 
-header nav a:hover{
-      text-decoration: underline;
-}
-
 @media(min-width: 0px) and (max-width: 791.99px){
       #publicNav a{
             margin: 0.5rem;
@@ -48,6 +44,10 @@ header nav a:hover{
       
       #adminNav a{
             margin: 2.5rem;
+      }
+
+      header nav a:hover{
+            text-decoration: underline;
       }
 }
 

@@ -67,14 +67,6 @@ input:checked + label {
 	cursor: pointer;
 }
 
-.button:hover{
-
-	border: none;
-	background-color: $lighterBlue;
-	color: $blue;
-	border: 2px solid $blue;
-}
-
 textarea,
 input[type="date"],
 input[type="text"],
@@ -148,7 +140,6 @@ footer p{
 		font-weight: 700;
 		margin: 1.5rem auto;
 	}
-	
 }
 
 @media(min-width: 792px)
@@ -178,5 +169,11 @@ footer p{
 		font-weight: 700;
 		margin: 1rem auto;
 	}
-	
+
+	.button:hover{
+		border: none;
+		background-color: $lighterBlue;
+		color: $blue;
+		border: 2px solid $blue;
+	}
 }

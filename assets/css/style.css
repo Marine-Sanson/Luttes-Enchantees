@@ -72,13 +72,6 @@ input:checked + label {
   cursor: pointer;
 }
 
-.button:hover {
-  border: none;
-  background-color: #b4f4ff;
-  color: #2713D4;
-  border: 2px solid #2713D4;
-}
-
 textarea,
 input[type=date],
 input[type=text],
@@ -170,6 +163,12 @@ footer p {
     font-weight: 700;
     margin: 1rem auto;
   }
+  .button:hover {
+    border: none;
+    background-color: #b4f4ff;
+    color: #2713D4;
+    border: 2px solid #2713D4;
+  }
 }
 /* ********** Header ********** */
 #publicNav {
@@ -199,10 +198,6 @@ header nav a {
   margin: 1rem;
 }
 
-header nav a:hover {
-  text-decoration: underline;
-}
-
 @media (min-width: 0px) and (max-width: 791.99px) {
   #publicNav a {
     margin: 0.5rem;
@@ -217,6 +212,9 @@ header nav a:hover {
   }
   #adminNav a {
     margin: 2.5rem;
+  }
+  header nav a:hover {
+    text-decoration: underline;
   }
 }
 /* ********** Home ********** */
@@ -913,6 +911,7 @@ header nav a:hover {
     grid-row: 4;
   }
 }
+/* ********** MembersEventDetail ********** */
 #membersEventDetail {
   margin: auto;
   padding: 0.5rem;
@@ -940,6 +939,7 @@ header nav a:hover {
     margin: 2rem;
   }
 }
+/* ********** MembersChat ********** */
 #membersChatP {
   text-align: center;
 }
@@ -1092,6 +1092,7 @@ header nav a:hover {
     height: 5rem;
   }
 }
+/* ********** MembersSharingZone ********** */
 #membersSharingZone {
   margin: auto;
   padding: 0.5rem;
@@ -1204,6 +1205,7 @@ header nav a:hover {
     margin-left: 7rem;
   }
 }
+/* ********** MembersShareByCatP ********** */
 #membersShareByCatP {
   text-align: center;
 }
@@ -1213,6 +1215,7 @@ header nav a:hover {
   margin-left: 7rem;
 }
 
+/* ********** MembersNewShare ********** */
 #newShare {
   margin: auto;
   padding: 0.5rem;
@@ -1343,6 +1346,7 @@ header nav a:hover {
     margin: 1rem auto;
   }
 }
+/* ********** MembersVideos ********** */
 #membersVideos p {
   text-align: center;
 }
@@ -1354,6 +1358,7 @@ header nav a:hover {
   padding: 0.5rem;
 }
 
+/* ********** MembersAccounts ********** */
 #membersAccounts {
   margin: auto;
   padding: 0.5rem;
@@ -1426,6 +1431,7 @@ header nav a:hover {
     font-size: 1.2rem;
   }
 }
+/* ********** AdminSongs ********** */
 #adminSongs p {
   text-align: center;
   margin: auto;
@@ -1557,11 +1563,13 @@ header nav a:hover {
     text-align: left;
   }
 }
+/* ********** AdminAddText ********** */
 @media (min-width: 0px) and (max-width: 791.99px) {
   #adminAddText h1 {
     width: 70vw;
   }
 }
+/* ********** AdminAddVideo ********** */
 @media (min-width: 0px) and (max-width: 791.99px) {
   #adminAddVideo h1 {
     width: 70vw;
@@ -1571,6 +1579,7 @@ header nav a:hover {
     margin: 1rem auto;
   }
 }
+/* ********** AdminAddVoice ********** */
 .changeSongItemArt form {
   margin: auto;
 }
@@ -1622,6 +1631,7 @@ header nav a:hover {
     margin: 1rem 8rem;
   }
 }
+/* ********** AdminModify ********** */
 #adminModify h1 {
   width: 70vw;
 }
@@ -1665,6 +1675,7 @@ header nav a:hover {
     margin: 1rem auto;
   }
 }
+/* ********** AdminEvents ********** */
 #adminEvents {
   padding: 0.5rem;
 }
@@ -1727,6 +1738,7 @@ header nav a:hover {
     margin: 3rem 0;
   }
 }
+/* ********** AdminUpdateEvents ********** */
 #dateFieldset,
 #privateDetailsFieldset,
 #publicDetailsFieldset {
