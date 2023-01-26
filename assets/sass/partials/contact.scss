@@ -3,12 +3,18 @@
       text-align: center;
 }
 
+#contact p + p{
+      margin-top: 1rem;
+}
+
 #contactForm{
+      margin: 2rem auto;
       display: grid;
       grid-template-columns: $gridTempCol;
 }
 
-#contactForm input,
+#contactForm input[type="text"],
+#contactForm input[type="mail"],
 #contactForm textarea{
       margin: 0.5rem;
 }
@@ -16,7 +22,7 @@
 @media(min-width: 0px) and (max-width: 791.99px)
 {
       #contact p{
-            margin: 2rem 0 0.5rem 2rem;
+            margin: 2rem 1rem 0.5rem 1rem;
       }
 
       #contactForm{
@@ -65,30 +71,21 @@
       
       #contactFormSubmit{
             grid-row: 7;
-            grid-column: 6;
-      }
-      
+            grid-column: 1/13;
+            margin: auto;
+      }      
 }
 
-@media(min-width: 792px){
-
+@media(min-width: 792px)
+{
       #contact p{
-            margin: 12rem 0 0.5rem 2rem;
+            margin: 8rem 1rem 0.5rem 1rem;
       }
       
       #contactForm{
             display: grid;
             grid-template-columns: $gridTempCol;
             grid-template-rows: repeat(4, auto);
-      }
-      
-      #contactForm input,
-      #contactForm textarea{
-            margin: 0.5rem;
-      }
-
-      #contactForm label{
-            margin: 0.5rem 0.5rem 0.5rem auto;
       }
       
       #contactForm label{
@@ -133,6 +130,7 @@
       
       #contactFormSubmit{
             grid-row: 4;
-            grid-column: 5;
+            grid-column: 1/13;
+            margin: 0.5rem auto;
       }
 }

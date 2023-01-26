@@ -29,19 +29,8 @@
       margin: 1rem auto;
 }
 
-#chooseASong ul li:nth-child(even){
-      background-color: $lighterBlue;
-      border: 1px solid $blue;
-      border-radius: 8px;
-}
-
 #chooseASong h3{
       margin-top: 3rem;
-      text-align: left;
-}
-
-.chooseSongArt h4{
-      margin: auto auto auto 2rem;
 }
 
 @media(min-width: 0px) and (max-width: 791.99px)
@@ -50,8 +39,8 @@
             max-width: 80vw;
       }
       
-      #chooseSong li{
-            margin: auto 2rem;
+      #chooseASong ul li{
+            margin: auto 1rem;
       }
 
       #newSongDescription{
@@ -60,19 +49,64 @@
       
       .chooseSongArt{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-flow: column;
-      }
-      
-      .chooseSongArt article{
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+
             text-align: right;
             padding: 0.5rem;
       }
+
+      #chooseASong ul li:nth-child(even){
+            background-color: $lighterBlue;
+      }
+
+      .chooseSongArt{
+            border: 1px solid $blue;
+            border-radius: 8px;
+      }
+
+      #outOfCatSongs  li + li,
+      #currentYearSongs li + li,
+      #sharedSong li + li,
+      #oldSongs li + li{
+            margin-top: 2rem;
+      }
+
+      .chooseSongArtTitle{
+            grid-column: 1/3;
+            grid-row: 1;
+            margin: auto;
+            font-weight: 700;
+      }
+
+      .addVoice{
+            grid-column: 1;
+            grid-row: 2;
+      }
       
+      .addText{
+            grid-column: 2;
+            grid-row: 2;
+      }
+
+      .addVideo{
+            grid-column: 1;
+            grid-row: 3;
+      }
+
+      .modify{
+            grid-column: 2;
+            grid-row: 3;
+      }
+
       .chooseSongArt form{
             text-align: center;
             padding: 0.5rem;
             margin: auto;
+      }
+
+      #chooseASong h3{
+            text-align: center;
       }
       
 }
@@ -87,19 +121,29 @@
             margin-top: 5rem;
       }
 
-      #chooseSong li{
+      #chooseASong ul li{
             margin: auto 4rem;
+      }
+
+      #chooseASong ul li:nth-child(even){
+            background-color: $lighterBlue;
+            border: 1px solid $blue;
+            border-radius: 8px;
       }
 
       .chooseSongArt{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             grid-auto-flow: column;
       }
       
-      .chooseSongArt article{
+      .chooseSongArt{
             text-align: right;
-            padding: 0.5rem;
+            padding: 0.2rem;
+      }
+
+      .chooseSongArt h4{
+            margin: auto auto auto 2rem;
       }
       
       .chooseSongArt form{
@@ -108,4 +152,7 @@
             margin: auto;
       }
       
+      #chooseASong h3{
+            text-align: left;
+      }
 }

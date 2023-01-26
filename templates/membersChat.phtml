@@ -36,7 +36,8 @@
 				<label for="newChatContent">Message : </label>
 				<textarea
 					name="content"
-					id="newChatContent"><?php
+					id="newChatContent"
+					rows="5" cols="80"><?php
 					if(isset($_POST["content"]) && $_POST["content"] !== "")
 					{
 					echo $_POST["content"];
@@ -63,6 +64,7 @@
 						<h3 class="displayAllMessagesTitle"><?= $chatItem["title"]; ?></h3>
 						<p class="displayAllMessagesMessage"><?= $chatItem["message"]; ?></p>
 						<p class="displayAllMessagesName"><?= $chatItem["name"]; ?></p>
+						<p class="displayAllMessagesDate"><?= $chatItem["date"]; ?></p>
 						<?php
 						if(isset($chatItem["answers"]))
 						{
@@ -71,6 +73,7 @@
 							?>
 								<p class="displayAllMessagesAwser"><?= $answer["content"]; ?></p>
 								<p class="displayAllMessagesAwserName"><?= $answer["name"]; ?></p>
+								<p class="displayAllMessagesAwserDate"><?= $chatItem["date"]; ?></p>
 							<?php
 							}
 						}

@@ -18,13 +18,13 @@
 			{
 			?>
 				<li>
-					<form id="newSharingMessageForm"
+					<form class="newSharingMessageForm"
 						action="/Luttes-Enchantees/echanges-par-categorie"
 						method="post">
 
-						<input type="hidden" id="newSharingMessage" name="action" value="displaySharingMessage">
-						<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
-						<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
+						<input type="hidden" class="newSharingMessage" name="action" value="displaySharingMessage">
+						<input type="hidden" class="catId" name="catId" value= "<?= $cat["id"]; ?>">
+						<input type="hidden" class="catName" name="catName" value= "<?= $cat["name"]; ?>">
 
 						<input class="button newSharingMessageButton"
 							 type="submit" value="<?= $cat["name"]; ?>">
@@ -50,6 +50,8 @@
 
 						<p class="displayAllSharesName"><?= $share["name"]; ?></p>
 
+						<p class="displayAllSharesDate"><?= $share["date"]; ?></p>
+
 						<?php
 							if(isset($share["answers"]) && $share["answers"] !== [])
 							{
@@ -58,12 +60,13 @@
 								?>
 									<p class="displayAllSharesAwser"><?= $answer["content"]; ?></p>
 									<p class="displayAllSharesAwserName"><?= $answer["name"]; ?></p>
+									<p class="displayAllSharesAwserDate"><?= $answer["date"]; ?></p>
 								<?php
 								}
 							}
 						?>
 
-						<form  id="shareAnswerForm"
+						<form id="shareAnswerForm"
 							action="/Luttes-Enchantees/echanges-par-categorie"
 							method="post">
 

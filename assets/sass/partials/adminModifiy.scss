@@ -1,0 +1,45 @@
+#adminModify h1{
+      width: 70vw;
+}
+
+#updateSong{
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: repeat(3, auto);
+}
+
+#updateSongTitleFieldset{
+      grid-row: 1;
+      margin: 1rem auto;
+}
+
+#updateSongDescriptionLabel{
+      vertical-align: top;
+}
+
+#updateSongDescriptionFieldset{
+      grid-row: 2;
+      margin: 1rem auto;
+}
+
+#updateSong .button{
+      grid-row: 3;
+      margin: 1rem auto;
+}
+
+#changeCat .button{
+      display: grid;
+      margin: 1rem 4rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #updateSongDescription{
+            width: 60vw;
+      }
+
+      #changeCat .button{
+            display: grid;
+            margin: 1rem auto;
+      }
+}

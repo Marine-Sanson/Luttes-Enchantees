@@ -78,14 +78,6 @@ class EventManager extends AbstractManager
 
 	public function updatedEvent(Event $event) : void
 	{
-		var_dump($event);
-		var_dump($event->getId());
-		var_dump($event->getDate());
-		var_dump($event->getEventCatId());
-		var_dump($event->getPrivateDetails());
-		var_dump($event->getPublicDetails());
-		var_dump($event->getStatus());
-
 		$tempStatus = $event->getStatus();
 
 		if(!$tempStatus)
@@ -96,9 +88,6 @@ class EventManager extends AbstractManager
 		{
 			$status = 1;
 		}
-
-		var_dump($status);
-
 
 		$query = $this->db->prepare('UPDATE events SET date = :date, event_cat_id = :event_cat_id, private_details = :private_details, public_details = :public_details, status = :status WHERE id = :id');
 		$parameters = [

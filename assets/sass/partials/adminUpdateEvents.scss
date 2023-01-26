@@ -1,0 +1,32 @@
+#dateFieldset,
+#privateDetailsFieldset,
+#publicDetailsFieldset{
+      margin-top: 1rem;
+}
+
+#privateDetailsFieldset label,
+#publicDetailsFieldset label{
+      vertical-align: top;
+}
+
+#updateEventForm .button{
+      display: grid;
+      margin: 1rem auto;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #adminUpdateEvents h1{
+            width: 70vw;
+      }
+}
+
+@media(min-width: 792px)
+{
+      #updateEventForm{
+            margin-top: 7rem;
+      }
+
+
+}
+

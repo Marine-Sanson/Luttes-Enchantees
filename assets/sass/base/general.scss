@@ -21,6 +21,7 @@ body > main{
 	max-width: $maxWidth;
 	justify-content:center;
 	margin: auto;
+	padding: 0.5rem;
 }
 
 h1,
@@ -84,6 +85,10 @@ input[type="mail"]{
 	font-family: $fontDefault;
 }
 
+textarea{
+	padding: 0.2rem;
+}
+
 .logo{
 	width: 10vw;
 	height: auto;
@@ -103,6 +108,17 @@ input[type="mail"]{
 	font-weight: 700;
 	color: green;
 	margin: 2rem auto;
+}
+
+footer{
+	background-color: $blue;
+	color: $white;
+	padding: 1rem;
+}
+
+footer p{
+	font-size: 1rem;
+	text-align: center;
 }
 
 @media(min-width: 0px) and (max-width: 791.99px)

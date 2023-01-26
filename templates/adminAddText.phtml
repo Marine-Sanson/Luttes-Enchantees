@@ -1,17 +1,18 @@
 <main id="adminAddText">
 
+	<figure>
+		<img class="logo" src="./assets/img/logo1.png" alt="Logo des Luttes Enchantées">
+	</figure>
 
 	<h1>Gestion des fichiers paroles</h3>
 
 	<?php
 	require "./templates/_messages.phtml";
-	var_dump($_POST);
-	var_dump($data);
 	?>
 
 	<h2>Télécharger un fichier paroles pour <?= $data["title"]; ?></h2>
 
-	<form  id="uploader"
+	<form  class="uploader"
 		action="/Luttes-Enchantees/admin-texte"
 		method="post"
 		enctype="multipart/form-data">
@@ -29,6 +30,8 @@
 	</form>
 
 	<article class="changeSongItemArt">
+
+		<h3>Modifier un autre élément de <?= $data["title"]; ?></h3>
 
 		<form id="addVoice"
 			action="/Luttes-Enchantees/admin-voix"

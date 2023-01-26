@@ -26,6 +26,7 @@ body > main {
   max-width: 1140px;
   justify-content: center;
   margin: auto;
+  padding: 0.5rem;
 }
 
 h1,
@@ -88,6 +89,10 @@ input[type=mail] {
   font-family: "Kalam", cursive;
 }
 
+textarea {
+  padding: 0.2rem;
+}
+
 .logo {
   width: 10vw;
   height: auto;
@@ -107,6 +112,17 @@ input[type=mail] {
   font-weight: 700;
   color: green;
   margin: 2rem auto;
+}
+
+footer {
+  background-color: #2713D4;
+  color: rgb(255, 255, 255);
+  padding: 1rem;
+}
+
+footer p {
+  font-size: 1rem;
+  text-align: center;
 }
 
 @media (min-width: 0px) and (max-width: 791.99px) {
@@ -178,7 +194,7 @@ header nav {
 }
 
 header nav a {
-  color: #b4f4ff;
+  color: rgb(255, 255, 255);
   font-weight: 700;
   margin: 1rem;
 }
@@ -204,6 +220,10 @@ header nav a:hover {
   }
 }
 /* ********** Home ********** */
+#home p :not(#homeFirstP) {
+  text-align: justify;
+}
+
 #homeFirstP {
   text-align: center;
 }
@@ -233,28 +253,6 @@ header nav a:hover {
   margin: auto;
 }
 
-#homeActu li {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-}
-
-.homeActuH3 {
-  font-size: 1.2rem;
-  line-height: 2rem;
-  grid-column: 1/5;
-  text-align: right;
-  padding: 0.5rem;
-  margin: 0 0.5rem 0 auto;
-}
-
-#homeActu ul li p {
-  grid-column: 5/13;
-  text-align: left;
-  padding: 0.5rem;
-  margin: 0 auto 0 0.5rem;
-}
-
 #homeActu h2 {
   padding-top: 0.5rem;
 }
@@ -265,6 +263,9 @@ header nav a:hover {
 }
 
 @media (min-width: 0px) and (max-width: 791.99px) {
+  #home h1 {
+    width: 60vw;
+  }
   #homeFirstP {
     margin-bottom: 0.8rem;
   }
@@ -285,7 +286,7 @@ header nav a:hover {
   #homePresentation section {
     grid-column: 2/12;
     grid-row: 3;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
     margin-top: 1rem;
   }
   #homePresentation figure img {
@@ -294,6 +295,25 @@ header nav a:hover {
   /* *** #homeActu *** */
   #homeActu {
     max-width: 95vw;
+  }
+  #homeActu li {
+    display: grid;
+    grid-template-rows: auto;
+    margin-top: 1.5rem;
+  }
+  .homeActuH3 {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    grid-row: 1;
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 0.5rem;
+  }
+  #homeActu ul li p {
+    grid-row: 2;
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 1.5rem;
   }
   /* *** #homeChants *** */
   .homeChantsArticle {
@@ -318,6 +338,10 @@ header nav a:hover {
   }
   .homeChantsArticle .homeUrlVideo iframe {
     max-width: 80vw;
+  }
+  #logoBonus {
+    max-width: 60vw;
+    margin: 2rem auto;
   }
 }
 @media (min-width: 792px) {
@@ -350,6 +374,25 @@ header nav a:hover {
   #homeActu {
     max-width: 90vw;
   }
+  #homeActu li {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+  }
+  .homeActuH3 {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    grid-column: 1/5;
+    text-align: right;
+    padding: 0.5rem;
+    margin: 0 0.5rem 0 auto;
+  }
+  #homeActu ul li p {
+    grid-column: 5/13;
+    text-align: left;
+    padding: 0.5rem;
+    margin: 0 auto 0 0.5rem;
+  }
   /* *** #homeChants *** */
   .homeChantsArticle {
     margin-top: 2rem;
@@ -374,25 +417,35 @@ header nav a:hover {
   .homeChantsArticle .homeUrlVideo iframe {
     max-width: 60vw;
   }
+  #logoBonus {
+    max-width: 25vw;
+    margin: 4rem auto;
+  }
 }
 /* ********** Contact ********** */
 #contact p {
   text-align: center;
 }
 
+#contact p + p {
+  margin-top: 1rem;
+}
+
 #contactForm {
+  margin: 2rem auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
 
-#contactForm input,
+#contactForm input[type=text],
+#contactForm input[type=mail],
 #contactForm textarea {
   margin: 0.5rem;
 }
 
 @media (min-width: 0px) and (max-width: 791.99px) {
   #contact p {
-    margin: 2rem 0 0.5rem 2rem;
+    margin: 2rem 1rem 0.5rem 1rem;
   }
   #contactForm {
     grid-template-rows: repeat(5, 1fr), auto, 1fr;
@@ -432,24 +485,18 @@ header nav a:hover {
   }
   #contactFormSubmit {
     grid-row: 7;
-    grid-column: 6;
+    grid-column: 1/13;
+    margin: auto;
   }
 }
 @media (min-width: 792px) {
   #contact p {
-    margin: 12rem 0 0.5rem 2rem;
+    margin: 8rem 1rem 0.5rem 1rem;
   }
   #contactForm {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(4, auto);
-  }
-  #contactForm input,
-  #contactForm textarea {
-    margin: 0.5rem;
-  }
-  #contactForm label {
-    margin: 0.5rem 0.5rem 0.5rem auto;
   }
   #contactForm label {
     margin: 0.5rem 0.5rem 0.5rem auto;
@@ -486,7 +533,8 @@ header nav a:hover {
   }
   #contactFormSubmit {
     grid-row: 4;
-    grid-column: 5;
+    grid-column: 1/13;
+    margin: 0.5rem auto;
   }
 }
 /* ********** Connect ********** */
@@ -896,47 +944,6 @@ header nav a:hover {
   text-align: center;
 }
 
-#sendNewChatItem {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(2, 1fr) auto 1fr;
-}
-
-#newChatForm {
-  display: grid;
-  grid-column: 1/13;
-  grid-row: 2/5;
-  grid-template-columns: subgrid;
-}
-
-#sendNewChatItem h2 {
-  grid-column: 1/13;
-  grid-row: 1;
-  margin: auto;
-}
-
-.newChatTitleField {
-  grid-column: 2/12;
-  grid-row: 2;
-  margin: 1rem 3rem 1rem auto;
-}
-
-.newChatTitleField input {
-  width: 60vw;
-}
-
-.newChatContentField {
-  grid-column: 2/12;
-  grid-row: 3;
-  margin: 1rem 3rem 1rem auto;
-}
-
-.newChatButton {
-  grid-column: 1/13;
-  grid-row: 4;
-  margin: auto;
-}
-
 #displayAllMessages {
   margin-top: 4rem;
 }
@@ -954,6 +961,10 @@ header nav a:hover {
   margin-left: 3rem;
 }
 
+.displayAllMessagesDate {
+  margin-left: 3rem;
+}
+
 .displayAllMessagesAwser {
   margin-top: 2rem;
   margin-left: 5rem;
@@ -963,18 +974,54 @@ header nav a:hover {
   margin-left: 5rem;
 }
 
+.displayAllMessagesAwserDate {
+  margin-left: 5rem;
+}
+
 #chatAnswerForm {
   margin-top: 1rem;
   margin-left: 7rem;
 }
 
 @media (min-width: 0px) and (max-width: 791.99px) {
+  #sendNewChatItem {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+  #sendNewChatItem h2 {
+    grid-column: 1/13;
+    grid-row: 1;
+    margin: auto;
+  }
+  #newChatForm {
+    display: grid;
+    grid-column: 1/13;
+    grid-row: 2/5;
+    grid-template-columns: subgrid;
+  }
+  .newChatTitleField {
+    grid-column: 2/12;
+    grid-row: 2;
+    margin: 1rem 3rem 1rem auto;
+  }
   #newChatTitle {
     width: 80vw;
+  }
+  .newChatContentField {
+    grid-column: 2/12;
+    grid-row: 3;
+    margin: 1rem 3rem 1rem auto;
   }
   #newChatContent {
     width: 80vw;
     height: 10rem;
+  }
+  .newChatButton {
+    grid-column: 1/13;
+    grid-row: 4;
+    margin: auto;
   }
   #chatAnswerMessage {
     width: 60vw;
@@ -982,8 +1029,66 @@ header nav a:hover {
   }
 }
 @media (min-width: 792px) {
+  #sendNewChatItem {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+  #sendNewChatItem h2 {
+    grid-column: 1/13;
+    grid-row: 1;
+    margin: 1rem auto;
+  }
+  #newChatForm {
+    display: grid;
+    grid-column: 1/13;
+    grid-row: 2/5;
+    grid-template-columns: subgrid;
+  }
+  .newChatTitleField {
+    grid-column: 1/13;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+  }
+  .newChatTitleField label {
+    grid-column: 1/3;
+    grid-row: 1;
+    text-align: right;
+    margin: 1rem;
+  }
+  .newChatTitleField input {
+    grid-column: 3/11;
+    grid-row: 1;
+    margin: 1rem;
+  }
+  #newChatTitle {
+    max-width: 100%;
+  }
+  .newChatContentField {
+    grid-column: 1/13;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+  }
+  .newChatContentField label {
+    grid-column: 1/3;
+    text-align: right;
+    margin: 1rem;
+  }
   #newChatContent {
-    width: 60vw;
+    grid-column: 3/11;
+    max-width: 100%;
+    margin: 1rem;
+  }
+  .newChatButton {
+    grid-column: 1/13;
+    grid-row: 4;
+    margin: 1rem auto;
+  }
+  #chatAnswerMessage {
+    max-width: 100%;
     height: 5rem;
   }
 }
@@ -1037,6 +1142,9 @@ header nav a:hover {
   .displayAllSharesName {
     margin-left: 1.5rem;
   }
+  .displayAllSharesDate {
+    margin-left: 1.5rem;
+  }
   .displayAllSharesAwser {
     margin-top: 1rem;
     margin-left: 2.5rem;
@@ -1044,9 +1152,15 @@ header nav a:hover {
   .displayAllSharesAwserName {
     margin-left: 2.5rem;
   }
+  .displayAllSharesAwserDate {
+    margin-left: 2.5rem;
+  }
   #displayAllSharesForm {
-    margin-top: 1rem;
-    margin-left: 3.5rem;
+    margin: 1rem 3.5rem 0 3.5rem;
+  }
+  #displayAllSharesForm .button {
+    display: grid;
+    margin: 1rem auto;
   }
   #shareAnswerContent {
     max-width: 75vw;
@@ -1072,11 +1186,17 @@ header nav a:hover {
   .displayAllSharesName {
     margin-left: 3rem;
   }
+  .displayAllSharesDate {
+    margin-left: 3rem;
+  }
   .displayAllSharesAwser {
     margin-top: 2rem;
     margin-left: 5rem;
   }
   .displayAllSharesAwserName {
+    margin-left: 5rem;
+  }
+  .displayAllSharesAwserDate {
     margin-left: 5rem;
   }
   #displayAllSharesForm {
@@ -1088,10 +1208,17 @@ header nav a:hover {
   text-align: center;
 }
 
+#shareAnswerForm {
+  margin-top: 1rem;
+  margin-left: 7rem;
+}
+
+#newShare {
+  margin: auto;
+  padding: 0.5rem;
+}
+
 @media (min-width: 0px) and (max-width: 791.99px) {
-  #newShare {
-    margin: 0.5rem;
-  }
   #newShare h1 {
     max-width: 60vw;
   }
@@ -1102,13 +1229,49 @@ header nav a:hover {
     display: grid;
     grid-template-columns: repeat(5, auto);
   }
+  #sendNewShare p {
+    grid-column: 1/13;
+    grid-row: 1;
+    margin: auto;
+  }
+  #sendNewShare {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+  #newShareForm {
+    display: grid;
+    grid-column: 1/13;
+    grid-row: 2/5;
+    grid-template-columns: subgrid;
+  }
+  .newShareTitleField {
+    grid-column: 2/12;
+    grid-row: 2;
+    margin: 1rem 3rem 1rem auto;
+  }
+  #newShareTitle {
+    width: 80vw;
+  }
+  .newShareContentField {
+    grid-column: 2/12;
+    grid-row: 3;
+    margin: 1rem 3rem 1rem auto;
+  }
+  #newShareContent {
+    width: 80vw;
+    height: 10rem;
+  }
+  .newShareButton {
+    grid-column: 1/13;
+    grid-row: 4;
+    margin: auto auto 2rem auto;
+  }
 }
 @media (min-width: 792px) {
-  #newShare {
-    padding: 0.5rem;
-  }
   #newShare h1 {
-    max-width: 60vw;
+    max-width: 40vw;
   }
   #newShare p {
     text-align: center;
@@ -1121,31 +1284,63 @@ header nav a:hover {
   #newShare ul li {
     margin: auto;
   }
+  #sendNewShare {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+  #sendNewShare p {
+    grid-column: 1/13;
+    grid-row: 1;
+    margin: 1rem auto;
+  }
   #newShareForm {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(3, auto);
+    grid-column: 1/13;
+    grid-row: 2/5;
+    grid-template-columns: subgrid;
   }
-  #newShareTitleLabel {
+  .newShareTitleField {
+    grid-column: 1/13;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+  }
+  .newShareTitleField label {
+    grid-column: 1/3;
     grid-row: 1;
-    margin: auto;
+    text-align: right;
+    margin: 1rem;
+  }
+  .newShareTitleField input {
+    grid-column: 3/11;
+    grid-row: 1;
+    margin: 1rem;
   }
   #newShareTitle {
-    grid-row: 1;
-    margin: 0.5rem;
+    max-width: 100%;
   }
-  #newShareContentLabel {
-    grid-row: 2;
-    margin: 0.5rem auto;
+  .newShareContentField {
+    grid-column: 1/13;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+  }
+  .newShareContentField label {
+    grid-column: 1/3;
+    text-align: right;
+    margin: 1rem;
   }
   #newShareContent {
-    grid-row: 2;
-    margin: 0.5rem;
+    grid-column: 3/11;
+    max-width: 100%;
+    margin: 1rem;
   }
-  #newShareForm .button {
-    grid-column: 1/3;
-    grid-row: 3;
-    margin: 0.5rem auto;
+  .newShareButton {
+    grid-column: 1/13;
+    grid-row: 4;
+    margin: 1rem auto;
   }
 }
 #membersVideos p {
@@ -1261,44 +1456,69 @@ header nav a:hover {
   margin: 1rem auto;
 }
 
-#chooseASong ul li:nth-child(even) {
-  background-color: #b4f4ff;
-  border: 1px solid #2713D4;
-  border-radius: 8px;
-}
-
 #chooseASong h3 {
   margin-top: 3rem;
-  text-align: left;
-}
-
-.chooseSongArt h4 {
-  margin: auto auto auto 2rem;
 }
 
 @media (min-width: 0px) and (max-width: 791.99px) {
   #adminSongs p {
     max-width: 80vw;
   }
-  #chooseSong li {
-    margin: auto 2rem;
+  #chooseASong ul li {
+    margin: auto 1rem;
   }
   #newSongDescription {
     width: 60vw;
   }
   .chooseSongArt {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-flow: column;
-  }
-  .chooseSongArt article {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     text-align: right;
     padding: 0.5rem;
+  }
+  #chooseASong ul li:nth-child(even) {
+    background-color: #b4f4ff;
+  }
+  .chooseSongArt {
+    border: 1px solid #2713D4;
+    border-radius: 8px;
+  }
+  #outOfCatSongs li + li,
+  #currentYearSongs li + li,
+  #sharedSong li + li,
+  #oldSongs li + li {
+    margin-top: 2rem;
+  }
+  .chooseSongArtTitle {
+    grid-column: 1/3;
+    grid-row: 1;
+    margin: auto;
+    font-weight: 700;
+  }
+  .addVoice {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .addText {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .addVideo {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .modify {
+    grid-column: 2;
+    grid-row: 3;
   }
   .chooseSongArt form {
     text-align: center;
     padding: 0.5rem;
     margin: auto;
+  }
+  #chooseASong h3 {
+    text-align: center;
   }
 }
 @media (min-width: 792px) {
@@ -1308,37 +1528,230 @@ header nav a:hover {
   #adminSongs section {
     margin-top: 5rem;
   }
-  #chooseSong li {
+  #chooseASong ul li {
     margin: auto 4rem;
+  }
+  #chooseASong ul li:nth-child(even) {
+    background-color: #b4f4ff;
+    border: 1px solid #2713D4;
+    border-radius: 8px;
   }
   .chooseSongArt {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-auto-flow: column;
   }
-  .chooseSongArt article {
+  .chooseSongArt {
     text-align: right;
-    padding: 0.5rem;
+    padding: 0.2rem;
+  }
+  .chooseSongArt h4 {
+    margin: auto auto auto 2rem;
   }
   .chooseSongArt form {
     text-align: center;
     padding: 0.5rem;
     margin: auto;
   }
+  #chooseASong h3 {
+    text-align: left;
+  }
 }
-.changeSongItemArt {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-flow: column;
-  margin: 2rem 10rem;
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #adminAddText h1 {
+    width: 70vw;
+  }
 }
-
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #adminAddVideo h1 {
+    width: 70vw;
+  }
+  .addVideo .button {
+    display: grid;
+    margin: 1rem auto;
+  }
+}
 .changeSongItemArt form {
   margin: auto;
 }
 
+#chooseVoiceType,
+#chooseAFile {
+  margin-left: 2rem;
+}
+
+#chooseVoiceType fieldset,
+#chooseAFile input {
+  margin-left: 2rem;
+}
+
+#chooseAFile {
+  margin-top: 2rem;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #adminAddVoice h1 {
+    width: 70vw;
+  }
+  .changeSongItemArt {
+    margin: 2rem auto;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+  }
+  #adminAddVoice .uploader .button {
+    display: grid;
+    margin: 1rem auto;
+  }
+}
+@media (min-width: 792px) {
+  .changeSongItemArt {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
+    margin: 2rem 10rem;
+  }
+  .changeSongItemArt h3 {
+    grid-row: 1;
+    grid-column: 1/4;
+  }
+  .changeSongItemArt form {
+    grid-row: 2;
+  }
+  #adminAddVoice .uploader .button {
+    margin: 1rem 8rem;
+  }
+}
+#adminModify h1 {
+  width: 70vw;
+}
+
+#updateSong {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(3, auto);
+}
+
+#updateSongTitleFieldset {
+  grid-row: 1;
+  margin: 1rem auto;
+}
+
+#updateSongDescriptionLabel {
+  vertical-align: top;
+}
+
+#updateSongDescriptionFieldset {
+  grid-row: 2;
+  margin: 1rem auto;
+}
+
+#updateSong .button {
+  grid-row: 3;
+  margin: 1rem auto;
+}
+
+#changeCat .button {
+  display: grid;
+  margin: 1rem 4rem;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #updateSongDescription {
+    width: 60vw;
+  }
+  #changeCat .button {
+    display: grid;
+    margin: 1rem auto;
+  }
+}
+#adminEvents {
+  padding: 0.5rem;
+}
+
 #createNewEvent {
   margin-top: 7rem;
+}
+
+#privateDetailsLabel,
+#publicDetailsLabel {
+  vertical-align: top;
+}
+
+#privateDetailsFieldset,
+#publicDetailsFieldset {
+  margin-top: 1rem;
+}
+
+#createNewEvent .button {
+  display: grid;
+  margin: 1rem auto;
+}
+
+#newEventInfos h2,
+#otherEvents h3 {
+  text-align: left;
+}
+
+#newEventInfos p {
+  text-align: justify;
+}
+
+#displayUpdateEventForm {
+  text-align: center;
+}
+
+#otherEvents p {
+  margin: 1rem;
+  text-align: justify;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #newEventInfos,
+  #otherEvents {
+    margin-top: 2rem;
+  }
+  #otherEvents li {
+    margin: 2rem 0;
+  }
+  textarea {
+    width: 60vw;
+  }
+}
+@media (min-width: 792px) {
+  #newEventInfos,
+  #otherEvents {
+    margin-top: 3rem;
+  }
+  #otherEvents li {
+    margin: 3rem 0;
+  }
+}
+#dateFieldset,
+#privateDetailsFieldset,
+#publicDetailsFieldset {
+  margin-top: 1rem;
+}
+
+#privateDetailsFieldset label,
+#publicDetailsFieldset label {
+  vertical-align: top;
+}
+
+#updateEventForm .button {
+  display: grid;
+  margin: 1rem auto;
+}
+
+@media (min-width: 0px) and (max-width: 791.99px) {
+  #adminUpdateEvents h1 {
+    width: 70vw;
+  }
+}
+@media (min-width: 792px) {
+  #updateEventForm {
+    margin-top: 7rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

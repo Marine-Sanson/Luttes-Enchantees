@@ -53,6 +53,10 @@
 	.displayAllSharesName{
 		margin-left: 1.5rem;
 	}
+
+	.displayAllSharesDate{
+		margin-left: 1.5rem;
+	}
 	
 	.displayAllSharesAwser{
 		margin-top: 1rem;
@@ -62,10 +66,18 @@
 	.displayAllSharesAwserName{
 		margin-left: 2.5rem;
 	}
+
+	.displayAllSharesAwserDate{
+		margin-left: 2.5rem;
+	}
 	
 	#displayAllSharesForm{
-		margin-top: 1rem;
-		margin-left: 3.5rem;
+		margin: 1rem 3.5rem 0 3.5rem;
+	}
+
+	#displayAllSharesForm .button{
+		display: grid;
+		margin: 1rem auto;
 	}
 
 	#shareAnswerContent{
@@ -99,6 +111,10 @@
 	.displayAllSharesName{
 		margin-left: 3rem;
 	}
+
+	.displayAllSharesDate{
+		margin-left: 3rem;
+	}
 	
 	.displayAllSharesAwser{
 		margin-top: 2rem;
@@ -106,6 +122,10 @@
 	}
 	
 	.displayAllSharesAwserName{
+		margin-left: 5rem;
+	}
+
+	.displayAllSharesAwserDate{
 		margin-left: 5rem;
 	}
 	

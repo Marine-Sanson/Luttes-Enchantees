@@ -4,62 +4,82 @@ Class AdminEventsController extends AbstractController
 {
 	public function index() :void
 	{
-		if ($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "admin") {
+		if ($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "admin")
+		{
 			$template = "adminEvents";
 			$cats = $this->em->getCats();
 
-			if (isset($_POST["action"]) && $_POST["action"] === "newEvent") {
+			if (isset($_POST["action"]) && $_POST["action"] === "newEvent")
+			{
 				// $tempPriv = trim($_POST["privateDetails"]);
 				// $tempPub = trim($_POST["publicDetails"]);
 
-				if ($_POST["eventDate"] === "") {
+				if ($_POST["eventDate"] === "")
+				{
 					$errors[] = "veuillez selectionner une date";
-				} else {
+				}
+				else
+				{
 					$tempDate = $_POST["eventDate"];
 					$explode = explode("-", $tempDate);
 					$date = $explode[2] . "-" . $explode[1] . "-" . $explode[0];
 				}
-
-				if (!isset($_POST["cat"]) || $_POST["cat"] === "") {
+				if(!isset($_POST["cat"]) || $_POST["cat"] === "")
+				{
 					$errors[] = "veuillez choisir une catégorie";
-				} else {
+				}
+				else
+				{
 					$eventCatId = intval($_POST["cat"]);
 
-					if ($_POST["privateDetails"] === "") {
-						if ($_POST["cat"] === "1") {
+					if($_POST["privateDetails"] === "")
+					{
+						if($_POST["cat"] === "1")
+						{
 							$privateDetails = "Arrivée entre 9h30 et 10H - Début séance 10h, fin 13h et papotages rangement. 46 rue de lorient, locaux de l ASFAD en face stade rennais salle Angelina Gonidec. Amenez verres boissons... Enfants bienvenus";
-						} else {
+						}
+						else
+						{
 							$errors[] = "veuillez précisez les infos internes";
 						}
-					} else {
+					}
+					else
+					{
 						$privateDetails = $_POST["privateDetails"];
 					}
-
-					if ($_POST["publicDetails"] === "") {
-						if ($_POST["cat"] === "1") {
+					if($_POST["publicDetails"] === "")
+					{
+						if($_POST["cat"] === "1")
+						{
 							$publicDetails = "Répétition de 10h à 13h";
-						} else {
+						}
+						else
+						{
 							$publicDetails = $_POST["privateDetails"];
 						}
-					} else {
+					}
+					else
+					{
 						$publicDetails = $_POST["publicDetails"];
 					}
 				}
-
-				if (!isset($_POST["status"]) || $_POST["status"] === "") {
+				if(!isset($_POST["status"]) || $_POST["status"] === "")
+				{
 					$errors[] = "Veuillez définir un statut";
-				} else {
+				}
+				else
+				{
 					$status = $_POST["status"];
 				}
-
-
-				if (!isset($errors) || $errors === []) {
+				if(!isset($errors) || $errors === [])
+				{
 					$newEvent = new Event(null, $date, $eventCatId, $privateDetails, $publicDetails, $status);
 					$eventId = $this->em->createEvent($newEvent);
 					$users = $this->um->getAllUsersId();
 					$status = "Non répondu";
 
-					foreach ($users as $key => $user) {
+					foreach ($users as $key => $user)
+					{
 						$this->pm->createParticipation($eventId, $user["id"], $status);
 					}
 
@@ -67,24 +87,31 @@ Class AdminEventsController extends AbstractController
 					$events = $this->em->getEvents();
 
 					$this->render($template, ["cats" => $cats, "events" => $events, "validation" => $validation]);
-				} else {
-					if (!isset($tempDate)) {
+				}
+				else
+				{
+					if(!isset($tempDate))
+					{
 						$tempDate = "";
 					}
 
-					if (!isset($eventCatId)) {
+					if(!isset($eventCatId))
+					{
 						$eventCatId = "";
 					}
 
-					if (!isset($status)) {
+					if(!isset($status))
+					{
 						$status = "";
 					}
 
-					if (!isset($privateDetails)) {
+					if(!isset($privateDetails))
+					{
 						$privateDetails = "";
 					}
 
-					if (!isset($publicDetails)) {
+					if(!isset($publicDetails))
+					{
 						$publicDetails = "";
 					}
 
@@ -99,8 +126,9 @@ Class AdminEventsController extends AbstractController
 
 					$this->render($template, ["cats" => $cats, "event" => $event, "events" => $events, "errors" => $errors]);
 				}
-
-			} else if (!isset($_POST["action"]) || $_POST["action"] === "") {
+			}
+			else if(!isset($_POST["action"]) || $_POST["action"] === "")
+			{
 				$events = $this->em->getEvents();
 
 				$template = "adminEvents";
@@ -142,9 +170,8 @@ Class AdminEventsController extends AbstractController
 			$cat = $this->em->getCatById($catId);
 			$cats = $this->em->getCats();
 
-			$validation = "cet évenement à bien été modifé";
 			$template = "adminUpdateEvent";
-			$this->render($template, ["event" => $event, "validation" => $validation, "cat" => $cat, "cats" => $cats]);
+			$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
 		}
 		else if(isset($_POST) && $_POST["action"] === "updateEvent")
 		{
@@ -162,8 +189,9 @@ Class AdminEventsController extends AbstractController
 			$cat = $this->em->getCatById($catId);
 			$cats = $this->em->getCats();
 		
+			$validation = "cet évenement à bien été modifé";
 			$template = "adminUpdateEvent";
-			$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
+			$this->render($template, ["event" => $event, "validation" => $validation, "cat" => $cat, "cats" => $cats]);
 		}
 		else
 		{

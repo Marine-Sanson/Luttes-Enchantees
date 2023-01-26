@@ -55,9 +55,9 @@
 					<li>
 						<article class="chooseSongArt">
 
-							<h4><?=$outOfCatSong["title"]; ?></h4>
+							<h4 class="chooseSongArtTitle"><?=$outOfCatSong["title"]; ?></h4>
 
-							<form id="addVoice"
+							<form class="addVoice"
 								action="/Luttes-Enchantees/admin-voix"
 								method="post">
 
@@ -67,7 +67,7 @@
 								<input class="button" type="submit" value="Ajouter une voix">
 							</form>
 
-							<form id="addText"
+							<form class="addText"
 								action="/Luttes-Enchantees/admin-texte"
 								method="post">
 
@@ -77,7 +77,7 @@
 								<input class="button" type="submit" value="Ajouter un texte">
 							</form>
 
-							<form id="addVideo"
+							<form class="addVideo"
 								action="/Luttes-Enchantees/admin-video"
 								method="post">
 
@@ -87,7 +87,7 @@
 								<input class="button" type="submit" value="Ajouter une video">
 							</form>
 
-							<form id="modify"
+							<form class="modify"
 								action="/Luttes-Enchantees/admin-modif"
 								method="post">
 
@@ -119,9 +119,9 @@
 				<li>
 					<article class="chooseSongArt">
 
-						<h4><?=$currentYearSong["title"]; ?></h4>
+						<h4 class="chooseSongArtTitle"><?=$currentYearSong["title"]; ?></h4>
 
-						<form id="addVoice"
+						<form class="addVoice"
 							action="/Luttes-Enchantees/admin-voix"
 							method="post">
 
@@ -131,7 +131,7 @@
 							<input class="button" type="submit" value="Ajouter une voix">
 						</form>
 
-						<form id="addText"
+						<form class="addText"
 							action="/Luttes-Enchantees/admin-texte"
 							method="post">
 
@@ -141,7 +141,7 @@
 							<input class="button" type="submit" value="Ajouter un texte">
 						</form>
 
-						<form id="addVideo"
+						<form class="addVideo"
 							action="/Luttes-Enchantees/admin-video"
 							method="post">
 
@@ -151,7 +151,7 @@
 							<input class="button" type="submit" value="Ajouter une video">
 						</form>
 
-						<form id="modify"
+						<form class="modify"
 							action="/Luttes-Enchantees/admin-modif"
 							method="post">
 
@@ -168,9 +168,9 @@
 			?>
 		</ul>
 
-		<h3>Chants communs :</h3>
+		<h3>Chants de manif / Chants partagés :</h3>
 
-		<ul id="outOfCatSongs">
+		<ul id="sharedSong">
 			<?php
 			foreach($data["sharedSongs"] as $key => $sharedSong)
 			{
@@ -178,9 +178,9 @@
 				<li>
 					<article class="chooseSongArt">
 
-						<h4><?=$sharedSong["title"]; ?></h4>
+						<h4 class="chooseSongArtTitle"><?=$sharedSong["title"]; ?></h4>
 
-						<form id="addVoice"
+						<form class="addVoice"
 							action="/Luttes-Enchantees/admin-voix"
 							method="post">
 
@@ -190,7 +190,7 @@
 							<input class="button" type="submit" value="Ajouter une voix">
 						</form>
 
-						<form id="addText"
+						<form class="addText"
 							action="/Luttes-Enchantees/admin-texte"
 							method="post">
 
@@ -200,7 +200,7 @@
 							<input class="button" type="submit" value="Ajouter un texte">
 						</form>
 
-						<form id="addVideo"
+						<form class="addVideo"
 							action="/Luttes-Enchantees/admin-video"
 							method="post">
 
@@ -210,7 +210,7 @@
 							<input class="button" type="submit" value="Ajouter une video">
 						</form>
 
-						<form id="modify"
+						<form class="modify"
 							action="/Luttes-Enchantees/admin-modif"
 							method="post">
 
@@ -238,9 +238,9 @@
 				<li>
 					<article class="chooseSongArt">
 
-						<h4><?=$oldSong["title"]; ?></h4>
+						<h4 class="chooseSongArtTitle"><?=$oldSong["title"]; ?></h4>
 
-						<form id="addVoice"
+						<form class="addVoice"
 							action="/Luttes-Enchantees/admin-voix"
 							method="post">
 
@@ -250,7 +250,7 @@
 							<input class="button" type="submit" value="Ajouter une voix">
 						</form>
 
-						<form id="addText"
+						<form class="addText"
 							action="/Luttes-Enchantees/admin-texte"
 							method="post">
 
@@ -260,7 +260,7 @@
 							<input class="button" type="submit" value="Ajouter un texte">
 						</form>
 
-						<form id="addVideo"
+						<form class="addVideo"
 							action="/Luttes-Enchantees/admin-video"
 							method="post">
 
@@ -270,7 +270,7 @@
 							<input class="button" type="submit" value="Ajouter une video">
 						</form>
 
-						<form id="modify"
+						<form class="modify"
 							action="/Luttes-Enchantees/admin-modif"
 							method="post">
 

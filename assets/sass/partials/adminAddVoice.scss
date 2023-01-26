@@ -1,10 +1,61 @@
-.changeSongItemArt{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-flow: column;
-      margin: 2rem 10rem;
-}
+
 
 .changeSongItemArt form{
       margin: auto;
+}
+
+#chooseVoiceType,
+#chooseAFile{
+      margin-left: 2rem;
+}
+
+#chooseVoiceType fieldset,
+#chooseAFile input{
+      margin-left: 2rem;
+}
+
+#chooseAFile{
+      margin-top: 2rem;
+}
+
+@media(min-width: 0px) and (max-width: 791.99px)
+{
+      #adminAddVoice h1{
+            width: 70vw;
+      }
+
+      .changeSongItemArt{
+            margin: 2rem auto;
+            display: grid;
+            grid-template-rows: repeat(4, auto);
+      }
+
+      #adminAddVoice .uploader .button{
+            display: grid;
+            margin: 1rem auto;
+      }
+}
+
+@media(min-width: 792px)
+{
+      .changeSongItemArt{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);;
+            grid-auto-flow: column;
+            margin: 2rem 10rem;
+      }
+
+      .changeSongItemArt h3{
+            grid-row: 1;
+            grid-column: 1/4;
+      }
+
+      .changeSongItemArt form{
+            grid-row: 2;
+      }
+
+      #adminAddVoice .uploader .button{
+            margin: 1rem 8rem;
+      }
 }

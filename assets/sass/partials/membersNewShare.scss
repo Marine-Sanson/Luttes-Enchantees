@@ -1,9 +1,10 @@
+#newShare{
+      margin: auto;
+      padding: 0.5rem;
+}
+
 @media(min-width: 0px) and (max-width: 791.99px)
 {
-      #newShare{
-            margin: 0.5rem;
-      }
-
       #newShare h1{
             max-width: 60vw;
       }
@@ -16,20 +17,59 @@
 		display: grid;
 		grid-template-columns: repeat(5, auto);
 	}
-
-      #newShareForm{
-
+      
+      #sendNewShare p{
+            grid-column: 1/13;
+            grid-row: 1;
+            margin: auto;
       }
+
+      #sendNewShare{
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: $gridTempCol;
+            grid-template-rows: repeat(4, auto);
+      }
+      
+      #newShareForm{
+            display: grid;
+            grid-column: 1/13;
+            grid-row: 2/5;
+            grid-template-columns: subgrid;
+      }
+
+      .newShareTitleField{
+            grid-column: 2/12;
+            grid-row: 2;
+            margin: 1rem 3rem 1rem auto;
+      }
+
+      #newShareTitle{
+            width:80vw;
+      }
+
+      .newShareContentField{
+            grid-column: 2/12;
+            grid-row: 3;
+            margin: 1rem 3rem 1rem auto;
+      }
+
+      #newShareContent{
+            width:80vw;
+            height: 10rem;
+      }
+
+      .newShareButton{
+            grid-column: 1/13;
+            grid-row: 4;
+            margin: auto auto 2rem auto;
+      }        
 }
 
 @media(min-width: 792px)
 {
-      #newShare{
-            padding: 0.5rem;
-      }
-
       #newShare h1{
-            max-width: 60vw;
+            max-width: 40vw;
       }
 
       #newShare p{
@@ -46,36 +86,76 @@
             margin: auto;
       }
 
-      #newShareForm{
-            display: grid;
-            grid-template-columns: repeat(2, auto);
-            grid-template-rows: repeat(3, auto);
+      #sendNewShare{
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: $gridTempCol;
+		grid-template-rows: repeat(4, auto);
       }
 
-      #newShareTitleLabel{
-            grid-row: 1;
-            margin: auto;
+      #sendNewShare p{
+		grid-column: 1/13;
+		grid-row: 1;
+		margin: 1rem auto;
+	}
+      
+      #newShareForm{
+		display: grid;
+		grid-column: 1/13;
+		grid-row: 2/5;
+		grid-template-columns: subgrid;
       }
+
+      .newShareTitleField{
+		grid-column: 1/13;
+		grid-row: 2;
+		display: grid;
+
+		grid-template-columns: repeat(10, 1fr);
+      }
+
+      .newShareTitleField label{
+		grid-column: 1/3;
+		grid-row: 1;
+
+		text-align: right;
+		margin: 1rem;
+	}
+
+	.newShareTitleField input{
+		grid-column: 3/11;
+		grid-row: 1;
+		margin: 1rem;
+	}
 
       #newShareTitle{
-            grid-row: 1;
-            margin: 0.5rem;
+		max-width:100%;
+	}
+
+      .newShareContentField{
+		grid-column: 1/13;
+		grid-row: 3;
+		display: grid;
+
+		grid-template-columns: repeat(10, 1fr);
       }
 
-      #newShareContentLabel{
-            grid-row: 2;
-            margin: 0.5rem auto;
-      }
+      .newShareContentField label{
+		grid-column: 1/3;
+
+		text-align: right;
+		margin: 1rem;
+	}
 
       #newShareContent{
-            grid-row: 2;
-            margin: 0.5rem;
+		grid-column: 3/11;
+		max-width:100%;
+		margin: 1rem;
       }
 
-      #newShareForm .button{
-            grid-column: 1/3;
-            grid-row: 3;
-            margin: 0.5rem auto;
-      }
-
+      .newShareButton{
+		grid-column: 1/13;
+		grid-row: 4;
+		margin: 1rem auto;
+      }        
 }

@@ -1,5 +1,9 @@
 <main id="adminAddVoice">
 
+	<figure>
+		<img class="logo" src="./assets/img/logo1.png" alt="Logo des Luttes Enchantées">
+	</figure>
+
 	<h1>Gestion des fichiers sons</h3>
 
 	<?php
@@ -8,7 +12,7 @@
 
 	<h2>Télécharger des fichiers son pour <?= $data["title"]; ?></h2>
 
-	<form  id="uploader"
+	<form  class="uploader"
 		action="/Luttes-Enchantees/admin-voix"
 		method="post"
 		enctype="multipart/form-data">
@@ -16,41 +20,59 @@
 		<input type="hidden" id="uploadVoice" name="action" value="uploadVoice">
 		<input type="hidden" id="songId" name="songId" value= "<?= $_POST["songId"]; ?> ">
 	
-		<fieldset>
-			<legend>Choisir un fichier à télécharger:</legend>
+		<fieldset id="chooseVoiceType">
+			<legend>Choisir le type de son:</legend>
 
-			<input type="radio" id="aigue" name="voice" value="aigue">
-			<label for="aigue">Aigüe</label>
+			<fieldset>
+				<input type="radio" id="aigue" name="voice" value="aigue">
+				<label for="aigue">Aigüe</label>
+			</fieldset>
 
-			<input type="radio" id="medium" name="voice" value="medium">
-			<label for="medium">Medium</label>
+			<fieldset>
+				<input type="radio" id="medium" name="voice" value="medium">
+				<label for="medium">Medium</label>
+			</fieldset>
 
-			<input type="radio" id="grave" name="voice" value="grave">
-			<label for="grave">Grave</label>
+			<fieldset>
+				<input type="radio" id="grave" name="voice" value="grave">
+				<label for="grave">Grave</label>
+			</fieldset>
 
-			<input type="radio" id="mix" name="voice" value="Tutti">
-			<label for="Tutti">Tutti</label>
+			<fieldset>
+				<input type="radio" id="mix" name="voice" value="Tutti">
+				<label for="Tutti">Tutti</label>
+			</fieldset>
 
-			<input type="radio" id="demo" name="voice" value="demo">
-			<label for="demo">Démo</label>
+			<fieldset>
+				<input type="radio" id="demo" name="voice" value="demo">
+				<label for="demo">Démo</label>
+			</fieldset>
 
-			<input type="radio" id="other" name="voice" value="other">
-			<label for="other">Autre</label>
-			<label for="otherVoice"> : </label>
-			<input type="text" id="otherVoice" name="other" />
+			<fieldset>
+				<input type="radio" id="other" name="voice" value="other">
+				<label for="other">Autre</label>
+				<label for="otherVoice"> : </label>
+				<input type="text" id="otherVoice" name="other" />
+			</fieldset>
+
 		</fieldset>
 
+		<fieldset id="chooseAFile">
+			<legend>Choisir un fichier à télécharger:</legend>
 
-		<input type="file"
-			name="fileToUpload"
-			id="fileToUpload">
-			
+			<input type="file"
+				name="fileToUpload"
+				id="fileToUpload">
+		</fieldset>
+
 		<input class="button"
 			 type="submit">
 
 	</form>
 
 	<article class="changeSongItemArt">
+
+		<h3>Modifier un autre élément de <?= $data["title"]; ?></h3>
 
 		<form id="addText"
 			action="/Luttes-Enchantees/admin-texte"

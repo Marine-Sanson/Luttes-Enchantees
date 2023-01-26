@@ -1,6 +1,5 @@
 <main id="adminUpdateEvents">
 	<?php
-      var_dump($_POST);
 	$event = $data["event"];
 	$id = $event->getId();
       $date = $event->getDate();
@@ -13,7 +12,15 @@
       $cat = $data["cat"];
 	?>
 
+	<figure>
+		<img class="logo" src="../assets/img/logo1.png" alt="Logo des Luttes Enchantées">
+	</figure>
+
 	<h1><?= $cat; ?> du <?= $date; ?></h1>
+
+	<?php
+	require "./templates/_messages.phtml";
+	?>
 
 	<form  id="updateEventForm"
 		 action="/Luttes-Enchantees/admin-modif-date/<?= $id; ?>"
@@ -23,6 +30,9 @@
 			id="updateEvent"
 			name="action"
 			value="updateEvent">
+		<input type="hidden"
+			name="route"
+			value="param">
 		<input type="hidden"
 				id="eventId"
 				name="eventId"
@@ -52,7 +62,7 @@
 		</fieldset>
 
 		<fieldset>
-			<legend>Cet événement est il privé ou public ?</legend>
+			<legend>Cet événement est il interne ou public ?</legend>
 
 				<input type="radio" name="status" value=1
 				<?php
@@ -64,7 +74,7 @@
 					}
 				?>
 				>
-				<label for="cat">Privé</label>
+				<label for="cat">Interne</label>
 				
 				<input type="radio" name="status" value=0
 				<?php
@@ -79,36 +89,45 @@
 				<label for="cat">Public</label>
 		</fieldset>
 
-		<input type="date"
-				id="date"
-				name="date"
-				value="<?= $dateForInput; ?>">
-				<label for="privateDetails">Infos internes : </label>
-		<textarea
-			name="privateDetails"
-			id="privateDetails"
-			rows="10" cols="80"
-			maxlength="1024"><?php
-			if(isset($data["event"]))
-			{
-			echo $privateDetails;
-			}
-			?></textarea>
+		<fieldset id="dateFieldset">
+			<label id="dateLabel" for="date">Date : </label>
+			<input type="date"
+					id="dateInput"
+					name="date"
+					value="<?= $dateForInput; ?>">
+		</fieldset>
 
-		<label for="publicDetails">Infos publiques : </label>
-		<textarea
-			name="publicDetails"
-			id="publicDetails"
-			rows="10" cols="80"
-			maxlength="1024"><?php
-			if(isset($data["event"]))
-			{
-			echo $publicDetails;
-			}
-			?></textarea>
+		<fieldset id="privateDetailsFieldset">
+			<label for="privateDetails">Infos membres : </label>
+			<textarea
+				name="privateDetails"
+				id="privateDetails"
+				rows="5" cols="80"
+				maxlength="1024"><?php
+				if(isset($data["event"]))
+				{
+				echo $privateDetails;
+				}
+				?></textarea>
+		</fieldset>
+
+		<fieldset id="publicDetailsFieldset">
+			<label for="publicDetails">Infos publiques : </label>
+			<textarea
+				name="publicDetails"
+				id="publicDetails"
+				rows="5" cols="80"
+				maxlength="1024"><?php
+				if(isset($data["event"]))
+				{
+				echo $publicDetails;
+				}
+				?></textarea>
+		</fieldset>
+
 		<input class="button"
-				type="submit"
-				value="Modifier">
+			 type="submit"
+			 value="Modifier">
 	</form>
 
 

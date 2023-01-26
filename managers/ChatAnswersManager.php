@@ -16,7 +16,7 @@ class ChatAnswersManager extends AbstractManager
 
 	public function getAllChatAnswers(int $chatId) : array
 	{
-		$query = $this->db->prepare('SELECT chat_answers.*, users.name FROM chat_answers JOIN users ON chat_answers.user_id = users.id WHERE chat_item_id = :chat_item_id ORDER BY id');
+		$query = $this->db->prepare('SELECT chat_answers.*, users.name, date FROM chat_answers JOIN users ON chat_answers.user_id = users.id WHERE chat_item_id = :chat_item_id ORDER BY id');
 		$parameters = [
 			'chat_item_id' => $chatId
 			];

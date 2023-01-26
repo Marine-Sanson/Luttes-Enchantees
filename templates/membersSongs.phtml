@@ -8,31 +8,38 @@
 
 	<p>Pour voir le détail d'un chant (paroles, voix) cliquer dessus</p>
 
-	<h2>Hors Catégorie</h2>
+	<?php
+	if(isset($data["outOfCatSongs"]) && $data["outOfCatSongs"] !== [])
+	{
+	?>
+		<h2>Hors Catégorie</h2>
 
-	<ul class="outOfCatSongs">
-		<?php
-		foreach($data["outOfCatSongs"] as $key => $outOfCatSong)
-		{
-		?>
-		<li>
-			<form class="songsForDetail"
-				method="POST"
-				action="/Luttes-enchantees/detail-chant/<?= $outOfCatSong["id"]; ?>">
-				
-				<input type="hidden" name="route" value="param">
-				<input type="hidden"
-					name="id"
-					value="<?= $outOfCatSong["id"] ?>">
-					
-				<input class="button" type="submit" value="<?= $outOfCatSong["title"]; ?>">
-				
-            	</form>
-		</li>
-		<?php
-		}
-		?>
-	</ul>
+			<ul class="outOfCatSongs">
+				<?php
+				foreach($data["outOfCatSongs"] as $key => $outOfCatSong)
+				{
+				?>
+				<li>
+					<form class="songsForDetail"
+						method="POST"
+						action="/Luttes-enchantees/detail-chant/<?= $outOfCatSong["id"]; ?>">
+						
+						<input type="hidden" name="route" value="param">
+						<input type="hidden"
+							name="id"
+							value="<?= $outOfCatSong["id"] ?>">
+							
+						<input class="button" type="submit" value="<?= $outOfCatSong["title"]; ?>">
+						
+					</form>
+				</li>
+				<?php
+				}
+				?>
+			</ul>
+	<?php
+	}
+	?>
 
 	<h2>Chants année en cours</h2>
 
@@ -60,7 +67,7 @@
 		?>
 	</ul>
 
-	<h2>Chants communs</h2>
+	<h2>Chants de manif / Chants partagés</h2>
 
 	<ul class="sharedSongs">
 		<?php

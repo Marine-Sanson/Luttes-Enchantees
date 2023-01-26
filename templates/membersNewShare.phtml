@@ -12,21 +12,21 @@
 
 	<p>Si tu veux changer de catégorie, pas de problème ! Choisi en dessous :</p>
 
-	<ul>
+	<ul class="sharingMessageForm">
 		<?php
 			foreach($data["allCats"] as $key => $cat)
 			{
 			?>
 				<li>
-					<form  id="newSharingMessageForm"
+					<form  class="newSharingMessageForm"
 						action="/Luttes-Enchantees/nouvel-echange"
 						method="post">
 
-						<input type="hidden" id="newSharingMessage" name="action" value="newSharingMessage">
-						<input type="hidden" id="catId" name="catId" value= "<?= $cat["id"]; ?>">
-						<input type="hidden" id="catName" name="catName" value= "<?= $cat["name"]; ?>">
+						<input type="hidden" class="newSharingMessage" name="action" value="newSharingMessage">
+						<input type="hidden" class="catId" name="catId" value= "<?= $cat["id"]; ?>">
+						<input type="hidden" class="catName" name="catName" value= "<?= $cat["name"]; ?>">
 
-						<input class="button"
+						<input class="button newSharingMessageButton"
 							type="submit" value="<?= $cat["name"]; ?>">
 					</form>
 				</li>
@@ -35,36 +35,43 @@
 		?>
 	</ul>
 
-	<p>Sinon tu peux écrire ton message :</p>
+	<section id="sendNewShare">
 
-	<form  id="newShareForm"
-		action="/Luttes-Enchantees/nouvel-echange"
-		method="post">
+		<p>Sinon tu peux écrire ton message :</p>
 
-		<input type="hidden" id="newShare" name="action" value="newShare">
-		<input type="hidden" id="catId" name="catId" value= "<?= $_POST["catId"]; ?>">
-		<input type="hidden" id="catName" name="catName" value= "<?= $_POST["catName"]; ?>">
+		<form id="newShareForm"
+			action="/Luttes-Enchantees/nouvel-echange"
+			method="post">
 
-		<label id="newShareTitleLabel" for="newShareTitle">Titre :</label>
-		<input type="text" id="newShareTitle" name="title" value="<?php
-		if(isset($_POST["title"]) && $_POST["title"] !== "")
-		{
-			echo $_POST["title"];
-		}
-		?>">
+			<input type="hidden" id="newShare" name="action" value="newShare">
+			<input type="hidden" id="catId" name="catId" value= "<?= $_POST["catId"]; ?>">
+			<input type="hidden" id="catName" name="catName" value= "<?= $_POST["catName"]; ?>">
 
-		<label id="newShareContentLabel" for="newShareContent">Message : </label>
-		<textarea
-			name="content"
-			id="newShareContent"
-			rows="5" cols="80"><?php
-			if(isset($_POST["content"]) && $_POST["content"] !== "")
-			{
-			echo $_POST["content"];
-			}
-			?></textarea>
+			<fieldset class="newShareTitleField">
+				<label id="newShareTitleLabel" for="newShareTitle">Titre :</label>
+				<input type="text" id="newShareTitle" name="title" value="<?php
+				if(isset($_POST["title"]) && $_POST["title"] !== "")
+				{
+					echo $_POST["title"];
+				}
+				?>">
+			</fieldset>
 
-		<input class="button"
-				type="submit" value="Envoyer">
-	</form>
+			<fieldset class="newShareContentField">
+				<label id="newShareContentLabel" for="newShareContent">Message : </label>
+				<textarea
+					name="content"
+					id="newShareContent"
+					rows="5" cols="80"><?php
+					if(isset($_POST["content"]) && $_POST["content"] !== "")
+					{
+					echo $_POST["content"];
+					}
+					?></textarea>
+			</fieldset>
+
+			<input class="button newShareButton"
+					type="submit" value="Envoyer">
+		</form>
+	</section>
 </main>
