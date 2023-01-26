@@ -13,10 +13,6 @@
       color: $blue;
 }
 
-#home section p a:hover{
-      text-decoration: underline;
-}
-
 /* *** #homePresentation *** */
 
 #homePresentation figure{
@@ -53,6 +49,10 @@
 
       #homeFirstP{
             margin-bottom: 0.8rem;
+      }
+
+      #home section p a:hover{
+            text-decoration: underline;
       }
 
       /* *** #homePresentation *** */

@@ -3,6 +3,7 @@
 abstract class AbstractController
 {
 	protected UserManager $um;
+	protected ContactsManager $cm;
 	protected SongsManager $sm;
 	protected SongsCategoriesManager $sgcm;
 	protected VoiceManager $vm;
@@ -17,9 +18,10 @@ abstract class AbstractController
 	protected FileUploader $fu;
 
 	// fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-	public function init(UserManager $um, SongsManager $sm, SongsCategoriesManager $sgcm, VoiceManager $vm, TextManager $tm, EventManager $em, ParticipationManager $pm, SahringItemManager $sim, SahringCategoriesManager $scm, ShareAnswerManager $sam, ChatItemsManager $cim, ChatAnswersManager $cam, FileUploader $fu)
+	public function init(UserManager $um, ContactsManager $cm, SongsManager $sm, SongsCategoriesManager $sgcm, VoiceManager $vm, TextManager $tm, EventManager $em, ParticipationManager $pm, SahringItemManager $sim, SahringCategoriesManager $scm, ShareAnswerManager $sam, ChatItemsManager $cim, ChatAnswersManager $cam, FileUploader $fu)
 	{
 		$this->um = $um;
+		$this->cm = $cm;
 		$this->sm = $sm;
 		$this->sgcm = $sgcm;
 		$this->vm = $vm;
@@ -47,9 +49,11 @@ abstract class AbstractController
 
 	}
 	
-	protected function clean_input($data){
+	protected function clean_input($data)
+	{
 		$data = trim($data); //enleve les espaces avant et après une string
 		$data = stripslashes($data); // enlève les '\' d'une string
+		$data = strip_tags($data); // enlève les balises HTML et PHP d'une chaîne
 		$data = htmlspecialchars($data); //remplace certains caractères par une entité html (ex: > par &gt;)
 
 		return $data;

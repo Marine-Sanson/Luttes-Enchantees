@@ -44,7 +44,7 @@ class EventManager extends AbstractManager
 
 	public function getEvents() : array
 	{
-		$query = $this->db->prepare('SELECT * FROM events');
+		$query = $this->db->prepare('SELECT * FROM events ORDER BY date DESC');
 		$query->execute();
 		$events = $query->fetchAll(PDO::FETCH_ASSOC);
 

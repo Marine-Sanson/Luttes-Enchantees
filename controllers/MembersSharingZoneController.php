@@ -65,82 +65,97 @@ Class MembersSharingZoneController extends AbstractController
 		{
 			$template = "connect";
 
-			$this->render($template);
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);
 		}
 	}
 
 	public function newShare() : void
 	{
-		if(isset($_POST) && $_POST["action"] === "newSharingMessage")
+		if($_SESSION["connectUser"])
 		{
-			$template = "membersNewShare";
-			$allCats = $this->scm->getAllCategories();
-	
-			$this->render($template, ["allCats" => $allCats]);
-		}
-		else if(isset($_POST) && $_POST["action"] === "newShare")
-		{
-			$errors = [];
-			if(!isset($_POST["title"]) || $_POST["title"] === "" )
-			{
-				$errors[] = "N'oublie pas de mettre un titre";
-			}
-
-			if(!isset($_POST["content"]) || $_POST["content"] === "")
-			{
-				$errors[] = "N'oublie pas de mettre un contenu";
-			}
-
-			if($errors === [])
-			{
-				$userId = $_SESSION["user"]["id"];
-				$title = $_POST["title"];
-				$content = $_POST["content"];
-				$categoryId = $_POST["catId"];
-
-				$this->sim->createSharingItem($userId, $title, $content, $categoryId);
-				$validation = "Ton message a bien été créé";
-
-				$template = "newShare";
-				$allCats = $this->scm->getAllCategories();
-		
-				$this->render($template, ["allCats" => $allCats, "validation" => $validation]);
-			}
-			else if($errors !== [])
+			if(isset($_POST["action"]) && $_POST["action"] === "newSharingMessage")
 			{
 				$template = "membersNewShare";
 				$allCats = $this->scm->getAllCategories();
-				$allMessages = $this->sim->getAllSharingItems();
-
-				$title = "";
-				$content = "";
-
-				if(isset($_POST["title"]) || $_POST["title"] !== "" )
+		
+				$this->render($template, ["allCats" => $allCats]);
+			}
+			else if(isset($_POST["action"]) && $_POST["action"] === "newShare")
+			{
+				$errors = [];
+				if(!isset($_POST["title"]) || $_POST["title"] === "" )
 				{
-					$title = $_POST["title"];
+					$errors[] = "N'oublie pas de mettre un titre";
 				}
 
 				if(!isset($_POST["content"]) || $_POST["content"] === "")
 				{
-					$content = $_POST["content"];
+					$errors[] = "N'oublie pas de mettre un contenu";
 				}
-		
-				$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages, "errors" => $errors, "title" => $title, "content" => $content]);
+
+				if($errors === [])
+				{
+					$userId = $_SESSION["user"]["id"];
+					$title = $_POST["title"];
+					$content = $_POST["content"];
+					$categoryId = $_POST["catId"];
+
+					$this->sim->createSharingItem($userId, $title, $content, $categoryId);
+					$validation = "Ton message a bien été créé";
+
+					$template = "newShare";
+					$allCats = $this->scm->getAllCategories();
+			
+					$this->render($template, ["allCats" => $allCats, "validation" => $validation]);
+				}
+				else if($errors !== [])
+				{
+					$template = "membersNewShare";
+					$allCats = $this->scm->getAllCategories();
+					$allMessages = $this->sim->getAllSharingItems();
+
+					$title = "";
+					$content = "";
+
+					if(isset($_POST["title"]) || $_POST["title"] !== "" )
+					{
+						$title = $_POST["title"];
+					}
+
+					if(!isset($_POST["content"]) || $_POST["content"] === "")
+					{
+						$content = $_POST["content"];
+					}
+			
+					$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages, "errors" => $errors, "title" => $title, "content" => $content]);
+				}
+			}
+			else
+			{
+				$template = "membersSharingZone";
+				$allCats = $this->scm->getAllCategories();
+				$allMessages = $this->sim->getAllSharingItems();
+
+				$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages]);
 			}
 		}
 		else
 		{
-			$template = "membersSharingZone";
-			$allCats = $this->scm->getAllCategories();
-			$allMessages = $this->sim->getAllSharingItems();
+			$template = "connect";
 
-			$this->render($template, ["allCats" => $allCats, "allMessages" => $allMessages]);
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);
 		}
 	}
 
 	public function shareByCat($catId) : void
 	{
-		if(isset($_POST) && $_POST["action"] === "displaySharingMessage")
+		if(isset($_POST["action"]) && $_POST["action"] === "displaySharingMessage")
 		{
 			$shares = $this->sim->getSharingItemsByCatId($_POST["catId"]);
 			foreach($shares as $key => $share)
@@ -171,7 +186,7 @@ Class MembersSharingZoneController extends AbstractController
 
 
 		}
-		else if (isset($_POST) && $_POST["action"] === "shareAnswer")
+		else if (isset($_POST["action"]) && $_POST["action"] === "shareAnswer")
 		{
 			if(!isset($_POST["shareAnswerContent"]) || $_POST["shareAnswerContent"] === "")
 			{
@@ -210,6 +225,16 @@ Class MembersSharingZoneController extends AbstractController
 	
 				$this->render($template, ["validation" => $validation, "sharesByCat" => $sharesByCat, "catName" => $catName, "allCats" => $allCats]);
 			}
+		}
+		else
+		{
+			//Sinon renvoie vers la connexion
+			$template = "connect";
+
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);
 		}
 	}
 }

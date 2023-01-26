@@ -135,8 +135,9 @@ Class AdminEventsController extends AbstractController
 				$this->render($template, ["cats" => $cats, "events" => $events]);
 			}
 		}
-		else
+		else if($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "user")
 		{
+			//Sinon redirige vers membersHome, en allant chercher tous les events
 			$allEvents = $this->em->getEvents();
 			$events = [];
 
@@ -157,49 +158,95 @@ Class AdminEventsController extends AbstractController
 
 			$this->render($template, ["events" => $events]);
 		}
+		else
+		{
+			//Sinon renvoie sur la connexion
+			$template = "connect";
+
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+
+			$this->render($template, ["token" => $token]);
+		}
 	}
 
 	public function updateEvent() : void
 	{
-		if(isset($_POST) && $_POST["action"] === "displayUpdateEvent")
+		if ($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "admin")
 		{
-			$id = intval($_POST["eventId"]);
-			$event = $this->em->getEventById($id);
-			$catId = $event->getEventCatId();
-	
-			$cat = $this->em->getCatById($catId);
-			$cats = $this->em->getCats();
-
-			$template = "adminUpdateEvent";
-			$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
-		}
-		else if(isset($_POST) && $_POST["action"] === "updateEvent")
-		{
-			$id = intval($_POST["eventId"]);
-
-			$tempDate = explode("-", $_POST["date"]);
-			$date = $tempDate[2] . "-" . $tempDate[1] . "-" . $tempDate[0];
-
-			$updatedEvent = new Event($_POST["eventId"], $date, $_POST["cat"], $_POST["privateDetails"], $_POST["publicDetails"], $_POST["status"]);
-
-			$this->em->updatedEvent($updatedEvent);
-
-			$event = $this->em->getEventById($id);
-			$catId = $event->getEventCatId();
-			$cat = $this->em->getCatById($catId);
-			$cats = $this->em->getCats();
+			if(isset($_POST) && $_POST["action"] === "displayUpdateEvent")
+			{
+				$id = intval($_POST["eventId"]);
+				$event = $this->em->getEventById($id);
+				$catId = $event->getEventCatId();
 		
-			$validation = "cet évenement à bien été modifé";
-			$template = "adminUpdateEvent";
-			$this->render($template, ["event" => $event, "validation" => $validation, "cat" => $cat, "cats" => $cats]);
+				$cat = $this->em->getCatById($catId);
+				$cats = $this->em->getCats();
+
+				$template = "adminUpdateEvent";
+				$this->render($template, ["event" => $event, "cat" => $cat, "cats" => $cats]);
+			}
+			else if(isset($_POST) && $_POST["action"] === "updateEvent")
+			{
+				$id = intval($_POST["eventId"]);
+
+				$tempDate = explode("-", $_POST["date"]);
+				$date = $tempDate[2] . "-" . $tempDate[1] . "-" . $tempDate[0];
+
+				$updatedEvent = new Event($_POST["eventId"], $date, $_POST["cat"], $_POST["privateDetails"], $_POST["publicDetails"], $_POST["status"]);
+
+				$this->em->updatedEvent($updatedEvent);
+
+				$event = $this->em->getEventById($id);
+				$catId = $event->getEventCatId();
+				$cat = $this->em->getCatById($catId);
+				$cats = $this->em->getCats();
+			
+				$validation = "cet évenement à bien été modifé";
+				$template = "adminUpdateEvent";
+				$this->render($template, ["event" => $event, "validation" => $validation, "cat" => $cat, "cats" => $cats]);
+			}
+			else
+			{
+				$events = $this->em->getEvents();
+				$cats = $this->em->getCats();
+
+				$template = "adminEvents";
+				$this->render($template, ["cats" => $cats, "events" => $events]);
+			}
+		}
+		else if($_SESSION["connectUser"] && $_SESSION["user"]["role"] === "user")
+		{
+			//Sinon redirige vers membersHome, en allant chercher tous les events
+			$allEvents = $this->em->getEvents();
+			$events = [];
+
+			foreach($allEvents as $key => $event)
+			{
+				$cat = $this->em->getCatById($event["event_cat_id"]);
+				$part = $this->pm->getParticipationStatus($event["id"], $_SESSION["user"]["id"]);
+				$events[] = [
+					"id" => $event["id"],
+					"date" => $event["date"],
+					"event_cat_id" => $event["event_cat_id"],
+					"cat" => $cat,
+					"part" => $part,
+					"private_details" => $event["private_details"]
+				];
+			}
+			$template = "membersHome";
+
+			$this->render($template, ["events" => $events]);
 		}
 		else
 		{
-			$events = $this->em->getEvents();
-			$cats = $this->em->getCats();
+			//Sinon renvoie sur la connexion
+			$template = "connect";
 
-			$template = "adminEvents";
-			$this->render($template, ["cats" => $cats, "events" => $events]);
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+
+			$this->render($template, ["token" => $token]);
 		}
 	}
 }

@@ -101,8 +101,15 @@ Class MembersChatController extends AbstractController
 					$this->render($template, ["allChats" => $allChats, "validation" => $validation]);
 				}
 			}
+		}
+		else
+		{
+			$template = "connect";
+			
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
 
+			$this->render($template, ["token" => $token]);
 		}
 	}
-
 }

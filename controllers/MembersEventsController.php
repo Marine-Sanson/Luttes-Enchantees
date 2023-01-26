@@ -4,42 +4,56 @@ Class MembersEventsController extends AbstractController
 {
 	public function index() :void
 	{
-		//Va chercher tous les events
-		$template = "membersEvents";
-
-		$allEvents = $this->em->getEvents();
-		$events = [];
-		//Pour chaque event va chercher le nombre de patricipantes
-		foreach($allEvents as $key => $event)
+		if ($_SESSION["connectUser"])
 		{
-			$oui = $this->pm->countParticipation($event["id"], "Oui");
-			$non = $this->pm->countParticipation($event["id"], "Non");
-			$nsp = $this->pm->countParticipation($event["id"], "Je ne sais pas");
-			$nonrep = $this->pm->countParticipation($event["id"], "Non répondu");
+			//Va chercher tous les events
+			$template = "membersEvents";
 
-			$events[] = [
-				"id" => $event["id"],
-				"date" => $event["date"],
-				"event_cat_id" => $event["event_cat_id"],
-				"private_details" => $event["private_details"],
-				"public_details" => $event["public_details"],
-				"status" => $event["status"],
-				"oui" => $oui,
-				"non" => $non,
-				"nsp" => $nsp,
-				"nonrep" => $nonrep
-			];
+			$allEvents = $this->em->getEvents();
+			$events = [];
+			//Pour chaque event va chercher le nombre de patricipantes
+			foreach($allEvents as $key => $event)
+			{
+				$oui = $this->pm->countParticipation($event["id"], "Oui");
+				$non = $this->pm->countParticipation($event["id"], "Non");
+				$nsp = $this->pm->countParticipation($event["id"], "Je ne sais pas");
+				$nonrep = $this->pm->countParticipation($event["id"], "Non répondu");
+
+				$events[] = [
+					"id" => $event["id"],
+					"date" => $event["date"],
+					"event_cat_id" => $event["event_cat_id"],
+					"private_details" => $event["private_details"],
+					"public_details" => $event["public_details"],
+					"status" => $event["status"],
+					"oui" => $oui,
+					"non" => $non,
+					"nsp" => $nsp,
+					"nonrep" => $nonrep
+				];
+			}
+			$cats = $this->em->getCats();
+
+			$this->render($template, ["cats" => $cats, "events" => $events]);
 		}
-		$cats = $this->em->getCats();
+		else
+		{
+			$template = "connect";
 
-		$this->render($template, ["cats" => $cats, "events" => $events]);
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);
+		}
 	}
 
 	public function eventDetail(): void
 	{
-		if ($_SESSION["connectUser"]) {
+		if ($_SESSION["connectUser"])
+		{
 			//Si l'action est "eventDetail" va chercher l'event d'près son id, sa catégorie et la participation
-			if (isset($_POST) && $_POST["action"] === "eventDetail") {
+			if (isset($_POST) && $_POST["action"] === "eventDetail")
+			{
 				$id = intval($_POST["eventId"]);
 				$event = $this->em->getEventById($id);
 				$catId = $event->getEventCatId();
@@ -61,7 +75,9 @@ Class MembersEventsController extends AbstractController
 
 				$template = "membersEventDetail";
 				$this->render($template, ["event" => $event, "parts" => $parts, "count" => $count, "cat" => $cat]);
-			} else {
+			}
+			else
+			{
 				//Sinon va chercher tous les events et les catégories
 				$events = $this->em->getEvents();
 				$cats = $this->em->getCats();
@@ -72,10 +88,13 @@ Class MembersEventsController extends AbstractController
 		}
 		else
 		{
-			//Sinon renvoie sur la connection
+			//Sinon renvoie sur la connexion
 			$template = "connect";
 
-			$this->render($template);
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+
+			$this->render($template, ["token" => $token]);
 		}
 	}
 }

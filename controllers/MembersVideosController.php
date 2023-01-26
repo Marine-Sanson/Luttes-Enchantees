@@ -13,10 +13,12 @@ Class MembersVideosController extends AbstractController
         }
         else
 		{
-            //Sinon renvoie vers la connection
+            //Sinon renvoie vers la connexion
 			$template = "connect";
 
-			$this->render($template);
-		}
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);		}
     }
 }

@@ -4,7 +4,7 @@
 		<img class="logo" src="./assets/img/logo1.png" alt="Logo des Luttes Enchantées">
 	</figure>
 
-	<h1>Connection à l'espace de travail</h1>
+	<h1>Connexion à l'espace de travail</h1>
 
 	<p>Cet espace est réservé aux membres de la chorale</p>
 
@@ -17,6 +17,7 @@
 		method="post">
 
 		<input type="hidden" id="checkConnectionAction" name="action" value="checkConnection">
+		<input type="hidden" id="tokenContactForm" name="token" value="<?= $data["token"]; ?>">
 
 		<label id="emailForConnectionLabel" for="email">Email :</label>
 		<input type="email" id="emailForConnection" name="email">
@@ -26,5 +27,9 @@
 
 		<input id="connectUserSubmit" class="button" type="submit" value="Me connecter">
 	</form>
+
+	<figure id="logoBonus">
+		<img src="./assets/img/logoBonus.png" alt="Autre logo">
+	</figure>
 
 </main>

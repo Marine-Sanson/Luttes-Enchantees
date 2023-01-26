@@ -19,8 +19,10 @@ Class MembersSongsController extends AbstractController
 		{
 			$template = "connect";
 
-			$this->render($template);
-		}
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);		}
 	}
 
 	public function songDetail() :void
@@ -39,7 +41,9 @@ Class MembersSongsController extends AbstractController
 		{
 			$template = "connect";
 
-			$this->render($template);
-		}
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);		}
 	}
 }

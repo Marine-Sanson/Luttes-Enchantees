@@ -40,6 +40,10 @@ a{
 	text-decoration: none;
 }
 
+strong{
+	font-weight: normal;
+}
+
 fieldset{
 	border: none;
 }
@@ -70,7 +74,7 @@ input:checked + label {
 textarea,
 input[type="date"],
 input[type="text"],
-input[type="mail"]{
+input[type="email"]{
 	background-color: $lighterBlue;
 	color: $blue;
 	border: 2px solid $blue;

@@ -33,10 +33,12 @@ Class MembersHomeController extends AbstractController
 		}
 		else
 		{
-			//Sinon renvoie sur la connection
+			//Sinon renvoie sur la connexion
 			$template = "connect";
 
-			$this->render($template);
-		}
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);		}
 	}
 }

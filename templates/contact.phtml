@@ -6,6 +6,10 @@
 	
 	<h1>Nous contacter</h1>
 
+	<?php
+	require "./templates/_messages.phtml";
+	?>
+
 	<p>Nous sommes au complet pour l'instant, nous n'acceptons donc pas de nouvelles choristes.</p>
 	<p>Vous pouvez nous contacter si vous voulez nous proposer de chanter lors d'un évenement que vous organisez.</p>
 	<p>Pour cela merci de remplir le formulaire ci dessous, nous vous répondrons dans les meilleurs délais.</p>
@@ -19,20 +23,27 @@
 			 name="action"
 			 value="newMail">
 
+		<input type="hidden"
+			 id="token"
+			 name="token"
+			 value="<?= $data["token"]; ?>">
+
+		<input type="hidden" name="podMel">
+
 		<label id="mailAdressLabel" for="mailObject">Votre adresse mail : </label>
-		<input type="mail" name="mailAdress" id="mailAdress">
+		<input type="email" name="mailAdress" id="mailAdress" minlength="3" maxlength="64" required>
 			
 		<label id="mailObjectLabel" for="mailObject">Objet : </label>
 		<textarea
 			name="mailObject"
 			id="mailObject"
-			maxlength="155"></textarea>
+			maxlength="155" required></textarea>
 
 		<label id="mailContentLabel" for="mailContent">Contenu : </label>
 		<textarea
 			name="mailContent"
 			id="mailContent"
-			maxlength="1024"></textarea>
+			maxlength="1024" required></textarea>
 				
 		<input id="contactFormSubmit"
 			 class="button"

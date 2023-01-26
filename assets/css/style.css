@@ -45,6 +45,10 @@ a {
   text-decoration: none;
 }
 
+strong {
+  font-weight: normal;
+}
+
 fieldset {
   border: none;
 }
@@ -75,7 +79,7 @@ input:checked + label {
 textarea,
 input[type=date],
 input[type=text],
-input[type=mail] {
+input[type=email] {
   background-color: #b4f4ff;
   color: #2713D4;
   border: 2px solid #2713D4;
@@ -231,10 +235,6 @@ header nav a {
   color: #2713D4;
 }
 
-#home section p a:hover {
-  text-decoration: underline;
-}
-
 /* *** #homePresentation *** */
 #homePresentation figure {
   margin: auto;
@@ -266,6 +266,9 @@ header nav a {
   }
   #homeFirstP {
     margin-bottom: 0.8rem;
+  }
+  #home section p a:hover {
+    text-decoration: underline;
   }
   /* *** #homePresentation *** */
   #homePresentation {
@@ -436,7 +439,7 @@ header nav a {
 }
 
 #contactForm input[type=text],
-#contactForm input[type=mail],
+#contactForm input[type=email],
 #contactForm textarea {
   margin: 0.5rem;
 }
@@ -617,6 +620,10 @@ header nav a {
 /* ********** MembersHome ********** */
 #membersHome h1 {
   max-width: 50vw;
+}
+
+#membersHomeFirstP {
+  text-align: center;
 }
 
 #disconnect {

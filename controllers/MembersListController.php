@@ -2,22 +2,25 @@
 
 Class MembersListController extends AbstractController
 {
-    public function index() :void
-    {
-        if($_SESSION["connectUser"])
-        {
-            //Va chercher tous les users
-            $users = $this->um->getAllUsers();
-            $template = "membersList";
-
-            $this->render($template, ["users" => $users]);
-        }
-        else
+	public function index() :void
+	{
+		if($_SESSION["connectUser"])
 		{
-            //Sinon renvoie vers la connection
+			//Va chercher tous les users
+			$users = $this->um->getAllUsers();
+			$template = "membersList";
+
+			$this->render($template, ["users" => $users]);
+		}
+		else
+		{
+			//Sinon renvoie vers la connexion
 			$template = "connect";
 
-			$this->render($template);
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+			$this->render($template, ["token" => $token]);
 		}
-    }
+	}
 }

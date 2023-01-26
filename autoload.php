@@ -19,6 +19,7 @@ require "./models/SharingCategory.php";
 require "./models/Event.php";
 
 require "./managers/UserManager.php";
+require "./managers/ContactsManager.php";
 require "./managers/SongsManager.php";
 require "./managers/SongsCategoriesManager.php";
 require "./managers/VoiceManager.php";

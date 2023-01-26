@@ -31,104 +31,120 @@ Class ConnectController extends AbstractController
 		{
 			$template = "connect";
 
-			$this->render($template);
-		}
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
 
+			$this->render($template, ["token" => $token]);
+		}
 	}
 
 	public function checkConnection() : void
 	{
-		if (isset($_POST) && $_POST["action"] === "checkConnection")
+		if(isset($_POST["token"]) && $_POST["token"] === $_SESSION["tokenRequiredForMemberConnection"])
 		{
-			$errors = [];
-
-			$email = $_POST["email"];
-			$password = $_POST["password"];
-
-			if ($email === "" || $password === "")
+			if (isset($_POST) && $_POST["action"] === "checkConnection")
 			{
-				$errors[] = "Veuillez vous connecter";
-				$template = "connect";
+				$errors = [];
 
-				$this->render($template, ["errors" => $errors]);
-			}
-			else
-			{
-				$user = $this->um->connectAdmin($email);
-
-				if(isset($user) && !empty($user) && $user !== [])
+				$email = $_POST["email"];
+				$password = $_POST["password"];
+	
+				if ($email === "" || $password === "")
 				{
-					$_SESSION["connectUser"] = false;
-					if ($email !== $user["email"] || !password_verify($password, $user["password"]))
+					$errors[] = "Veuillez vous connecter";
+					$template = "connect";
+	
+					$this->render($template, ["errors" => $errors]);
+				}
+				else
+				{
+					$user = $this->um->connectAdmin($email);
+	
+					if(isset($user) && !empty($user) && $user !== [])
 					{
-						$errors[] = "identifiant ou mot de passe incorrect";
-						$template = "connect";
-
-						$this->render($template, ["errors" => $errors]);
-					}
-					else if($email === $user["email"] && password_verify($password, $user["password"]))
-					{
-						$_SESSION["connectUser"] = true;
-						$_SESSION["user"] = [
-							"id" => $user["id"],
-							"name" => $user["name"],
-							"role" => $user["role"]
-						];
-
-						$allEvents = $this->em->getEvents();
-						$events = [];
-
-						foreach($allEvents as $key => $event)
+						$_SESSION["connectUser"] = false;
+						if ($email !== $user["email"] || !password_verify($password, $user["password"]))
 						{
-							$cat = $this->em->getCatById($event["event_cat_id"]);
-							$part = $this->pm->getParticipationStatus($event["id"], $_SESSION["user"]["id"]);
-							$events[] = [
-								"id" => $event["id"],
-								"date" => $event["date"],
-								"event_cat_id" => $event["event_cat_id"],
-								"cat" => $cat,
-								"part" => $part,
-								"private_details" => $event["private_details"]
-							];
+							$errors[] = "identifiant ou mot de passe incorrect";
+							$template = "connect";
+	
+							$this->render($template, ["errors" => $errors]);
 						}
-
-						$template = "membersHome";
-
-						$this->render($template, ["errors" => $errors, "events" => $events]);
+						else if($email === $user["email"] && password_verify($password, $user["password"]))
+						{
+							$_SESSION["connectUser"] = true;
+							$_SESSION["user"] = [
+								"id" => $user["id"],
+								"name" => $user["name"],
+								"role" => $user["role"]
+							];
+	
+							$allEvents = $this->em->getEvents();
+							$events = [];
+	
+							foreach($allEvents as $key => $event)
+							{
+								$cat = $this->em->getCatById($event["event_cat_id"]);
+								$part = $this->pm->getParticipationStatus($event["id"], $_SESSION["user"]["id"]);
+								$events[] = [
+									"id" => $event["id"],
+									"date" => $event["date"],
+									"event_cat_id" => $event["event_cat_id"],
+									"cat" => $cat,
+									"part" => $part,
+									"private_details" => $event["private_details"]
+								];
+							}
+	
+							$template = "membersHome";
+	
+							$this->render($template, ["errors" => $errors, "events" => $events]);
+						}
+						else
+						{
+							$template = "connect";
+							$errors[] = "Les identifiants ne sont pas valides";
+	
+							$this->render($template, ["errors" => $errors]);
+						}
 					}
 					else
 					{
 						$template = "connect";
 						$errors[] = "Les identifiants ne sont pas valides";
-
+	
 						$this->render($template, ["errors" => $errors]);
 					}
 				}
-				else
-				{
-					$template = "connect";
-					$errors[] = "Les identifiants ne sont pas valides";
+			}
+			else
+			{
+				$template = "connect";
+				$errors[] = "Problème de connexion, merci de recommencer";
 
-					$this->render($template, ["errors" => $errors]);
-				}
+				$token = $this->generateToken(20);
+				$_SESSION["tokenRequiredForMemberConnection"] = $token;
+	
+				$this->render($template, ["token" => $token, "errors" => $errors]);
 			}
 		}
 		else
 		{
 			$template = "connect";
 
-			$this->render($template);
-		}
+			$token = $this->generateToken(20);
+			$_SESSION["tokenRequiredForMemberConnection"] = $token;
+
+			$this->render($template, ["token" => $token]);		}
 	}
 
-	public function disconnect(){
+	public function disconnect()
+	{
 		unset($_SESSION["connectUser"]);
 		session_destroy();
 		
-		$validation = "Tu as bien été déconnectée";
-		$template = "connect";
+		$template = "bye";
 		
-		$this->render($template, ["validation" => $validation]);
-	  }
-    
+		$this->render($template);
+	}    
 }
