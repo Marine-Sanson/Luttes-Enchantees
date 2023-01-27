@@ -39,6 +39,19 @@
       #adminSongs p{
             max-width: 80vw;
       }
+
+      .chooseSongArt form{
+            text-align: center;
+            margin: auto;
+      }
+
+      #chooseASong{
+            margin-bottom: 2rem;
+      }
+
+      #chooseASong h3{
+            text-align: center;
+      }
       
       #chooseASong ul li{
             margin: auto 1rem;
@@ -51,7 +64,7 @@
       .chooseSongArt{
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-rows: repeat(3, auto);
 
             text-align: right;
             padding: 0.5rem;
@@ -76,7 +89,8 @@
       .chooseSongArtTitle{
             grid-column: 1/3;
             grid-row: 1;
-            margin: auto;
+            margin: 1rem auto;
+            font-size: 1.2rem;
             font-weight: 700;
       }
 
@@ -99,17 +113,6 @@
             grid-column: 2;
             grid-row: 3;
       }
-
-      .chooseSongArt form{
-            text-align: center;
-            padding: 0.5rem;
-            margin: auto;
-      }
-
-      #chooseASong h3{
-            text-align: center;
-      }
-      
 }
 
 @media(min-width: 792px)

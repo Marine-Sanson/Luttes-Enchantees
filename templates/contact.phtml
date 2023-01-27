@@ -10,7 +10,7 @@
 	require "./templates/_messages.phtml";
 	?>
 
-	<p>Nous sommes au complet pour l'instant, nous n'acceptons donc pas de nouvelles choristes.</p>
+	<p id="contactFirstP">Nous sommes au complet pour l'instant, nous n'acceptons donc pas de nouvelles choristes.</p>
 	<p>Vous pouvez nous contacter si vous voulez nous proposer de chanter lors d'un évenement que vous organisez.</p>
 	<p>Pour cela merci de remplir le formulaire ci dessous, nous vous répondrons dans les meilleurs délais.</p>
 
@@ -44,7 +44,11 @@
 			name="mailContent"
 			id="mailContent"
 			maxlength="1024" required></textarea>
-				
+
+		<p id="pForControl">Afin de vérifiez que vous n'êtes pas un robot, merci de répondre à cette question :</p>
+		<label id="labelForControl" for="control">Combien font 3 + 2 (en chiffre) ?</label>
+		<input id="inputForControl" type="text" name="control" maxlength="1" required>
+
 		<input id="contactFormSubmit"
 			 class="button"
 			 type="submit"

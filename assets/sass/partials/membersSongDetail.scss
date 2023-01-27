@@ -47,7 +47,8 @@
       }
 
       .songDetailText{
-            max-width: 95vw;      }
+            max-width: 95vw;
+      }
       
       .songDetailText iframe{
             width: 100%;
@@ -57,6 +58,19 @@
       .songDetailVideo iframe{
             max-width: 95vw;
             margin: 1.5rem auto;
+      }
+
+      .tuto{
+            max-width: 80vw;
+            margin: auto;
+      }
+
+      .tutoEnrTxt{
+            margin-top: 1.5rem;
+      }
+
+      .tutoEnregistrement{
+            margin: 2rem auto;
       }
 }
 
@@ -82,5 +96,18 @@
 
       .songDetailVideo{
             margin-top: 2rem;
+      }
+
+      .tuto{
+            max-width: 40vw;
+            margin: auto;
+      }
+
+      .tutoEnrTxt{
+            margin-top: 2rem;
+      }
+
+      .tutoEnregistrement{
+            margin: 4rem auto;
       }
 }

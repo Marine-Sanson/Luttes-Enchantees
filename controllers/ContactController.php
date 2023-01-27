@@ -22,7 +22,12 @@ Class ContactController extends AbstractController
 
 				if($_POST["podMel"] !== "")
 				{
-					$errors[] = "il y a eu un problème de podMel, veuillez recommencer";
+					$errors[] = "il y a eu un problème, veuillez recommencer";
+				}
+
+				if($_POST["control"] !== "5")
+				{
+					$errors[] = "merci de répondre à la question, en chiffre";
 				}
 
 				if($_POST["mailAdress"] === "")
@@ -52,7 +57,7 @@ Class ContactController extends AbstractController
 					$mail = $_POST["mailAdress"];
 					$headers = "De : " . $mail;
 
-					$newContact = $this->cm->createNewContact($mail, $subject, $mailContent);
+					$newContact = $this->cm->createNewContact($mail, $mailObject, $mailContent);
 
 					// $mail = mail($to, $subject, $message, $headers);
 
@@ -74,7 +79,10 @@ Class ContactController extends AbstractController
 				}
 				else
 				{
-					$this->render($template, ["errors" => $errors]);
+					$token = $this->generateToken(25);
+					$_SESSION["tokenRequiredForSendingAnEmail"] = $token;
+
+					$this->render($template, ["errors" => $errors, "token" => $token]);
 				}
 			}
 		}

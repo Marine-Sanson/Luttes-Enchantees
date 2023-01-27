@@ -21,12 +21,13 @@
 
 @media(min-width: 0px) and (max-width: 791.99px)
 {
-      #contact p{
+      #contactFirstP{
             margin: 2rem 1rem 0.5rem 1rem;
       }
 
       #contactForm{
-            grid-template-rows: repeat(5, 1fr), auto, 1fr;
+            grid-template-rows: repeat(10, auto);
+            grid-template-columns: auto;
       }
 
       #contactForm label{
@@ -35,57 +36,69 @@
       
       #mailAdressLabel{
             grid-row: 1;
-            grid-column: 2/11
       }
       
-      #mailAdress{
+      #contactForm #mailAdress{
             grid-row: 2;
-            grid-column: 2/11;
             width: 80vw;
             height: 1.6rem;
+            margin: 0.5rem auto;
       }
       
       #mailObjectLabel{
             grid-row: 3;
-            grid-column: 2/11;
       }
       
-      #mailObject{
+      #contactForm #mailObject{
             grid-row: 4;
-            grid-column: 2/11;
             width: 80vw;
             height: 1.6rem;
+            margin: 0.5rem auto;
       }
       
       #mailContentLabel{
             grid-row: 5;
-            grid-column: 2/11;
       }
       
-      #mailContent{
+      #contactForm #mailContent{
             grid-row: 6;
-            grid-column: 2/11;
             width: 80vw;
             height: 5rem;
+            margin: 0.5rem auto;
+      }
+
+      #pForControl{
+            grid-row: 7;
+            margin: auto;
+      }
+
+      #labelForControl{
+            grid-row: 8;
+      }
+
+      #contactForm #inputForControl{
+            grid-row: 9;
+            max-width: 40vw;
+            margin: 0.5rem auto;
       }
       
       #contactFormSubmit{
-            grid-row: 7;
+            grid-row: 10;
             grid-column: 1/13;
-            margin: auto;
+            margin: 1rem auto;
       }      
 }
 
 @media(min-width: 792px)
 {
-      #contact p{
+      #contactFirstP{
             margin: 8rem 1rem 0.5rem 1rem;
       }
       
       #contactForm{
             display: grid;
             grid-template-columns: $gridTempCol;
-            grid-template-rows: repeat(4, auto);
+            grid-template-rows: repeat(6, auto);
       }
       
       #contactForm label{
@@ -127,10 +140,27 @@
             max-width: 100%;
             height: 5rem;
       }
-      
-      #contactFormSubmit{
+
+      #pForControl{
             grid-row: 4;
             grid-column: 1/13;
-            margin: 0.5rem auto;
+            margin: 1rem auto;
+      }
+
+      #labelForControl{
+            grid-row: 5;
+            grid-column: 1/8;
+      }
+
+      #inputForControl{
+            grid-row: 5;
+            grid-column: 8/9;
+            max-width: 100%;
+      }
+      
+      #contactFormSubmit{
+            grid-row: 6;
+            grid-column: 1/13;
+            margin: 1rem auto;
       }
 }
