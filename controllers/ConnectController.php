@@ -53,13 +53,30 @@ Class ConnectController extends AbstractController
 				{
 					$errors[] = "Veuillez vous connecter";
 					$template = "connect";
-	
-					$this->render($template, ["errors" => $errors]);
+
+					$token = $this->generateToken(20);
+					$_SESSION["tokenRequiredForMemberConnection"] = $token;
+
+					$this->render($template, ["token" => $token, "errors" => $errors]);
 				}
 				else
 				{
-					$user = $this->um->connectAdmin($email);
+					$userForConnect = $this->um->getEmail($email);
+					if(isset($userForConnect) && $userForConnect !== [])
+					{
+						$user = $this->um->connectAdmin($email);
+					}
+					else
+					{
+						$errors[] = "identifiant ou mot de passe incorrect";
+						$template = "connect";
+
+						$token = $this->generateToken(20);
+						$_SESSION["tokenRequiredForMemberConnection"] = $token;
 	
+						$this->render($template, ["token" => $token, "errors" => $errors]);
+					}
+
 					if(isset($user) && !empty($user) && $user !== [])
 					{
 						$_SESSION["connectUser"] = false;
@@ -67,8 +84,11 @@ Class ConnectController extends AbstractController
 						{
 							$errors[] = "identifiant ou mot de passe incorrect";
 							$template = "connect";
-	
-							$this->render($template, ["errors" => $errors]);
+
+							$token = $this->generateToken(20);
+							$_SESSION["tokenRequiredForMemberConnection"] = $token;
+		
+							$this->render($template, ["token" => $token, "errors" => $errors]);
 						}
 						else if($email === $user["email"] && password_verify($password, $user["password"]))
 						{
@@ -104,16 +124,22 @@ Class ConnectController extends AbstractController
 						{
 							$template = "connect";
 							$errors[] = "Les identifiants ne sont pas valides";
+
+							$token = $this->generateToken(20);
+							$_SESSION["tokenRequiredForMemberConnection"] = $token;
 	
-							$this->render($template, ["errors" => $errors]);
+							$this->render($template, ["token" => $token, "errors" => $errors]);
 						}
 					}
 					else
 					{
 						$template = "connect";
 						$errors[] = "Les identifiants ne sont pas valides";
+
+						$token = $this->generateToken(20);
+						$_SESSION["tokenRequiredForMemberConnection"] = $token;
 	
-						$this->render($template, ["errors" => $errors]);
+						$this->render($template, ["token" => $token, "errors" => $errors]);
 					}
 				}
 			}
@@ -135,7 +161,8 @@ Class ConnectController extends AbstractController
 			$token = $this->generateToken(20);
 			$_SESSION["tokenRequiredForMemberConnection"] = $token;
 
-			$this->render($template, ["token" => $token]);		}
+			$this->render($template, ["token" => $token]);
+		}
 	}
 
 	public function disconnect()
@@ -144,7 +171,10 @@ Class ConnectController extends AbstractController
 		session_destroy();
 		
 		$template = "bye";
+
+		$token = $this->generateToken(20);
+		$_SESSION["tokenRequiredForMemberConnection"] = $token;
 		
-		$this->render($template);
+		$this->render($template, ["token" => $token]);
 	}    
 }

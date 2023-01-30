@@ -57,6 +57,8 @@
 		
 		<ul>
 			<?php
+			if(isset($data["allChats"]) && $data["allChats"] !== [])
+			{
 				foreach($data["allChats"] as $key => $chatItem)
 				{
 				?>
@@ -99,6 +101,13 @@
 					</li>
 				<?php
 				}
+			}
+			else
+			{
+			?>
+				<li class="empty">Aucun message pour le moment</li>
+			<?php
+			}
 			?>
 		</ul>
 

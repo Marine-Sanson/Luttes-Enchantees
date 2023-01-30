@@ -67,13 +67,15 @@
 					</li>
 				<?php
 				}
-			?>
+				?>
 		</ul>
 	</section>
 
 	<section class="displayAllShares">
 		<ul>
-			<?php
+		<?php
+		if(isset($data["allShares"]) && $data["allShares"] !== [])
+		{
 			foreach($data["allShares"] as $key => $share)
 			{
 			?>
@@ -125,7 +127,14 @@
 				</li>
 			<?php
 			}
-			?>
+		}
+		else
+		{
+		?>
+			<li class="empty">Aucun échange pour le moment</li>
+		<?php
+		}
+		?>
 		</ul>
 	</section>
 

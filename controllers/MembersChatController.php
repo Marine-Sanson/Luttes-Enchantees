@@ -10,6 +10,7 @@ Class MembersChatController extends AbstractController
 			if(!isset($_POST["action"]) || $_POST["action"] === "")
 			{
 				$template = "membersChat";
+				$allChats = [];
 				$chats = $this->cim->getAllChatItems();
 				foreach($chats as $key => $chat)
 				{

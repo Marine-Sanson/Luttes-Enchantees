@@ -35,19 +35,33 @@
 	<section id="homeActu">
 		<h2>Nos actualités :</h2>
 
-		<ul>
-			<?php
-			foreach ($data["events"] as $key => $event)
-			{
-			?>
-				<li>
-					<h3 class="homeActuH3"><?= $event["cat"]; ?> du <?= $event["date"]; ?> :</h3>
-					<p><?= $event["public_details"]; ?></p>
-				</li>
-			<?php
-			}
-			?>
-		</ul>
+		<?php
+		if(isset($data["events"]) && $data["events"] !== [])
+		{
+		?>
+			<ul>
+				<?php
+				foreach ($data["events"] as $key => $event)
+				{
+				?>
+					<li>
+						<h3 class="homeActuH3"><?= $event["cat"]; ?> du <?= $event["date"]; ?> :</h3>
+						<p><?= $event["public_details"]; ?></p>
+					</li>
+				<?php
+				}
+				?>
+			</ul>
+		<?php
+		}
+		else
+		{
+		?>
+				<p class="empty">Aucune actualité pour le moment, revenez plus tard.</p>
+		<?php
+		}
+		?>
+
 	</section>
 
 	<section id="homeChants">

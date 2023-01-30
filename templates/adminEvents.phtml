@@ -128,68 +128,81 @@
 	<section id="otherEvents">
 		<h2>Evenements déjà enregistrés :</h2>
 
-		<ul>
 		<?php
-		foreach($data["events"] as $key => $event)
+		if(isset($data["events"]) && $data["events"] !== [])
 		{
 		?>
-			<li>
-				<?php
-				foreach($data["cats"] as $key => $cat)
-				{
-					if($cat["id"] === $event["event_cat_id"])
+			<ul>
+			<?php
+			foreach($data["events"] as $key => $event)
+			{
+			?>
+				<li>
+					<?php
+					foreach($data["cats"] as $key => $cat)
+					{
+						if($cat["id"] === $event["event_cat_id"])
+						{
+						?>
+							<h3><?=$cat["name"]; ?> du <?= $event["date"]; ?></h3>
+						<?php
+						}
+					}
+
+					if($event["status"] === "1")
 					{
 					?>
-						<h3><?=$cat["name"]; ?> du <?= $event["date"]; ?></h3>
+						<p>Evenement interne</p>
+						<p> Infos : <?= $event["private_details"]; ?></p>
 					<?php
 					}
-				}
+					else
+					{
+					?>
+						<p>Evenement public</p>
+						<p> Infos internes : <?= $event["private_details"]; ?></p>
+						<p> Infos publiques : <?= $event["public_details"]; ?></p>
 
-				if($event["status"] === "1")
-				{
-				?>
-					<p>Evenement interne</p>
-					<p> Infos : <?= $event["private_details"]; ?></p>
-				<?php
-				}
-				else
-				{
-				?>
-					<p>Evenement public</p>
-					<p> Infos internes : <?= $event["private_details"]; ?></p>
-					<p> Infos publiques : <?= $event["public_details"]; ?></p>
+					<?php	
+					}
+					?>
 
-				<?php	
-				}
-				?>
+					<?php
+					$id = intval($event["id"]);
+					?>
 
-				<?php
-				$id = intval($event["id"]);
-				?>
+					<form  id="displayUpdateEventForm"
+					action="/Luttes-Enchantees/admin-modif-date/<?= $id; ?>"
+					method="post">
 
-				<form  id="displayUpdateEventForm"
-				action="/Luttes-Enchantees/admin-modif-date/<?= $id; ?>"
-				method="post">
-
-					<input type="hidden"
-						id="displayUpdateEvent"
-						name="action"
-						value="displayUpdateEvent">
-					<input type="hidden"
-						name="route"
-						value="param">
-					<input type="hidden"
-						id="eventId"
-						name="eventId"
-						value="<?= $id; ?>">
-					<input class="button"
-						type="submit"
-						value="Modifier">
-				</form>
-			</li>
+						<input type="hidden"
+							id="displayUpdateEvent"
+							name="action"
+							value="displayUpdateEvent">
+						<input type="hidden"
+							name="route"
+							value="param">
+						<input type="hidden"
+							id="eventId"
+							name="eventId"
+							value="<?= $id; ?>">
+						<input class="button"
+							type="submit"
+							value="Modifier">
+					</form>
+				</li>
+			<?php
+			}
+			?>
+			</ul>
 		<?php
 		}
+		else
+		{
 		?>
-		</ul>
+			<p class="noEvent">Aucun évenement à venir</p>
+		<?php
+		}					
+		?>
 	</section>
 </main>

@@ -2,6 +2,18 @@
 
 Class UserManager extends AbstractManager
 {
+	public function getEmail(string $email) : array
+      {
+            $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
+		$parameters = [
+			'email' => $email
+			];
+		$query->execute($parameters);
+		$userForConnect = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		return $userForConnect;
+      }
+
       public function connectAdmin(string $email) : array
       {
             $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');

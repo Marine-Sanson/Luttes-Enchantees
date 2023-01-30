@@ -111,6 +111,11 @@ textarea {
   margin: 2rem auto;
 }
 
+.empty {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
 footer {
   background-color: #2713D4;
   color: rgb(255, 255, 255);
@@ -143,6 +148,10 @@ footer p {
     font-size: 1.4rem;
     font-weight: 700;
     margin: 1.5rem auto;
+  }
+  .empty {
+    width: 80vw;
+    margin: auto;
   }
 }
 @media (min-width: 792px) {
@@ -314,7 +323,7 @@ header nav a {
     grid-row: 2;
     text-align: left;
     padding: 0.5rem;
-    margin: auto 1.5rem;
+    margin: auto 1rem;
   }
   /* *** #homeChants *** */
   .homeChantsArticle {
@@ -392,7 +401,7 @@ header nav a {
     grid-column: 5/13;
     text-align: left;
     padding: 0.5rem;
-    margin: 0 auto 0 0.5rem;
+    margin: 0 auto 1.5rem 0.5rem;
   }
   /* *** #homeChants *** */
   .homeChantsArticle {
@@ -1766,7 +1775,7 @@ header nav a {
   text-align: center;
 }
 
-#otherEvents p {
+#otherEvents p:not(.empty) {
   margin: 1rem;
   text-align: justify;
 }

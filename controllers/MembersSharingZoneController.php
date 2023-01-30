@@ -8,6 +8,7 @@ Class MembersSharingZoneController extends AbstractController
 		{
 			$template = "membersSharingZone";
 			$allCats = $this->scm->getAllCategories();
+			$allShares = [];
 			$allMessages = $this->sim->getAllSharingItems();
 			foreach($allMessages as $key => $share)
 			{
